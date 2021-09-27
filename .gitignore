@@ -1,0 +1,6 @@
+*.xml
+*.class
+*.java
+/.idea
+/target
+
