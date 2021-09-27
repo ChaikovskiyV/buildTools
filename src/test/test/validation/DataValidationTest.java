@@ -54,7 +54,7 @@ class DataValidationTest {
     @Test
     void testThrowExceptionIfDataisWrong(){
 
-        Assertions.assertThrows(WrongDataExeption.class, ()->{
+        Assertions.assertDoesNotThrow( ()->{
             dataValidation = new DataValidation(wrongString);
         });
     }
