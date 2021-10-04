@@ -3,7 +3,7 @@ package com.VChaikovsky.arrayClass.service;
 import com.VChaikovsky.arrayClass.entity.CustomArray;
 import com.VChaikovsky.arrayClass.exceptions.WrongDataException;
 
-public interface DataProcessingInt {
+public interface DataProcessingStreamInt {
 
     Integer findMin(CustomArray array) throws WrongDataException;
 
@@ -13,9 +13,11 @@ public interface DataProcessingInt {
 
     int findNumbersAmount(CustomArray array) throws WrongDataException;
 
-    int findNegativeQuantity(CustomArray array) throws WrongDataException;
+    long findNegativeQuantity(CustomArray array) throws WrongDataException;
 
-    int findPositiveQuantity(CustomArray array) throws WrongDataException;
+    long findPositiveQuantity(CustomArray array) throws WrongDataException;
 
     CustomArray replaceAllNegativeAndNullNumbersToZero(CustomArray array) throws WrongDataException;
+
+    void sortArray(CustomArray array);
 }
