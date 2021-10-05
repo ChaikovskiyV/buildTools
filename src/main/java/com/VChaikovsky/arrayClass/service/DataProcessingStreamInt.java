@@ -19,5 +19,4 @@ public interface DataProcessingStreamInt {
 
     CustomArray replaceAllNegativeAndNullNumbersToZero(CustomArray array) throws WrongDataException;
 
-    void sortArray(CustomArray array);
 }

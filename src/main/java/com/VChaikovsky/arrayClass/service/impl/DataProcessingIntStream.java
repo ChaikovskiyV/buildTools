@@ -79,12 +79,4 @@ public class DataProcessingIntStream implements DataProcessingStreamInt {
 
         return  customArray;
     }
-
-    @Override
-    public void sortArray(CustomArray array) {
-        Integer[] numbers = array.getArray();
-        IntStream stream = (IntStream)Arrays.stream(numbers);
-        stream.sorted();
-
-    }
 }
