@@ -29,7 +29,7 @@ public class Main {
                 "amount of numbers is "+dataProcessing.findNumbersAmount(customArray)+",\n" +
                 "the quantity of negative numbers is "+dataProcessing.findNegativeQuantity(customArray)+",\n" +
                 "the quantity of positive numbers is "+dataProcessing.findPositiveQuantity(customArray)+",\n" +
-                "the array after replacing negative numbers has view: "+ Arrays.toString(dataProcessing.replaceAllNegativeAndNullNumbersToZero(customArray).getArray()));
+                "the array after replacing negative numbers has view: "+ Arrays.toString(dataProcessing.replaceAllNegativeNumbersToZero(customArray).getArray()));
 
 
 

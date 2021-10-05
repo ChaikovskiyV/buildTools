@@ -45,4 +45,9 @@ public class ArraySorterTest {
         sorter.insertSort(sourceArray);
         assertArrayEquals(expectedArray, sourceArray);
     }
+
+    @Test
+    public void streamSort() throws WrongDataException {
+        assertArrayEquals(expectedArray, sorter.streamSort(sourceArray));
+    }
 }

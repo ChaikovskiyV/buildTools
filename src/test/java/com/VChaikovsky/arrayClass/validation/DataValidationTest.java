@@ -1,6 +1,6 @@
-package com.VChaikovsky.arrayClass.validation.impl;
+package com.VChaikovsky.arrayClass.validation;
 
-import com.VChaikovsky.arrayClass.exceptions.WrongDataException;
+import com.VChaikovsky.arrayClass.validation.impl.DataValidation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
@@ -8,7 +8,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DataValidationTest {

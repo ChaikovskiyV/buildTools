@@ -8,4 +8,6 @@ public interface ArraySorterInt {
     void insertSort(Integer[] array) throws WrongDataException;
 
     void bubbleSort(Integer[] array) throws WrongDataException;
+
+    Integer[] streamSort(Integer[] array) throws WrongDataException;
 }

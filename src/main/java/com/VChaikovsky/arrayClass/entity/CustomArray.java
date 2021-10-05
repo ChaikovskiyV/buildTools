@@ -25,8 +25,12 @@ public class CustomArray {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CustomArray that = (CustomArray) o;
         return Arrays.equals(array, that.array);
     }

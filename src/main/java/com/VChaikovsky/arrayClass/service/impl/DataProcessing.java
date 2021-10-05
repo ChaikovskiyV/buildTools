@@ -14,7 +14,7 @@ import java.util.List;
 
 public class DataProcessing implements DataProcessingInt {
     final static Logger logger = LogManager.getLogger();
-    public DataValidation validation = new DataValidation();
+    private DataValidation validation = new DataValidation();
 
     @Override
     public Integer findMin(CustomArray array) throws WrongDataException {
@@ -43,22 +43,22 @@ public class DataProcessing implements DataProcessingInt {
     }
 
     @Override
-    public double findAverage(CustomArray array){
-        double convert = 1.0;
-        Integer[] numbers = array.getArray();
-        return findNumbersAmount(array) * convert / numbers.length;
-    }
-
-    @Override
     public int findNumbersAmount(CustomArray array){
         int amount = 0;
         Integer[] numbers = array.getArray();
-            for(Integer number : numbers) {
-                if(number != null){
-                    amount += number;
-                }
+        for(Integer number : numbers) {
+            if(number != null){
+                amount += number;
             }
+        }
         return amount;
+    }
+
+    @Override
+    public double findAverage(CustomArray array){
+        double convect = 1.0;
+        Integer[] numbers = array.getArray();
+        return findNumbersAmount(array) * convect / numbers.length;
     }
 
     @Override
@@ -86,10 +86,10 @@ public class DataProcessing implements DataProcessingInt {
     }
 
     @Override
-    public CustomArray replaceAllNegativeAndNullNumbersToZero(CustomArray array) {
+    public CustomArray replaceAllNegativeNumbersToZero(CustomArray array) {
         Integer[] newArray = array.getArray();
             for (int i = 0; i < newArray.length; i++) {
-                if (newArray[i] < 0 || newArray[i] == null) {
+                if (newArray[i] < 0) {
                     newArray[i] = 0;
                 }
             }

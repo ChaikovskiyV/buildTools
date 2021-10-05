@@ -17,5 +17,5 @@ public interface DataProcessingInt {
 
     int findPositiveQuantity(CustomArray array) throws WrongDataException;
 
-    CustomArray replaceAllNegativeAndNullNumbersToZero(CustomArray array) throws WrongDataException;
+    CustomArray replaceAllNegativeNumbersToZero(CustomArray array) throws WrongDataException;
 }

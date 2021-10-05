@@ -3,7 +3,6 @@ package com.VChaikovsky.arrayClass.reader.impl;
 import com.VChaikovsky.arrayClass.exceptions.WrongDataException;
 import com.VChaikovsky.arrayClass.reader.ReaderFromFileInt;
 import com.VChaikovsky.arrayClass.validation.impl.DataValidation;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,10 +28,10 @@ public class ReadFromFile implements ReaderFromFileInt {
             }
         }
         if(str == null){
-            throw new WrongDataException("The file contains wrong data");
+            throw new WrongDataException("The file "+filename+" contains wrong data");
         }
     } catch (IOException e){
-        logger.error(new WrongDataException("File was not found.", e));
+        logger.error(new WrongDataException("The file "+ filename+" was not found.", e));
     }
         return str;
     }

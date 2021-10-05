@@ -1,5 +1,6 @@
 package com.VChaikovsky.arrayClass.sort.impl;
 
+import com.VChaikovsky.arrayClass.convector.ArrayConvectorInt;
 import com.VChaikovsky.arrayClass.exceptions.WrongDataException;
 import com.VChaikovsky.arrayClass.sort.ArraySorterInt;
 import com.VChaikovsky.arrayClass.validation.impl.DataValidation;
@@ -7,9 +8,9 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.xml.validation.Validator;
+import java.util.stream.IntStream;
 
-public class ArraySorter implements ArraySorterInt {
+public class ArraySorter implements ArraySorterInt, ArrayConvectorInt {
     final static Logger logger = LogManager.getLogger();
     private DataValidation validation = new DataValidation();
 
@@ -67,6 +68,19 @@ public class ArraySorter implements ArraySorterInt {
         } else {
             throwException();
         }
+    }
+
+    @Override
+    public Integer[] streamSort(Integer[] array) throws WrongDataException {
+        int[] newArray = new int[array.length];
+        if(validation.validateArray(array)){
+           newArray =  IntStream.of(convectToInt(array))
+                    .sorted()
+                    .toArray();
+        } else {
+            throwException();
+        }
+        return convectToInteger(newArray);
     }
 
     private void throwException() throws WrongDataException {

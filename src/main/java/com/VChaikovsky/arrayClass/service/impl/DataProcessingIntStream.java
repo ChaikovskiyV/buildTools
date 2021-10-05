@@ -1,82 +1,118 @@
 package com.VChaikovsky.arrayClass.service.impl;
 
+import com.VChaikovsky.arrayClass.convector.ArrayConvectorInt;
 import com.VChaikovsky.arrayClass.entity.CustomArray;
 import com.VChaikovsky.arrayClass.exceptions.WrongDataException;
 import com.VChaikovsky.arrayClass.service.DataProcessingStreamInt;
+import com.VChaikovsky.arrayClass.validation.impl.DataValidation;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
-public class DataProcessingIntStream implements DataProcessingStreamInt {
-
+public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayConvectorInt {
+    final static Logger logger = LogManager.getLogger();
+    private DataValidation validation = new DataValidation();
 
     @Override
     public Integer findMin(CustomArray array) throws WrongDataException {
-        Integer[] numbers = array.getArray();
-        IntStream stream = (IntStream) Arrays.stream(numbers);
-
-        return stream.min().getAsInt();
+        int min = 0;
+        if(validation.validateArray(array.getArray())){
+            min = IntStream
+                    .of(convectToInt(array.getArray()))
+                    .min()
+                    .getAsInt();
+        } else {
+            throwException();
+        }
+        return min;
     }
 
     @Override
     public Integer findMax(CustomArray array) throws WrongDataException {
-        Integer[] numbers = array.getArray();
-        IntStream stream = (IntStream) Arrays.stream(numbers);
-
-        return stream.max().getAsInt();
+        int max = 0;
+        if (validation.validateArray(array.getArray())) {
+            max = IntStream
+                    .of(convectToInt(array.getArray()))
+                    .max()
+                    .getAsInt();
+        } else {
+            throwException();
+        }
+        return max;
     }
 
     @Override
     public double findAverage(CustomArray array) throws WrongDataException {
-        Integer[] numbers = array.getArray();
-        IntStream stream = (IntStream) Arrays.stream(numbers);
+        double average = 0.0;
+        if(validation.validateArray(array.getArray())){
+            average = IntStream
+                    .of(convectToInt(array.getArray()))
+                    .average()
+                    .getAsDouble();
 
-        return stream.average().getAsDouble();
+        } else {
+            throwException();
+        }
+        return average;
     }
 
     @Override
     public int findNumbersAmount(CustomArray array) throws WrongDataException {
-        Integer[] numbers = array.getArray();
-        IntStream stream = (IntStream) Arrays.stream(numbers);
+        int amount = 0;
+        if(validation.validateArray(array.getArray())){
+            amount = IntStream
+                    .of(convectToInt(array.getArray()))
+                    .sum();
 
-        return stream.sum();
+        } else {
+            throwException();
+        }
+        return amount;
     }
 
     @Override
-    public long findNegativeQuantity(CustomArray array) throws WrongDataException {
-        Integer[] numbers = array.getArray();
-        IntStream stream = (IntStream) Arrays.stream(numbers);
-        long negativeNumbers = stream.filter(x->x < 0)
-                .findAny()
-                .stream()
+    public long findNegativeQuantity(CustomArray array) {
+        long negativeNumbers = IntStream
+                .of(convectToInt(array.getArray()))
+                .filter(x->(x < 0))
                 .count();
 
         return  negativeNumbers;
     }
 
     @Override
-    public long findPositiveQuantity(CustomArray array) throws WrongDataException {
-        Integer[] numbers = array.getArray();
-        IntStream stream = (IntStream) Arrays.stream(numbers);
-        long positiveNumbers = stream.filter(x->x > 0)
-                .findAny()
-                .stream()
+    public long findPositiveQuantity(CustomArray array) {
+        long positiveNumbers = IntStream
+                .of(convectToInt(array.getArray()))
+                .filter(x->(x > 0))
                 .count();
 
         return positiveNumbers;
     }
 
     @Override
-    public CustomArray replaceAllNegativeAndNullNumbersToZero(CustomArray array) throws WrongDataException {
-        Integer[] numbers = array.getArray();
-        IntStream stream = (IntStream) Arrays.stream(numbers);
-        int[] newArray = stream.filter(x->x < 0)
-                .findAny()
-                .stream()
-                .peek(x->x = 0)
+    public CustomArray replaceAllNegativeNumbersToZero(CustomArray array) {
+        int[] newArray = IntStream
+                .of(convectToInt(array.getArray()))
+                .map(x -> {
+                    if(x < 0){
+                        x = 0;
+                    }
+                    return x;
+                })
                 .toArray();
-        CustomArray customArray = new CustomArray(newArray);
+        CustomArray customArray = new CustomArray(convectToInteger(newArray));
 
         return  customArray;
+    }
+
+    private void throwException() throws WrongDataException {
+        try {
+            throw new WrongDataException();
+        } catch (NullPointerException e){
+            logger.throwing(Level.ERROR, new WrongDataException("The array contains null element", e));
+        }
     }
 }

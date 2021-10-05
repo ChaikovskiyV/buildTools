@@ -17,6 +17,6 @@ public interface DataProcessingStreamInt {
 
     long findPositiveQuantity(CustomArray array) throws WrongDataException;
 
-    CustomArray replaceAllNegativeAndNullNumbersToZero(CustomArray array) throws WrongDataException;
+    CustomArray replaceAllNegativeNumbersToZero(CustomArray array) throws WrongDataException;
 
 }
