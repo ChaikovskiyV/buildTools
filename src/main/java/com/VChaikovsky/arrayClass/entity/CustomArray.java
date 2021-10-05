@@ -13,10 +13,6 @@ public class CustomArray {
         this.array = array;
     }
 
-    public CustomArray(int[] array){
-
-    }
-
     public Integer[] getArray() {
         return array.clone();
     }
