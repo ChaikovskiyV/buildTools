@@ -39,7 +39,7 @@ String wrongStr;
     }
 
     @Test
-    public void ifIncludesNullElements(){
+    public void ifContainsNullElements(){
         array = new Integer[]{3, 5, null, 7};
         assertFalse(validation.validateArray(array));
     }
@@ -61,13 +61,13 @@ String wrongStr;
     }
 
     @Test
-    public void isIncludesNumbers(){
+    public void isContainsNumbers(){
         correctStr = "//5//6//8";
         assertTrue(validation.isIncludesNumbers(correctStr));
     }
 
     @Test
-    public void ifIncludesNoNumbers(){
+    public void ifContainsNoNumbers(){
         wrongStr = "//&//&//&";
         assertFalse(validation.isIncludesNumbers(wrongStr));
     }

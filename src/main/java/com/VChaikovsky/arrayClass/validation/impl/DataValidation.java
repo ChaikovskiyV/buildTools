@@ -9,10 +9,13 @@ public class DataValidation implements DataValidationInt {
 
     public boolean validateArray(Integer[] array){
         boolean correctArray = true;
-        for(Integer number : array){
-            if(number == null){
+        int count = 0;
+        while (count < array.length){
+            if(array[count] == null){
                 correctArray = false;
                 break;
+            } else {
+                count++;
             }
         }
         return correctArray;
@@ -25,10 +28,13 @@ public class DataValidation implements DataValidationInt {
             correctData = false;
         } else {
             char[] chars = str.toCharArray();
-            for(char symbol : chars){
-                if(Character.isAlphabetic(symbol)){
+            int count = 0;
+            while (count < chars.length){
+                if(Character.isAlphabetic(chars[count])){
                     correctData = false;
                     break;
+                } else {
+                    count++;
                 }
             }
         }
@@ -38,10 +44,14 @@ public class DataValidation implements DataValidationInt {
     @Override
     public boolean isIncludesNumbers(String str) {
         boolean stringIncludeNumbers = false;
-        for(char symbol : str.toCharArray()){
-            if (Character.isDigit(symbol)){
+        char[] chars = str.toCharArray();
+        int count = 0;
+        while (count < chars.length){
+            if (Character.isDigit(chars[count])){
                 stringIncludeNumbers = true;
                 break;
+            } else {
+                count++;
             }
         }
         return stringIncludeNumbers;
