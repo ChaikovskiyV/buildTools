@@ -35,7 +35,8 @@ String expectedResult;
 
     @Test
     public void readString() throws WrongDataException {
-        assertEquals(expectedResult, reader.readString(filename));
+        String str = reader.readString(filename);
+        assertEquals(expectedResult, str);
     }
 
     @Test

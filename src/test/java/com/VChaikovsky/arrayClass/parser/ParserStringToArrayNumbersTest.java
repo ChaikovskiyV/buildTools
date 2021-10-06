@@ -41,6 +41,7 @@ public class ParserStringToArrayNumbersTest {
 
     @Test
     public void parseStringToIntArray() {
-        assertArrayEquals(expectedArray, parser.parseStringToIntArray(sourceString));
+        Integer[] array = parser.parseStringToIntArray(sourceString);
+        assertArrayEquals(expectedArray, array);
     }
 }

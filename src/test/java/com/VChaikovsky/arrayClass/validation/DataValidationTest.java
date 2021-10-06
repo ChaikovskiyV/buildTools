@@ -35,40 +35,54 @@ String wrongStr;
     @Test
     public void validateArray(){
         array = new Integer[] {-625, 896, 98, 0};
-        assertTrue(validation.validateArray(array));
+        boolean result = validation.validateArray(array);
+
+        assertTrue(result);
     }
 
     @Test
     public void ifContainsNullElements(){
         array = new Integer[]{3, 5, null, 7};
-        assertFalse(validation.validateArray(array));
+        boolean result = validation.validateArray(array);
+
+        assertFalse(result);
     }
 
     @Test
     public void isCorrectData(){
-        assertTrue(validation.isCorrectData(correctStr));
+        boolean result = validation.isCorrectData(correctStr);
+
+        assertTrue(result);
     }
 
     @Test
     public void ifStringIsWrong(){
-        assertFalse(validation.isCorrectData(wrongStr));
+        boolean result = validation.isCorrectData(wrongStr);
+
+        assertFalse(result);
     }
 
     @Test
     public void ifStringIsEmpty(){
         String empty = "";
-        assertFalse(validation.isCorrectData(empty));
+        boolean result =validation.isCorrectData(empty);
+
+        assertFalse(result);
     }
 
     @Test
     public void isContainsNumbers(){
         correctStr = "//5//6//8";
-        assertTrue(validation.isIncludesNumbers(correctStr));
+        boolean result = validation.isIncludesNumbers(correctStr);
+
+        assertTrue(result);
     }
 
     @Test
     public void ifContainsNoNumbers(){
         wrongStr = "//&//&//&";
-        assertFalse(validation.isIncludesNumbers(wrongStr));
+        boolean result = validation.isIncludesNumbers(wrongStr);
+
+        assertFalse(result);
     }
 }

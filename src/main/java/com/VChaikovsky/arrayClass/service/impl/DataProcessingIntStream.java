@@ -76,7 +76,7 @@ public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayCo
     public long findNegativeQuantity(CustomArray array) {
         long negativeNumbers = IntStream
                 .of(convectToInt(array.getArray()))
-                .filter(x->(x < 0))
+                .filter(number->(number < 0))
                 .count();
 
         return  negativeNumbers;
@@ -86,7 +86,7 @@ public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayCo
     public long findPositiveQuantity(CustomArray array) {
         long positiveNumbers = IntStream
                 .of(convectToInt(array.getArray()))
-                .filter(x->(x > 0))
+                .filter(number->(number > 0))
                 .count();
 
         return positiveNumbers;
@@ -96,11 +96,11 @@ public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayCo
     public CustomArray replaceAllNegativeNumbersToZero(CustomArray array) {
         int[] newArray = IntStream
                 .of(convectToInt(array.getArray()))
-                .map(x -> {
-                    if(x < 0){
-                        x = 0;
+                .map(number -> {
+                    if(number < 0){
+                        number = 0;
                     }
-                    return x;
+                    return number;
                 })
                 .toArray();
         CustomArray customArray = new CustomArray(convectToInteger(newArray));

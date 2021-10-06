@@ -41,12 +41,15 @@ public class DataProcessingTest {
     @Test
     public void findMin() throws WrongDataException {
         expectedResult = -96;
-        assertEquals(expectedResult, processing.findMin(customArray));
+        Integer result = processing.findMin(customArray);
+
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void ifArrayIncludesNull(){
         Integer[] someArray = new Integer[]{1, 3, null, 5};
+
         assertThrows(WrongDataException.class, ()->processing
                 .findMin(EntityCreater.createEntity(someArray)));
     }
@@ -54,7 +57,9 @@ public class DataProcessingTest {
     @Test
     public void findMax() throws WrongDataException {
         expectedResult = 50;
-        assertEquals(expectedResult, processing.findMax(customArray));
+        Integer max = processing.findMax(customArray);
+
+        assertEquals(expectedResult, max);
     }
 
     @Test
@@ -64,8 +69,9 @@ public class DataProcessingTest {
                 expectedResult += number;
         }
         expectedResult /= sourceArray.length;
+        double average = processing.findAverage(customArray);
 
-        assertEquals(expectedResult, processing.findAverage(customArray));
+        assertEquals(expectedResult, average);
     }
 
     @Test
@@ -74,23 +80,32 @@ public class DataProcessingTest {
         for(Integer number : sourceArray){
                 expectedResult += number;
             }
-        assertEquals(expectedResult, processing.findNumbersAmount(customArray));
+        int amount = processing.findNumbersAmount(customArray);
+
+        assertEquals(expectedResult, amount);
     }
 
     @Test
     public void findNegativeQuantity() {
-        int expectedResult = 3;
-        assertEquals(expectedResult, processing.findNegativeQuantity(customArray));
+        long expectedResult = 3;
+        long result = processing.findNegativeQuantity(customArray);
+
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void findPositiveQuantity() {
-        int expectedResult = 4;
-        assertEquals(expectedResult, processing.findPositiveQuantity(customArray));
+        long expectedResult = 4;
+        long result = processing.findPositiveQuantity(customArray);
+
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void changeAllNegativeNumbers() {
-        assertArrayEquals(expectedArray, processing.replaceAllNegativeNumbersToZero(customArray).getArray());
+        Integer[] array = processing
+                .replaceAllNegativeNumbersToZero(customArray)
+                .getArray();
+        assertArrayEquals(expectedArray, array);
     }
 }

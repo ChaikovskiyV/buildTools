@@ -48,6 +48,8 @@ public class ArraySorterTest {
 
     @Test
     public void streamSort() throws WrongDataException {
-        assertArrayEquals(expectedArray, sorter.streamSort(sourceArray));
+        Integer[] array = sorter.streamSort(sourceArray);
+
+        assertArrayEquals(expectedArray, array);
     }
 }

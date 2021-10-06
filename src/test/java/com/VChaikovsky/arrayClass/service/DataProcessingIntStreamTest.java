@@ -48,7 +48,8 @@ final static Logger logger = LogManager.getLogger();
     @Test
     public void findMax() throws WrongDataException {
         expectedResult = 50;
-        assertEquals(expectedResult, processing.findMax(customArray));
+        Integer number = processing.findMax(customArray);
+        assertEquals(expectedResult, number);
     }
 
     @Test
@@ -59,7 +60,9 @@ final static Logger logger = LogManager.getLogger();
         }
         expectedResult /= sourceArray.length;
 
-        assertEquals(expectedResult, processing.findAverage(customArray));
+        double average = processing.findAverage(customArray);
+
+        assertEquals(expectedResult, average);
     }
 
     @Test
@@ -68,23 +71,30 @@ final static Logger logger = LogManager.getLogger();
         for(Integer number : sourceArray){
             expectedResult += number;
         }
-        assertEquals(expectedResult, processing.findNumbersAmount(customArray));
+        int amount = processing.findNumbersAmount(customArray);
+
+        assertEquals(expectedResult, amount);
     }
 
     @Test
     public void findNegativeQuantity() {
-        int expectedResult = 3;
-        assertEquals(expectedResult, processing.findNegativeQuantity(customArray));
+        long expectedResult = 3;
+        long result = processing.findNegativeQuantity(customArray);
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void findPositiveQuantity() {
-        int expectedResult = 4;
-        assertEquals(expectedResult, processing.findPositiveQuantity(customArray));
+        long expectedResult = 4;
+        long result = processing.findPositiveQuantity(customArray);
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void replaceAllNegativeAndNullNumbersToZero() {
-        assertArrayEquals(expectedArray, processing.replaceAllNegativeNumbersToZero(customArray).getArray());
+        Integer[] array = processing
+                .replaceAllNegativeNumbersToZero(customArray)
+                .getArray();
+        assertArrayEquals(expectedArray, array);
     }
 }
