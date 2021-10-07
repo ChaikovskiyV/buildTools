@@ -9,12 +9,12 @@ import java.util.List;
 
 public class ParserStringToArrayNumbers implements ParserStringToArrayNumbersInt {
     final static Logger logger = LogManager.getLogger();
-    private final String STRING_REGEX = "(\\s-\\s)|[\\W_:&&[^-]]+";
+    private final String STRING_DELIMITER = "(\\s-\\s)|[\\W_:&&[^-]]+";
 
     @Override
     public Integer[] parseStringToIntArray(String str) {
         List<Integer> listNumbers = new ArrayList<>();
-        String[] strings = str.split(STRING_REGEX);
+        String[] strings = str.split(STRING_DELIMITER);
         for(String string : strings){
             Integer number = Integer.parseInt(string);
             listNumbers.add(number);
