@@ -3,23 +3,28 @@ package test.com.VChaicovsky.pretask.validation;
 import com.VChaicovsky.pretask.validation.impl.DataValidation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DataValidationTest {
-    public static Logger logger = LogManager.getLogger();
-    DataValidation dataValidation;
-    String filename;
-    String emptyFilename;
-    String wrongFilename;
-    String[] stringArray;
-    String number;
+    final static Logger logger = LogManager.getLogger();
+    private DataValidation dataValidation;
+    private String filename;
+    private String emptyFilename;
+    private String wrongFilename;
+    private String[] stringArray;
+    private String number;
+    private boolean result;
 
     @BeforeAll
     void setUp() {
-        dataValidation = new DataValidation();
         logger.info("Testing is starting...");
+        dataValidation = new DataValidation();
         filename = "sources/testFile.txt";
         emptyFilename = "sources/emptyFile.txt";
     }
@@ -31,47 +36,63 @@ public class DataValidationTest {
 
     @Test
     public void fileIsEmpty() {
-        assertTrue(dataValidation.fileIsEmpty(filename));
+        result = dataValidation.fileIsEmpty(filename);
+
+        assertTrue(result);
     }
 
     @Test
     public void ifFileEmpty() {
-        assertFalse(dataValidation.fileIsEmpty(emptyFilename));
+        result = dataValidation.fileIsEmpty(emptyFilename);
+
+        assertFalse(result);
     }
 
     @Test
     public void checkQuantityNumbers() {
         stringArray = new String[] {"Hello", "everyone"};
-        assertTrue(dataValidation.checkQuantityNumbers(stringArray));
+        result = dataValidation.checkQuantityNumbers(stringArray);
+
+        assertTrue(result);
     }
 
     @Test
     public void ifQuantityNumbersIsNotEnough(){
         stringArray = new String[] {"Hello"};
-        assertFalse(dataValidation.checkQuantityNumbers(stringArray));
+        result = dataValidation.checkQuantityNumbers(stringArray);
+
+        assertFalse(result);
     }
 
     @Test
     public void validateData() {
         number = "-14.706";
-        assertTrue(dataValidation.validateData(number));
+        result = dataValidation.validateData(number);
+
+        assertTrue(result);
     }
 
     @Test
     public void ifDataWrong() {
         number = "-14..706";
-        assertFalse(dataValidation.validateData(number));
+        result = dataValidation.validateData(number);
+
+        assertFalse(result);
     }
 
     @Test
     public void fileFound() {
-           assertTrue(dataValidation.fileFound(filename));
+        result = dataValidation.fileFound(filename);
+
+        assertTrue(result);
     }
 
 
     @Test
     public void IfFileNotFound() {
         wrongFilename = "_" + filename;
-        assertFalse(dataValidation.fileFound(wrongFilename));
+        result = dataValidation.fileFound(wrongFilename);
+
+        assertFalse(result);
     }
 }

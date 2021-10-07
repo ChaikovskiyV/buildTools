@@ -4,17 +4,20 @@ import com.VChaicovsky.pretask.entity.CustomNumber;
 import com.VChaicovsky.pretask.service.impl.Calculation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.TestInstance;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CalculationTest {
-static final Logger logger = LogManager.getLogger();
-double number;
-CustomNumber numberOne;
-CustomNumber numberTwo;
-CustomNumber expectedResult;
-Calculation calculation;
+    final static  Logger logger = LogManager.getLogger();
+    private double number;
+    private CustomNumber numberOne;
+    private CustomNumber numberTwo;
+    private Double expectedResult;
+    private Double result;
+    private Calculation calculation;
+
 
     @org.junit.jupiter.api.BeforeAll
     void setUp() {
@@ -33,25 +36,41 @@ Calculation calculation;
 
     @org.junit.jupiter.api.Test
     public void testSubtraction() {
-        expectedResult = new CustomNumber(numberOne.getNumber() - numberTwo.getNumber());
-        Assertions.assertEquals(calculation.subtraction(numberOne, numberTwo).getNumber(), expectedResult.getNumber());
+        expectedResult = numberOne.getNumber() - numberTwo.getNumber();
+        result = calculation
+                .subtraction(numberOne, numberTwo)
+                .getNumber();
+
+        assertEquals(expectedResult, result);
     }
 
     @org.junit.jupiter.api.Test
     public void testAddition() {
-        expectedResult = new CustomNumber(numberTwo.getNumber() + numberOne.getNumber());
-        Assertions.assertEquals(calculation.addition(numberTwo, numberOne).getNumber(), expectedResult.getNumber());
+        expectedResult = numberTwo.getNumber() + numberOne.getNumber();
+        result = calculation
+                .addition(numberTwo, numberOne)
+                .getNumber();
+
+        assertEquals(expectedResult, result);
     }
 
     @org.junit.jupiter.api.Test
     public void testDivision(){
-        expectedResult = new CustomNumber(numberOne.getNumber() / numberTwo.getNumber());
-        Assertions.assertEquals(calculation.division(numberOne, numberTwo).getNumber(), expectedResult.getNumber());
+        expectedResult = numberOne.getNumber() / numberTwo.getNumber();
+        result = calculation
+                .division(numberOne, numberTwo)
+                .getNumber();
+
+        assertEquals(expectedResult, result);
     }
 
     @org.junit.jupiter.api.Test
     public void testMultiplication(){
-        expectedResult = new CustomNumber(numberOne.getNumber() * numberTwo.getNumber());
-        Assertions.assertEquals(calculation.multiplication(numberOne, numberTwo).getNumber(), expectedResult.getNumber());
+        expectedResult = numberOne.getNumber() * numberTwo.getNumber();
+        result = calculation
+                .multiplication(numberOne, numberTwo)
+                .getNumber();
+
+        assertEquals(expectedResult, result);
     }
 }

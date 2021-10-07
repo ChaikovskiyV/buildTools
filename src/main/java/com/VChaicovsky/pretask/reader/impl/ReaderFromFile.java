@@ -7,12 +7,13 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ReaderFromFile implements ReaderFromFileInt {
-static Logger logger = LogManager.getLogger();
+final static Logger logger = LogManager.getLogger();
 
     public String[] readArrayFromFile(String fileName){
         String[] stringsArray = null;

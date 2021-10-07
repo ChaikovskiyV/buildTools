@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DataValidation implements DataValidationInt {
-private static final String R_EX = "[+-]?\\d*[\\.]?\\d+";
+private final static  String R_EX = "[+-]?\\d*[\\.]?\\d+";
 
     @Override
     public boolean fileIsEmpty(String filename) {

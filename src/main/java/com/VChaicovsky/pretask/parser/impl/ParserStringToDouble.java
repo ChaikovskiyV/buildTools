@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ParserStringToDouble implements ParserStringToDoubleInt {
-    private static final Logger logger = LogManager.getLogger();
+    private final static  Logger logger = LogManager.getLogger();
 
     @Override
     public Double pasrseStrToDouble(String str) {

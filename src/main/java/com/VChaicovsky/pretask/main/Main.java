@@ -2,7 +2,6 @@ package com.VChaicovsky.pretask.main;
 
 import com.VChaicovsky.pretask.entity.CustomNumber;
 import com.VChaicovsky.pretask.parser.impl.ParserStringToDouble;
-
 import com.VChaicovsky.pretask.reader.impl.ReaderFromFile;
 import com.VChaicovsky.pretask.service.impl.Calculation;
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 
 public class Main {
-    static Logger logger = LogManager.getLogger();
+    final static Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
         ParserStringToDouble parserStringToDouble = new ParserStringToDouble();
