@@ -19,7 +19,7 @@ public class Main {
     static DataProcessing dataProcessing = new DataProcessing();
     static ReadFromFile reader = new ReadFromFile();
     static ArraySorter sorter = new ArraySorter();
-    static String filename = "sources/sourcedata.txt";
+    static String filename = "sourcedata.txt";
     static ParserStringToArrayNumbersInt parser = new ParserStringToArrayNumbers();
 
     public static void main(String[] args) throws WrongDataException {

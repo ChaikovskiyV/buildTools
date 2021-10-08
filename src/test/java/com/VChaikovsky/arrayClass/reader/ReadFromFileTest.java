@@ -23,8 +23,8 @@ String expectedResult;
     void setUp() {
         logger.info("Testing is starting ...");
         reader = new ReadFromFile();
-        filename = "sources/sourcedata.txt";
-        wrongDataFile = "sources/wrongdata.txt";
+        filename = "sourcedata.txt";
+        wrongDataFile = "wrongdata.txt";
         expectedResult = "52 : 61 : 74 : 18";
     }
 
