@@ -24,8 +24,8 @@ public class Main {
         doubleList.forEach(arr->{
             try {
                 Pyramid pyramid = creator.createEntity(arr);
-                logger.info("Parameters of " + pyramid.toString() + " are:\n" +
-                        "- high: " + calculator.findPyramidHigh(pyramid) + ";\n" +
+                logger.info("Parameters of " + pyramid + " are:\n" +
+                        "- high: " + calculator.findPyramidHeight(pyramid) + ";\n" +
                         "- volume: " + calculator.findVolume(pyramid) + ";\n" +
                         "- surface square: " + calculator.findSurfaceSquare(pyramid) + ";\n" +
                         "- pyramid bases position regarding basic planes: " + calculator.isBasesOnBasePlane(pyramid) + ";\n" +

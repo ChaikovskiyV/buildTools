@@ -14,33 +14,33 @@ public class ParameterCalculator implements ParametersCalculatorInt {
 
     @Override
     public double findVolume(Pyramid pyramid) throws ShapeException {
-        double volume = 0;
+        double volume;
         if (validator.isValidPyramid(pyramid)){
-            double high = findPyramidHigh(pyramid);
+            double high = findPyramidHeight(pyramid);
             double sideLength = findBasesSideLength(pyramid);
             int cornersNumber = pyramid.getBasesCornersNumber();
 
             volume = cornersNumber * Math.pow(sideLength, 2) * high / (12 * Math.abs(Math.tan(180 / cornersNumber)));
         } else {
-            logger.error("The " + pyramid.toString()+" is not pyramid.");
-            throw new ShapeException("The " + pyramid.toString()+" is not pyramid.");
+            logger.error("The " + pyramid+" is not pyramid.");
+            throw new ShapeException("The " + pyramid+" is not pyramid.");
         }
         return volume;
     }
 
     @Override
     public double findSurfaceSquare(Pyramid pyramid) throws ShapeException {
-        double square = 0;
+        double square;
         if(validator.isValidPyramid(pyramid)){
-            double high = findPyramidHigh(pyramid);
+            double high = findPyramidHeight(pyramid);
             double radius = pyramid.getCircumcircleRadius();
             int cornersNumber = pyramid.getBasesCornersNumber();
 
             square = cornersNumber * (Math.pow(radius, 2) * Math.abs(Math.sin(360 / cornersNumber)) + radius * Math.abs(Math.sin(180 / cornersNumber)) *
                     Math.sqrt(Math.pow(high, 2) + Math.pow(radius * Math.abs(Math.sin(180 * (cornersNumber - 2) / cornersNumber)), 2)));
         } else {
-            logger.error("The " + pyramid.toString()+" is not pyramid.");
-            throw new ShapeException("The " + pyramid.toString()+" is not pyramid.");
+            logger.error("The " + pyramid+" is not pyramid.");
+            throw new ShapeException("The " + pyramid+" is not pyramid.");
         }
         return square;
     }
@@ -60,25 +60,25 @@ public class ParameterCalculator implements ParametersCalculatorInt {
                 if(findParallelAxis(pyramid).equals("X") && (basesCenter.getX() / peak.getX()) < 0){
                     planePoint = new Point(0, basesCenter.getY(), basesCenter.getZ());
                     volumeProportion = calculateVolumeProportional(pyramid, planePoint);
-                    result = "The " + pyramid.toString() + "is divided by YZ plane as " + volumeProportion[0] +
+                    result = "The " + pyramid + "is divided by YZ plane as " + volumeProportion[0] +
                             " to " + volumeProportion[1] + ".";
                 }
                 else if(findParallelAxis(pyramid).equals("Y") && (basesCenter.getY() / peak.getY()) < 0){
                     planePoint = new Point(basesCenter.getX(), 0, basesCenter.getZ());
                     volumeProportion = calculateVolumeProportional(pyramid, planePoint);
-                    result = "The " + pyramid.toString() + "is divided by XZ plane as " + volumeProportion[0] +
+                    result = "The " + pyramid + "is divided by XZ plane as " + volumeProportion[0] +
                             " to " + volumeProportion[1] + ".";
                 }
                 else if(findParallelAxis(pyramid).equals("Z") && (basesCenter.getZ() / peak.getZ()) < 0){
                     planePoint = new Point(basesCenter.getX(), basesCenter.getY(), 0);
                     volumeProportion = calculateVolumeProportional(pyramid, planePoint);
-                    result = "The " + pyramid.toString() + "is divided by XY plane as " + volumeProportion[0] +
+                    result = "The " + pyramid + "is divided by XY plane as " + volumeProportion[0] +
                             " to " + volumeProportion[1] + ".";
                 }
             }
         } else {
-            logger.error("The " + pyramid.toString()+" is not pyramid.");
-            throw new ShapeException("The " + pyramid.toString()+" is not pyramid.");
+            logger.error("The " + pyramid+" is not pyramid.");
+            throw new ShapeException("The " + pyramid+" is not pyramid.");
         }
         return result;
     }
@@ -87,7 +87,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
     public boolean isBasesOnBasePlane(Pyramid pyramid) throws ShapeException {
         boolean result = false;
         /*String result = new StringBuilder("The bases of the ")        //if message will be necessary
-                .append(pyramid.toString())
+                .append(pyramid)
                 .append(" doesn't lay on any basic plane.")
                 .toString();*/
         if(validator.isValidPyramid(pyramid)){
@@ -95,7 +95,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
             if(isPointOnBasicPlane(basesCenter)){
                 result = true;
                 /*StringBuilder builder = new StringBuilder("The bases of the ")
-                        .append(pyramid.toString())
+                        .append(pyramid)
                         .append(" lays on the plane ");                 //if message will be necessary
                 if(basesCenter.getX() == 0){
                     result = builder
@@ -112,21 +112,21 @@ public class ParameterCalculator implements ParametersCalculatorInt {
                 }*/
             }
         } else {
-            logger.error("The " + pyramid.toString()+" is not pyramid.");
-            throw new ShapeException("The " + pyramid.toString()+" is not pyramid.");
+            logger.error("The " + pyramid +" is not pyramid.");
+            throw new ShapeException("The " + pyramid +" is not pyramid.");
         }
         return result;
     }
 
-    public double findPyramidHigh(Pyramid pyramid) {
+    public double findPyramidHeight(Pyramid pyramid) {
         Point basesCenter = pyramid.getBasesCenter();
         Point peak = pyramid.getPeak();
 
-        double high = Math.sqrt(Math.pow(basesCenter.getX() - peak.getX(), 2) +
+        double height = Math.sqrt(Math.pow(basesCenter.getX() - peak.getX(), 2) +
                 Math.pow(basesCenter.getY() - peak.getY(), 2) +
                 Math.pow(basesCenter.getZ() - peak.getZ(), 2));
 
-        return high;
+        return height;
     }
 
     private double findBasesSideLength(Pyramid pyramid) {
@@ -162,7 +162,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
         double newHigh = Math.sqrt(Math.pow(pyramid.getBasesCenter().getX() - newCenterPoint.getX(), 2) +
                 Math.pow(pyramid.getBasesCenter().getY() - newCenterPoint.getY(), 2) +
                 Math.pow(pyramid.getBasesCenter().getZ() - newCenterPoint.getZ(), 2));
-        double newRadius = newHigh * pyramid.getCircumcircleRadius() / findPyramidHigh(pyramid);
+        double newRadius = newHigh * pyramid.getCircumcircleRadius() / findPyramidHeight(pyramid);
 
         Pyramid newPyramid = new Pyramid(newCenterPoint, pyramid.getPeak(), pyramid.getBasesCornersNumber(), newRadius);
 
