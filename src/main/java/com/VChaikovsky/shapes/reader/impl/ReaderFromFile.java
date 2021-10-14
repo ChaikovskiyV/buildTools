@@ -17,16 +17,16 @@ public class ReaderFromFile implements ReaderFromFileInt {
     @Override
     public List<String> readData(String filepath) throws ShapeException {
         DataValidator validator = new DataValidator();
-        List<String> strings = null;
+        List<String> strings;
         try {
             strings = Files
                     .lines(Path.of(filepath))
-                    .filter(string-> validator.isValidString(string))
+                    .filter(s-> validator.isValidString(s))
                     .toList();
         } catch (IOException e) {
             logger.error("File "+filepath+" was not found.");
             throw new ShapeException("File "+filepath+" was not found.", e);
         }
-        return null;
+        return strings;
     }
 }
