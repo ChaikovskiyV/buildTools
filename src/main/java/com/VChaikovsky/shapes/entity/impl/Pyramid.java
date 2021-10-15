@@ -101,11 +101,16 @@ public class Pyramid implements GeometryEntity {
 
    @Override
    public String toString() {
-      return "Pyramid{" +
-              "basesCenter=" + basesCenter +
-              ", peak=" + peak +
-              ", basesCornersNumber=" + basesCornersNumber +
-              ", circumcircleRadius=" + circumcircleRadius +
-              '}';
+      return new StringBuilder("Pyramid{")
+              .append("basesCenter=")
+              .append(basesCenter)
+              .append(", peak=")
+              .append(peak)
+              .append(", basesCornersNumber=")
+              .append(basesCornersNumber)
+              .append(", circumcircleRadius=")
+              .append(circumcircleRadius)
+              .append('}')
+              .toString();
    }
 }

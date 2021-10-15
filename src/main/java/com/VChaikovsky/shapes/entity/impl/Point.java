@@ -74,10 +74,14 @@ public class Point implements GeometryEntity {
 
     @Override
     public String toString() {
-        return "Point{" +
-                "x=" + x +
-                ", y=" + y +
-                ", z=" + z +
-                '}';
+        return new StringBuilder("Point{")
+                .append("x=")
+                .append(x)
+                .append(", y=")
+                .append(y)
+                .append(", z=")
+                .append(z)
+                .append('}')
+                .toString();
     }
 }
