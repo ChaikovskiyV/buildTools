@@ -12,6 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParameterCalculatorTest {
 final static Logger logger = LogManager.getLogger();
 private ParameterCalculator calculator;
+private Point pointOne;
+private Point pointTwo;
+private Point pointThree;
 private Pyramid sourcePyramid;
 private Pyramid wrongPyramid;
 double expectedVolume;
@@ -23,8 +26,9 @@ double expectedHeight;
     void setUp() {
         logger.info("Testing is starting ...");
         calculator = new ParameterCalculator();
-        Point pointOne = new Point(10, 20, 30);
-        Point pointTwo = new Point(-5, 20, 30);
+        pointOne = new Point(10, 20, 30);
+        pointTwo = new Point(-5, 20, 30);
+        pointThree = new Point(0, 20, 30);
         sourcePyramid = new Pyramid(pointOne, pointTwo, 4, 20);
         wrongPyramid = new Pyramid(pointOne, pointOne, 4, 20);
         expectedHeight = 15;
@@ -57,7 +61,15 @@ double expectedHeight;
     }
 
     @Test
-    public void isBasesOnBasePlane() {
+    public void isBasesOnBasePlane() throws ShapeException {
+        Pyramid pyramid = new Pyramid(pointThree, pointOne, 6, 8);
+
+        assertTrue(calculator.isBasesOnBasePlane(pyramid));
+    }
+    
+    @Test
+    public void ifBasesNotONBasePlane() throws ShapeException {
+        assertFalse(calculator.isBasesOnBasePlane(sourcePyramid));
     }
 
     @Test

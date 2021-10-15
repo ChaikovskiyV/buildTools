@@ -20,7 +20,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
             double sideLength = findBasesSideLength(pyramid);
             int cornersNumber = pyramid.getBasesCornersNumber();
 
-            volume = cornersNumber * Math.pow(sideLength, 2) * high / (12 * Math.abs(Math.tan(180 / cornersNumber)));
+            volume = cornersNumber * Math.pow(sideLength, 2) * high / (12 * Math.abs(Math.tan(Math.PI / cornersNumber)));
         } else {
             logger.error("The " + pyramid+" is not pyramid.");
             throw new ShapeException("The " + pyramid+" is not pyramid.");
@@ -36,8 +36,8 @@ public class ParameterCalculator implements ParametersCalculatorInt {
             double radius = pyramid.getCircumcircleRadius();
             int cornersNumber = pyramid.getBasesCornersNumber();
 
-            square = cornersNumber * (Math.pow(radius, 2) * Math.abs(Math.sin(360 / cornersNumber)) + radius * Math.abs(Math.sin(180 / cornersNumber)) *
-                    Math.sqrt(Math.pow(high, 2) + Math.pow(radius * Math.abs(Math.sin(180 * (cornersNumber - 2) / cornersNumber)), 2)));
+            square = cornersNumber * (Math.pow(radius, 2) * Math.abs(Math.sin(2 * Math.PI / cornersNumber)) + radius * Math.abs(Math.sin(Math.PI / cornersNumber)) *
+                    Math.sqrt(Math.pow(high, 2) + Math.pow(radius * Math.abs(Math.sin(Math.PI * (cornersNumber - 2) / cornersNumber)), 2)));
         } else {
             logger.error("The " + pyramid+" is not pyramid.");
             throw new ShapeException("The " + pyramid+" is not pyramid.");
@@ -133,7 +133,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
         double radius = pyramid.getCircumcircleRadius();
         int cornersNumber = pyramid.getBasesCornersNumber();
 
-        double sideLength = 2 * radius / Math.abs(Math.sin(180 / cornersNumber));
+        double sideLength = 2 * radius / Math.abs(Math.sin(Math.PI / cornersNumber));
 
         return sideLength;
     }
