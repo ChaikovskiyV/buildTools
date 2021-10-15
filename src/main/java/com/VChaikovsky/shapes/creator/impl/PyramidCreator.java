@@ -1,11 +1,9 @@
 package com.VChaikovsky.shapes.creator.impl;
 
 import com.VChaikovsky.shapes.creator.CreatorFactoryInt;
-import com.VChaikovsky.shapes.entity.GeometryEntity;
 import com.VChaikovsky.shapes.entity.impl.Point;
 import com.VChaikovsky.shapes.entity.impl.Pyramid;
 import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.idgenerator.IdGenerator;
 import com.VChaikovsky.shapes.validator.impl.DataValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,14 +23,12 @@ public class PyramidCreator implements CreatorFactoryInt {
         double[] peakData = Arrays.copyOfRange(dataArray, 3, 6);
         int cornersNumber = (int) dataArray[6];
         double radius = dataArray[7];
-
         Point basesCenter = pointCreator.createEntity(basesCenterData);
         Point peak = pointCreator.createEntity(peakData);
 
         try {
             if(validator.isDiffPoints(basesCenter, peak) && validator.isValidCornersNumber(cornersNumber) && validator.isValidRadius(radius)) {
                 pyramid = new Pyramid(basesCenter, peak, cornersNumber, radius);
-                 pyramid.setId(generateId());
             } else {
                 throw new ShapeException("The array "+ Arrays.toString(dataArray)+" contains wrong data.");
             }
@@ -40,10 +36,5 @@ public class PyramidCreator implements CreatorFactoryInt {
             logger.error("The array "+ Arrays.toString(dataArray)+" contains wrong data.", e);
         }
         return pyramid;
-    }
-
-    @Override
-    public long generateId() {
-        return IdGenerator.generateId();
     }
 }

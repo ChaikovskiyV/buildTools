@@ -1,6 +1,7 @@
 package com.VChaikovsky.shapes.entity.impl;
 
 import com.VChaikovsky.shapes.entity.GeometryEntity;
+import com.VChaikovsky.shapes.idgenerator.IdGenerator;
 import com.VChaikovsky.shapes.validator.impl.DataValidator;
 
 public class Pyramid implements GeometryEntity {
@@ -11,21 +12,12 @@ public class Pyramid implements GeometryEntity {
    private double circumcircleRadius;
    private DataValidator validator= new DataValidator();
 
-   public long getID() {
-      return id;
-   }
-
-   public void setId(long id) {
-      if(id == 0) {
-         this.id = id;
-      }
-   }
-
    public Pyramid(Point basesCenter, Point peak, int basesCornersNumber, double circumcircleRadius) {
       this.basesCenter = basesCenter;
       this.peak = peak;
       this.basesCornersNumber = basesCornersNumber;
       this.circumcircleRadius = circumcircleRadius;
+      id = IdGenerator.generateId();
    }
 
    public Pyramid(double basesCenterX, double basesCenterY, double basesCenterZ,
@@ -36,6 +28,12 @@ public class Pyramid implements GeometryEntity {
       this.peak = new Point(peakX, peakY, peakZ);
       this.basesCornersNumber = basesCornersNumber;
       this.circumcircleRadius = circumcircleRadius;
+
+      id = IdGenerator.generateId();
+   }
+
+   public long getId() {
+      return id;
    }
 
    public Point getBasesCenter() {

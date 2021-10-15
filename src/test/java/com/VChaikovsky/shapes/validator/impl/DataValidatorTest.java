@@ -20,11 +20,13 @@ private String wrongString;
 private String[] sourceArray;
 private String[] wrongArray;
 private String stringNumber;
-Point pointOne;
-Point pointTwo;
-Point pointThree;
-Pyramid sourcePyramid;
-Pyramid wrongPyramid;
+private Point pointOne;
+private Point pointTwo;
+private Point pointThree;
+private Pyramid sourcePyramid;
+private Pyramid wrongPyramid;
+private int basesCornersNumber;
+private double radius;
 
     @BeforeAll
     void setUp() {
@@ -37,8 +39,10 @@ Pyramid wrongPyramid;
         pointOne = new Point(1, 10, 100);
         pointTwo = new Point(1, 10, 150);
         pointThree = new Point(1, 10, 100);
-        sourcePyramid = new Pyramid(pointOne, pointTwo, 6, 20);
-        wrongPyramid = new Pyramid(pointOne, pointThree, 4, 25);
+        basesCornersNumber = 6;
+        radius = 25;
+        sourcePyramid = new Pyramid(pointOne, pointTwo, basesCornersNumber, radius);
+        wrongPyramid = new Pyramid(pointOne, pointThree, basesCornersNumber, radius);
     }
 
     @AfterAll
@@ -109,14 +113,14 @@ Pyramid wrongPyramid;
 
     @Test
     public void ifRadiusNotCorrect() {
-        wrongPyramid = new Pyramid(pointOne, pointTwo, 4, 0);
+        wrongPyramid = new Pyramid(pointOne, pointTwo, basesCornersNumber, 0);
 
         assertFalse(validator.isValidPyramid(wrongPyramid));
     }
 
     @Test
     public void ifCornersNumberNotCorrect() {
-        wrongPyramid = new Pyramid(pointOne, pointTwo, -1, 10);
+        wrongPyramid = new Pyramid(pointOne, pointTwo, 0, radius);
 
         assertFalse(validator.isValidPyramid(wrongPyramid));
     }

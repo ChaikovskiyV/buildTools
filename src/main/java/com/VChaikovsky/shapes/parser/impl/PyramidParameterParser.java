@@ -6,7 +6,6 @@ import com.VChaikovsky.shapes.validator.impl.DataValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -17,22 +16,19 @@ public class PyramidParameterParser implements PyramidParameterParserInt {
     @Override
     public List<double[]> parseStrToPyramidParam(List<String> list) throws ShapeException {
         DataValidator validator = new DataValidator();
-        List<double[]> arraysList = new ArrayList<>();
+        List<double[]> arraysList;
 
-        if(!list.isEmpty()){
+        if(list.isEmpty()) {
+            logger.error("Source data is empty or wrong.");
+            throw new ShapeException("Source data is empty or wrong.");
+        }
             arraysList = list
                     .stream()
                     .map(x->x.split(DELIMITER))
                     .filter(s-> validator.isValidParam(s))
                     .map(arr->parseStrArrToDoubleArr(arr))
                     .toList();
-        } else {
-            try {
-                throw new ShapeException("Source data is empty or wrong.");
-            } catch (NullPointerException e){
-                logger.error("Source data is empty or wrong.", e);
-            }
-        }
+
         return arraysList;
     }
 

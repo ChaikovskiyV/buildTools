@@ -28,7 +28,7 @@ public class Main {
                         "- high: " + calculator.findPyramidHeight(pyramid) + ";\n" +
                         "- volume: " + calculator.findVolume(pyramid) + ";\n" +
                         "- surface square: " + calculator.findSurfaceSquare(pyramid) + ";\n" +
-                        "- pyramid bases position regarding basic planes: " + calculator.isBasesOnBasePlane(pyramid) + ";\n" +
+                        "- pyramid bases lays on the basic plane: " + calculator.isBasesOnBasePlane(pyramid) + ";\n" +
                         "- crossing with basic planes: " + calculator.findVolumeProportion(pyramid));
             } catch (ShapeException e) {
                 System.out.println("Data is not correct");

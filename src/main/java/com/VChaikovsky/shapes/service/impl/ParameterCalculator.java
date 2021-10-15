@@ -15,41 +15,44 @@ public class ParameterCalculator implements ParametersCalculatorInt {
     @Override
     public double findVolume(Pyramid pyramid) throws ShapeException {
         double volume;
-        if (validator.isValidPyramid(pyramid)){
+        if (!validator.isValidPyramid(pyramid)) {
+            logger.error("The " + pyramid + " is not pyramid.");
+            throw new ShapeException("The " + pyramid + " is not pyramid.");
+        }
             double high = findPyramidHeight(pyramid);
             double sideLength = findBasesSideLength(pyramid);
             int cornersNumber = pyramid.getBasesCornersNumber();
 
-            volume = cornersNumber * Math.pow(sideLength, 2) * high / (12 * Math.abs(Math.tan(Math.PI / cornersNumber)));
-        } else {
-            logger.error("The " + pyramid+" is not pyramid.");
-            throw new ShapeException("The " + pyramid+" is not pyramid.");
-        }
+            volume = cornersNumber * Math.pow(sideLength, 2) * high / (12 * Math.tan(Math.PI / cornersNumber));
+
         return volume;
     }
 
     @Override
     public double findSurfaceSquare(Pyramid pyramid) throws ShapeException {
         double square;
-        if(validator.isValidPyramid(pyramid)){
-            double high = findPyramidHeight(pyramid);
+        if(!validator.isValidPyramid(pyramid)) {
+            logger.error("The " + pyramid + " is not pyramid.");
+            throw new ShapeException("The " + pyramid + " is not pyramid.");
+        }
+            double height = findPyramidHeight(pyramid);
             double radius = pyramid.getCircumcircleRadius();
             int cornersNumber = pyramid.getBasesCornersNumber();
 
-            square = cornersNumber * (Math.pow(radius, 2) * Math.abs(Math.sin(2 * Math.PI / cornersNumber)) + radius * Math.abs(Math.sin(Math.PI / cornersNumber)) *
-                    Math.sqrt(Math.pow(high, 2) + Math.pow(radius * Math.abs(Math.sin(Math.PI * (cornersNumber - 2) / cornersNumber)), 2)));
-        } else {
-            logger.error("The " + pyramid+" is not pyramid.");
-            throw new ShapeException("The " + pyramid+" is not pyramid.");
-        }
+            square = cornersNumber * radius * Math.sin(Math.PI / cornersNumber) * (radius * Math.cos(Math.PI / cornersNumber) +
+                    Math.sqrt(Math.pow(height, 2) + Math.pow(radius * Math.cos(Math.PI / cornersNumber), 2)));
+
         return square;
     }
 
     @Override
     public String findVolumeProportion(Pyramid pyramid) throws ShapeException {
-        String result = "The " + pyramid.toString() + " is not crossed by any plane";
+        String result = "The " + pyramid + " is not crossed by any basic plane.";
 
-        if(validator.isValidPyramid(pyramid)){
+        if(!validator.isValidPyramid(pyramid)) {
+            logger.error("The " + pyramid+" is not pyramid.");
+            throw new ShapeException("The " + pyramid+" is not pyramid.");
+        }
             Point basesCenter = pyramid.getBasesCenter();
             Point peak = pyramid.getPeak();
 
@@ -60,61 +63,37 @@ public class ParameterCalculator implements ParametersCalculatorInt {
                 if(findParallelAxis(pyramid).equals("X") && (basesCenter.getX() / peak.getX()) < 0){
                     planePoint = new Point(0, basesCenter.getY(), basesCenter.getZ());
                     volumeProportion = calculateVolumeProportional(pyramid, planePoint);
-                    result = "The " + pyramid + "is divided by YZ plane as " + volumeProportion[0] +
-                            " to " + volumeProportion[1] + ".";
+                    result = "The " + pyramid + " is divided by YZ plane as " + volumeProportion[0] +
+                            " : " + volumeProportion[1] + ".";
                 }
                 else if(findParallelAxis(pyramid).equals("Y") && (basesCenter.getY() / peak.getY()) < 0){
                     planePoint = new Point(basesCenter.getX(), 0, basesCenter.getZ());
                     volumeProportion = calculateVolumeProportional(pyramid, planePoint);
-                    result = "The " + pyramid + "is divided by XZ plane as " + volumeProportion[0] +
-                            " to " + volumeProportion[1] + ".";
+                    result = "The " + pyramid + " is divided by XZ plane as " + volumeProportion[0] +
+                            " : " + volumeProportion[1] + ".";
                 }
                 else if(findParallelAxis(pyramid).equals("Z") && (basesCenter.getZ() / peak.getZ()) < 0){
                     planePoint = new Point(basesCenter.getX(), basesCenter.getY(), 0);
                     volumeProportion = calculateVolumeProportional(pyramid, planePoint);
-                    result = "The " + pyramid + "is divided by XY plane as " + volumeProportion[0] +
-                            " to " + volumeProportion[1] + ".";
+                    result = "The " + pyramid + " is divided by XY plane as " + volumeProportion[0] +
+                            " : " + volumeProportion[1] + ".";
                 }
             }
-        } else {
-            logger.error("The " + pyramid+" is not pyramid.");
-            throw new ShapeException("The " + pyramid+" is not pyramid.");
-        }
         return result;
     }
 
     @Override
     public boolean isBasesOnBasePlane(Pyramid pyramid) throws ShapeException {
         boolean result = false;
-        /*String result = new StringBuilder("The bases of the ")        //if message will be necessary
-                .append(pyramid)
-                .append(" doesn't lay on any basic plane.")
-                .toString();*/
-        if(validator.isValidPyramid(pyramid)){
-            Point basesCenter = pyramid.getBasesCenter();
-            if(isPointOnBasicPlane(basesCenter)){
-                result = true;
-                /*StringBuilder builder = new StringBuilder("The bases of the ")
-                        .append(pyramid)
-                        .append(" lays on the plane ");                 //if message will be necessary
-                if(basesCenter.getX() == 0){
-                    result = builder
-                            .append("YZ.")
-                            .toString();
-                } else if(basesCenter.getY() == 0){
-                    result = builder
-                            .append("XZ.")
-                            .toString();
-                } else {
-                    result = builder
-                            .append("XY.")
-                            .toString();
-                }*/
-            }
-        } else {
+
+        if(!validator.isValidPyramid(pyramid)) {
             logger.error("The " + pyramid +" is not pyramid.");
             throw new ShapeException("The " + pyramid +" is not pyramid.");
         }
+            Point basesCenter = pyramid.getBasesCenter();
+            if(isPointOnBasicPlane(basesCenter)) {
+                result = true;
+            }
         return result;
     }
 
@@ -133,7 +112,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
         double radius = pyramid.getCircumcircleRadius();
         int cornersNumber = pyramid.getBasesCornersNumber();
 
-        double sideLength = 2 * radius / Math.abs(Math.sin(Math.PI / cornersNumber));
+        double sideLength = 2 * radius * Math.sin(Math.PI / cornersNumber);
 
         return sideLength;
     }
@@ -159,6 +138,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
     }
 
     private int[] calculateVolumeProportional(Pyramid pyramid, Point newCenterPoint) throws ShapeException {
+        int whole = 100;
         double newHigh = Math.sqrt(Math.pow(pyramid.getBasesCenter().getX() - newCenterPoint.getX(), 2) +
                 Math.pow(pyramid.getBasesCenter().getY() - newCenterPoint.getY(), 2) +
                 Math.pow(pyramid.getBasesCenter().getZ() - newCenterPoint.getZ(), 2));
@@ -166,8 +146,8 @@ public class ParameterCalculator implements ParametersCalculatorInt {
 
         Pyramid newPyramid = new Pyramid(newCenterPoint, pyramid.getPeak(), pyramid.getBasesCornersNumber(), newRadius);
 
-        int upperPartPercent = (int) (100 * findVolume(newPyramid) / findVolume(pyramid));
-        int lowerPartPercent = 100 - upperPartPercent;
+        int upperPartPercent = (int) (whole * findVolume(newPyramid) / findVolume(pyramid));
+        int lowerPartPercent = whole - upperPartPercent;
 
         return new int[]{upperPartPercent, lowerPartPercent};
     }

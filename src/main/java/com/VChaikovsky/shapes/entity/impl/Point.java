@@ -2,10 +2,7 @@ package com.VChaikovsky.shapes.entity.impl;
 
 import com.VChaikovsky.shapes.entity.GeometryEntity;
 
-import java.util.Objects;
-
 public class Point implements GeometryEntity {
-    //private long id;//if id will be necessary
     private double x;
     private double y;
     private double z;
@@ -15,16 +12,6 @@ public class Point implements GeometryEntity {
         this.y = y;
         this.z = z;
     }
-
-   /* public void setId(long id) { //if id will be necessary
-        if(id == 0) {
-            this.id = id;
-        }
-    }
-
-    public long getId() {
-        return id;
-    }*/
 
     public double getX() {
         return x;

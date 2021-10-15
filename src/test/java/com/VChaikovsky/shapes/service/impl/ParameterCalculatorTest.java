@@ -5,7 +5,13 @@ import com.VChaikovsky.shapes.entity.impl.Pyramid;
 import com.VChaikovsky.shapes.exception.ShapeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -17,24 +23,30 @@ private Point pointTwo;
 private Point pointThree;
 private Pyramid sourcePyramid;
 private Pyramid wrongPyramid;
+private Pyramid pyramid;
 double expectedVolume;
 double expectedSurfaceSquare;
 double expectedHeight;
-
+private String volumeProportion;
+private String noCrossing;
 
     @BeforeAll
     void setUp() {
         logger.info("Testing is starting ...");
         calculator = new ParameterCalculator();
+        int basesCountersNumber = 4;
+        double radius = 20;
         pointOne = new Point(10, 20, 30);
-        pointTwo = new Point(-5, 20, 30);
+        pointTwo = new Point(-10, 20, 30);
         pointThree = new Point(0, 20, 30);
-        sourcePyramid = new Pyramid(pointOne, pointTwo, 4, 20);
-        wrongPyramid = new Pyramid(pointOne, pointOne, 4, 20);
-        expectedHeight = 15;
-        expectedVolume = 4000;
-        expectedSurfaceSquare = 800 + 200 * Math.sqrt(34);
-
+        sourcePyramid = new Pyramid(pointOne, pointTwo, basesCountersNumber, radius);
+        wrongPyramid = new Pyramid(pointOne, pointOne, basesCountersNumber, radius);
+        pyramid = new Pyramid(pointThree, pointOne, basesCountersNumber, radius);
+        expectedHeight = 20;
+        expectedVolume = 5333.3333333333;
+        expectedSurfaceSquare = 2185.6406460551;
+        volumeProportion = "The " + sourcePyramid + " is divided by YZ plane as 12 : 88.";
+        noCrossing = "The " + pyramid + " is not crossed by any basic plane.";
     }
 
     @AfterAll
@@ -44,20 +56,34 @@ double expectedHeight;
 
     @Test
     public void findVolume() throws ShapeException {
-        double volume = calculator.findVolume(sourcePyramid);
+        double volume = new BigDecimal(calculator.findVolume(sourcePyramid))
+                .setScale(10, RoundingMode.HALF_UP)
+                .doubleValue();
 
         assertEquals(expectedVolume, volume);
     }
 
     @Test
     public void findSurfaceSquare() throws ShapeException {
-        double surface = calculator.findSurfaceSquare(sourcePyramid);
+        double surface = new BigDecimal(calculator.findSurfaceSquare(sourcePyramid))
+                .setScale(10, RoundingMode.HALF_UP)
+                .doubleValue();
 
         assertEquals(expectedSurfaceSquare, surface);
     }
 
     @Test
-    public void findVolumeProportion() {
+    public void findVolumeProportion() throws ShapeException {
+        String result = calculator.findVolumeProportion(sourcePyramid);
+
+        assertEquals(volumeProportion, result);
+    }
+
+    @Test
+    public void ifNoCrossingByPlane() throws ShapeException {
+        String result = calculator.findVolumeProportion(pyramid);
+
+        assertEquals(noCrossing, result);
     }
 
     @Test
