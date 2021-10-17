@@ -12,12 +12,22 @@ import java.util.Arrays;
 
 public class PyramidCreator implements CreatorFactoryInt {
     final static Logger logger = LogManager.getLogger();
+    private static PyramidCreator instance;
+
+    private PyramidCreator(){}
+
+    public static PyramidCreator getInstance(){
+        if(instance == null) {
+            instance = new PyramidCreator();
+        }
+        return instance;
+    }
 
     @Override
     public Pyramid createEntity(double[] dataArray) throws ShapeException {
         Pyramid pyramid = null;
-        DataValidator validator = new DataValidator();
-        PointCreator pointCreator = new PointCreator();
+        DataValidator validator = DataValidator.getInstance();
+        PointCreator pointCreator = PointCreator.getInstance();
 
         double[] basesCenterData = Arrays.copyOf(dataArray, 3);
         double[] peakData = Arrays.copyOfRange(dataArray, 3, 6);

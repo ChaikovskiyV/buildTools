@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DataValidatorTest {
 final static Logger logger = LogManager.getLogger();
-private DataValidator validator = new DataValidator();
+private DataValidator validator = DataValidator.getInstance();
 private String sourceString;
 private String wrongString;
 private String[] sourceArray;
@@ -132,7 +132,8 @@ private double radius;
 
     @Test
     public void ifPyramidHighNotParallelAxis() {
-        pointTwo.setX(0);
+        Point newPoint = new Point(0, 10, 150);
+        sourcePyramid.setPeak(newPoint);
 
         assertFalse(validator.isParallelAxis(sourcePyramid));
     }

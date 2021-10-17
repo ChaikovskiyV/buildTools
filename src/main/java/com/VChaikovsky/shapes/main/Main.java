@@ -16,9 +16,9 @@ public class Main {
 
     public static void main(String[] args) throws ShapeException {
         ReaderFromFile reader = new ReaderFromFile();
-        PyramidParameterParser parser = new PyramidParameterParser();
-        PyramidCreator creator = new PyramidCreator();
-        ParameterCalculator calculator = new ParameterCalculator();
+        PyramidParameterParser parser = PyramidParameterParser.getInstance();
+        PyramidCreator creator = PyramidCreator.getInstance();
+        ParameterCalculator calculator = ParameterCalculator.getInstance();
         List<String> list = reader.readData("sources/pyramids.txt");
         List<double[]> doubleList = parser.parseStrToPyramidParam(list);
         doubleList.forEach(arr->{

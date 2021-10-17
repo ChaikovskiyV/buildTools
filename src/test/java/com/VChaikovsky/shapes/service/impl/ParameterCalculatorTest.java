@@ -33,7 +33,7 @@ private String noCrossing;
     @BeforeAll
     void setUp() {
         logger.info("Testing is starting ...");
-        calculator = new ParameterCalculator();
+        calculator = ParameterCalculator.getInstance();
         int basesCountersNumber = 4;
         double radius = 20;
         pointOne = new Point(10, 20, 30);
@@ -56,7 +56,7 @@ private String noCrossing;
 
     @Test
     public void findVolume() throws ShapeException {
-        double volume = new BigDecimal(calculator.findVolume(sourcePyramid))
+        double volume = BigDecimal.valueOf(calculator.findVolume(sourcePyramid))
                 .setScale(10, RoundingMode.HALF_UP)
                 .doubleValue();
 
@@ -65,7 +65,7 @@ private String noCrossing;
 
     @Test
     public void findSurfaceSquare() throws ShapeException {
-        double surface = new BigDecimal(calculator.findSurfaceSquare(sourcePyramid))
+        double surface = BigDecimal.valueOf(calculator.findSurfaceSquare(sourcePyramid))
                 .setScale(10, RoundingMode.HALF_UP)
                 .doubleValue();
 

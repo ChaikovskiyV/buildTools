@@ -3,13 +3,26 @@ package com.VChaikovsky.shapes.validator.impl;
 import com.VChaikovsky.shapes.entity.impl.Point;
 import com.VChaikovsky.shapes.entity.impl.Pyramid;
 import com.VChaikovsky.shapes.validator.DataValidatorInt;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DataValidator implements DataValidatorInt {
+    final static Logger logger = LogManager.getLogger();
+    private static DataValidator instance;
     private final String STRING_REGEX = "[-\\s\\.\\d]+";
     private final String STRING_NUMBER_REGEX = "-?\\d+\\.?\\d*";
+
+    private DataValidator() {}
+
+    public static DataValidator getInstance() {
+        if(instance == null) {
+            instance = new DataValidator();
+        }
+        return instance;
+    }
 
     @Override
     public boolean isValidString(String str) {
@@ -73,9 +86,9 @@ public class DataValidator implements DataValidatorInt {
     public boolean isParallelAxis(Pyramid pyramid){
         Point basesCenter = pyramid.getBasesCenter();
         Point peak = pyramid.getPeak();
-        double gradX = basesCenter.getX() - peak.getX();
-        double gradY = basesCenter.getY() - peak.getY();
-        double gradZ = basesCenter.getZ() - peak.getZ();
+        double gradX = basesCenter.x() - peak.x();
+        double gradY = basesCenter.y() - peak.y();
+        double gradZ = basesCenter.z() - peak.z();
         boolean isParallelX = gradY == 0 && gradZ == 0;
         boolean isParallelY = gradX == 0 && gradZ == 0;
         boolean isParallelZ = gradX == 0 && gradY == 0;

@@ -11,11 +11,21 @@ import java.util.stream.Stream;
 
 public class PyramidParameterParser implements PyramidParameterParserInt {
     final static Logger logger = LogManager.getLogger();
+    private static PyramidParameterParser instance;
     private final String DELIMITER = "\\s";
+
+    private PyramidParameterParser() {}
+
+    public static PyramidParameterParser getInstance() {
+        if(instance == null) {
+            instance = new PyramidParameterParser();
+        }
+        return instance;
+    }
 
     @Override
     public List<double[]> parseStrToPyramidParam(List<String> list) throws ShapeException {
-        DataValidator validator = new DataValidator();
+        DataValidator validator = DataValidator.getInstance();
         List<double[]> arraysList;
 
         if(list.isEmpty()) {
@@ -25,8 +35,8 @@ public class PyramidParameterParser implements PyramidParameterParserInt {
             arraysList = list
                     .stream()
                     .map(x->x.split(DELIMITER))
-                    .filter(s-> validator.isValidParam(s))
-                    .map(arr->parseStrArrToDoubleArr(arr))
+                    .filter(validator :: isValidParam)
+                    .map(this::parseStrArrToDoubleArr)
                     .toList();
 
         return arraysList;
@@ -35,7 +45,7 @@ public class PyramidParameterParser implements PyramidParameterParserInt {
     private double[] parseStrArrToDoubleArr(String[] strArray){
         Double[] doubles = Stream
                 .of(strArray)
-                .map(s->Double.parseDouble(s))
+                .map(Double :: parseDouble)
                 .toArray(Double[]::new);
 
         return parseDoubleArrToPrimitive(doubles);

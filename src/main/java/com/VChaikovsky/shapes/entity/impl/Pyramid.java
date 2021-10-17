@@ -1,16 +1,28 @@
 package com.VChaikovsky.shapes.entity.impl;
 
+import com.VChaikovsky.shapes.creator.impl.PointCreator;
 import com.VChaikovsky.shapes.entity.GeometryEntity;
+import com.VChaikovsky.shapes.event.PyramidEvent;
+import com.VChaikovsky.shapes.exception.ShapeException;
 import com.VChaikovsky.shapes.idgenerator.IdGenerator;
+import com.VChaikovsky.shapes.observer.Observable;
+import com.VChaikovsky.shapes.observer.Observer;
 import com.VChaikovsky.shapes.validator.impl.DataValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Pyramid implements GeometryEntity {
+import java.util.HashSet;
+import java.util.Set;
+
+public class Pyramid implements GeometryEntity, Observable {
+   final static Logger logger = LogManager.getLogger();
    private long id;
    private Point basesCenter;
    private Point peak;
    private int basesCornersNumber;
    private double circumcircleRadius;
-   private DataValidator validator= new DataValidator();
+   private Set<Observer> observers = new HashSet<>();
+   private DataValidator validator = DataValidator.getInstance();
 
    public Pyramid(Point basesCenter, Point peak, int basesCornersNumber, double circumcircleRadius) {
       this.basesCenter = basesCenter;
@@ -24,8 +36,12 @@ public class Pyramid implements GeometryEntity {
                   double peakX, double peakY, double peakZ,
                   int basesCornersNumber, double circumcircleRadius) {
 
-      this.basesCenter = new Point(basesCenterX, basesCenterY, basesCenterZ);
-      this.peak = new Point(peakX, peakY, peakZ);
+      this.basesCenter = PointCreator
+              .getInstance()
+              .createEntity(basesCenterX, basesCenterY, basesCenterZ);
+      this.peak = PointCreator
+              .getInstance()
+              .createEntity(peakX, peakY, peakZ);
       this.basesCornersNumber = basesCornersNumber;
       this.circumcircleRadius = circumcircleRadius;
 
@@ -42,6 +58,7 @@ public class Pyramid implements GeometryEntity {
 
    public void setBasesCenter(Point basesCenter) {
       this.basesCenter = basesCenter;
+      notifyObservers();
    }
 
    public Point getPeak() {
@@ -50,6 +67,7 @@ public class Pyramid implements GeometryEntity {
 
    public void setPeak(Point peak) {
       this.peak = peak;
+      notifyObservers();
    }
 
    public int getBasesCornersNumber() {
@@ -60,6 +78,7 @@ public class Pyramid implements GeometryEntity {
       if(validator.isValidCornersNumber(basesCornersNumber)){
          this.basesCornersNumber = basesCornersNumber;
       }
+      notifyObservers();
    }
 
    public double getCircumcircleRadius() {
@@ -70,6 +89,7 @@ public class Pyramid implements GeometryEntity {
       if(validator.isValidRadius(circumcircleRadius)){
          this.circumcircleRadius = circumcircleRadius;
       }
+      notifyObservers();
    }
 
    @Override
@@ -89,8 +109,8 @@ public class Pyramid implements GeometryEntity {
 
    @Override
    public int hashCode() {
-      int result = (int) (basesCenter.getX() * basesCenter.getY() + basesCenter.getZ());
-      result = result +(int) (peak.getX() + peak.getY() * peak.getZ());
+      int result = (int) (basesCenter.x() * basesCenter.y() + basesCenter.z());
+      result = result +(int) (peak.x() + peak.y() * peak.z());
       result = result * basesCornersNumber;
       result = result + (int) circumcircleRadius;
 
@@ -110,5 +130,35 @@ public class Pyramid implements GeometryEntity {
               .append(circumcircleRadius)
               .append('}')
               .toString();
+   }
+
+   @Override
+   public void attach(Observer observer) {
+      if(observer != null) {
+         observers.add(observer);
+      } else {
+         logger.warn("The observer " + observer + " is null.");
+      }
+   }
+
+   @Override
+   public void detach(Observer observer) {
+      if(observers.contains(observer)) {
+         observers.remove(observer);
+      } else {
+       logger.warn("The observer " + observer + " was not found.");
+      }
+   }
+
+   @Override
+   public void notifyObservers() {
+      PyramidEvent event = new PyramidEvent(this);
+      observers.forEach(o-> {
+         try {
+            o.parameterChanged(event);
+         } catch (ShapeException e) {
+            logger.error(e);
+         }
+      });
    }
 }

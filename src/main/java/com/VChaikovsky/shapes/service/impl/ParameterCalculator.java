@@ -10,7 +10,17 @@ import org.apache.logging.log4j.Logger;
 
 public class ParameterCalculator implements ParametersCalculatorInt {
     final static Logger logger = LogManager.getLogger();
-    private DataValidator validator = new DataValidator();
+    private static ParameterCalculator instance;
+    private DataValidator validator = DataValidator.getInstance();
+
+    private ParameterCalculator() {}
+
+    public static ParameterCalculator getInstance() {
+        if(instance == null) {
+            instance = new ParameterCalculator();
+        }
+        return instance;
+    }
 
     @Override
     public double findVolume(Pyramid pyramid) throws ShapeException {
@@ -60,20 +70,20 @@ public class ParameterCalculator implements ParametersCalculatorInt {
                 Point planePoint;
                 int[] volumeProportion;
 
-                if(findParallelAxis(pyramid).equals("X") && (basesCenter.getX() / peak.getX()) < 0){
-                    planePoint = new Point(0, basesCenter.getY(), basesCenter.getZ());
+                if(findParallelAxis(pyramid).equals("X") && (basesCenter.x() / peak.x()) < 0){
+                    planePoint = new Point(0, basesCenter.y(), basesCenter.z());
                     volumeProportion = calculateVolumeProportional(pyramid, planePoint);
                     result = "The " + pyramid + " is divided by YZ plane as " + volumeProportion[0] +
                             " : " + volumeProportion[1] + ".";
                 }
-                else if(findParallelAxis(pyramid).equals("Y") && (basesCenter.getY() / peak.getY()) < 0){
-                    planePoint = new Point(basesCenter.getX(), 0, basesCenter.getZ());
+                else if(findParallelAxis(pyramid).equals("Y") && (basesCenter.y() / peak.y()) < 0){
+                    planePoint = new Point(basesCenter.x(), 0, basesCenter.z());
                     volumeProportion = calculateVolumeProportional(pyramid, planePoint);
                     result = "The " + pyramid + " is divided by XZ plane as " + volumeProportion[0] +
                             " : " + volumeProportion[1] + ".";
                 }
-                else if(findParallelAxis(pyramid).equals("Z") && (basesCenter.getZ() / peak.getZ()) < 0){
-                    planePoint = new Point(basesCenter.getX(), basesCenter.getY(), 0);
+                else if(findParallelAxis(pyramid).equals("Z") && (basesCenter.z() / peak.z()) < 0){
+                    planePoint = new Point(basesCenter.x(), basesCenter.y(), 0);
                     volumeProportion = calculateVolumeProportional(pyramid, planePoint);
                     result = "The " + pyramid + " is divided by XY plane as " + volumeProportion[0] +
                             " : " + volumeProportion[1] + ".";
@@ -101,14 +111,14 @@ public class ParameterCalculator implements ParametersCalculatorInt {
         Point basesCenter = pyramid.getBasesCenter();
         Point peak = pyramid.getPeak();
 
-        double height = Math.sqrt(Math.pow(basesCenter.getX() - peak.getX(), 2) +
-                Math.pow(basesCenter.getY() - peak.getY(), 2) +
-                Math.pow(basesCenter.getZ() - peak.getZ(), 2));
+        double height = Math.sqrt(Math.pow(basesCenter.x() - peak.x(), 2) +
+                Math.pow(basesCenter.y() - peak.y(), 2) +
+                Math.pow(basesCenter.z() - peak.z(), 2));
 
         return height;
     }
 
-    private double findBasesSideLength(Pyramid pyramid) {
+    public double findBasesSideLength(Pyramid pyramid) {
         double radius = pyramid.getCircumcircleRadius();
         int cornersNumber = pyramid.getBasesCornersNumber();
 
@@ -118,7 +128,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
     }
 
     private boolean isPointOnBasicPlane(Point point){
-        return point.getX() == 0 || point.getY() == 0 || point.getZ() == 0;
+        return point.x() == 0 || point.y() == 0 || point.z() == 0;
     }
 
     private String findParallelAxis(Pyramid pyramid){
@@ -126,11 +136,11 @@ public class ParameterCalculator implements ParametersCalculatorInt {
         if(validator.isParallelAxis(pyramid)){
             Point basesCenter = pyramid.getBasesCenter();
             Point peak = pyramid.getPeak();
-            if(basesCenter.getX() != peak.getX()){
+            if(basesCenter.x() != peak.x()){
                 parallelAxis = "X";
-            } else if(basesCenter.getY() != peak.getY()){
+            } else if(basesCenter.y() != peak.y()){
                 parallelAxis = "Y";
-            } else if(basesCenter.getZ() != peak.getZ()){
+            } else if(basesCenter.z() != peak.z()){
                 parallelAxis = "Z";
             }
         }
@@ -139,9 +149,9 @@ public class ParameterCalculator implements ParametersCalculatorInt {
 
     private int[] calculateVolumeProportional(Pyramid pyramid, Point newCenterPoint) throws ShapeException {
         int whole = 100;
-        double newHigh = Math.sqrt(Math.pow(pyramid.getBasesCenter().getX() - newCenterPoint.getX(), 2) +
-                Math.pow(pyramid.getBasesCenter().getY() - newCenterPoint.getY(), 2) +
-                Math.pow(pyramid.getBasesCenter().getZ() - newCenterPoint.getZ(), 2));
+        double newHigh = Math.sqrt(Math.pow(pyramid.getBasesCenter().x() - newCenterPoint.x(), 2) +
+                Math.pow(pyramid.getBasesCenter().y() - newCenterPoint.y(), 2) +
+                Math.pow(pyramid.getBasesCenter().z() - newCenterPoint.z(), 2));
         double newRadius = newHigh * pyramid.getCircumcircleRadius() / findPyramidHeight(pyramid);
 
         Pyramid newPyramid = new Pyramid(newCenterPoint, pyramid.getPeak(), pyramid.getBasesCornersNumber(), newRadius);

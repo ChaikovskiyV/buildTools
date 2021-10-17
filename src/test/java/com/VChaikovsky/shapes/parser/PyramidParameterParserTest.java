@@ -18,8 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PyramidParameterParserTest {
-    private PyramidParameterParser parser;
     private Logger logger = LogManager.getLogger();
+    private PyramidParameterParser parser;
     private String sourceFile;
     private String wrongDataFile;
     private List<String> data;
@@ -30,7 +30,7 @@ public class PyramidParameterParserTest {
     @org.junit.jupiter.api.BeforeAll
     void setUp() {
         logger.info("Testing is starting ...");
-        parser = new PyramidParameterParser();
+        parser = PyramidParameterParser.getInstance();
         sourceFile = "sources/testparserdata.txt";
         wrongDataFile = "sources/wrongdataparser.txt";
         Path path;
