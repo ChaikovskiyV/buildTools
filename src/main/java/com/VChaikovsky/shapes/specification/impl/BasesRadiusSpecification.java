@@ -7,8 +7,15 @@ public class BasesRadiusSpecification implements Specification {
     double minRadius;
     double maxRadius;
 
+    public BasesRadiusSpecification(double minRadius, double maxRadius) {
+        this.minRadius = minRadius;
+        this.maxRadius = maxRadius;
+    }
+
     @Override
     public boolean specify(Pyramid pyramid) {
-        return false;
+        double radius = pyramid.getCircumcircleRadius();
+
+        return radius >= minRadius && radius <= maxRadius;
     }
 }

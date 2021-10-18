@@ -5,10 +5,17 @@ import com.VChaikovsky.shapes.specification.Specification;
 
 public class CornersNumberSpecification implements Specification {
     int minCornersNumber;
-    int maxCornerNumber;
+    int maxCornersNumber;
+
+    public CornersNumberSpecification(int minCornersNumber, int maxCornerNumber) {
+        this.minCornersNumber = minCornersNumber;
+        this.maxCornersNumber = maxCornerNumber;
+    }
 
     @Override
     public boolean specify(Pyramid pyramid) {
-        return false;
+        int cornersNumber = pyramid.getBasesCornersNumber();
+
+        return cornersNumber >= minCornersNumber && cornersNumber <= maxCornersNumber;
     }
 }

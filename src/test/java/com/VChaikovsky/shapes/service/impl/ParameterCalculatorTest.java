@@ -90,12 +90,12 @@ private String noCrossing;
     public void isBasesOnBasePlane() throws ShapeException {
         Pyramid pyramid = new Pyramid(pointThree, pointOne, 6, 8);
 
-        assertTrue(calculator.isBasesOnBasePlane(pyramid));
+        assertTrue(calculator.isBasesOnBasicPlane(pyramid));
     }
     
     @Test
     public void ifBasesNotONBasePlane() throws ShapeException {
-        assertFalse(calculator.isBasesOnBasePlane(sourcePyramid));
+        assertFalse(calculator.isBasesOnBasicPlane(sourcePyramid));
     }
 
     @Test

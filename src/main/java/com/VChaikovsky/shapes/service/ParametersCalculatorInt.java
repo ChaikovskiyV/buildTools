@@ -11,5 +11,5 @@ public interface ParametersCalculatorInt {
 
     String findVolumeProportion(Pyramid pyramid) throws ShapeException;
 
-    boolean isBasesOnBasePlane(Pyramid pyramid) throws ShapeException;
+    boolean isBasesOnBasicPlane(Pyramid pyramid) throws ShapeException;
 }

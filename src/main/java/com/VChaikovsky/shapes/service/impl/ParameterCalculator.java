@@ -66,7 +66,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
             Point basesCenter = pyramid.getBasesCenter();
             Point peak = pyramid.getPeak();
 
-            if(!isBasesOnBasePlane(pyramid) && !isPointOnBasicPlane(peak)){
+            if(!isBasesOnBasicPlane(pyramid) && !isPointOnBasicPlane(peak)){
                 Point planePoint;
                 int[] volumeProportion;
 
@@ -93,7 +93,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
     }
 
     @Override
-    public boolean isBasesOnBasePlane(Pyramid pyramid) throws ShapeException {
+    public boolean isBasesOnBasicPlane(Pyramid pyramid) throws ShapeException {
         boolean result = false;
 
         if(!validator.isValidPyramid(pyramid)) {
@@ -125,6 +125,12 @@ public class ParameterCalculator implements ParametersCalculatorInt {
         double sideLength = 2 * radius * Math.sin(Math.PI / cornersNumber);
 
         return sideLength;
+    }
+
+    public double findDistanceToZeroPoint(Point point) {
+        double distance = Math.sqrt(Math.pow(point.x(), 2) + Math.pow(point.y(), 2) + Math.pow(point.z(), 2));
+
+        return distance;
     }
 
     private boolean isPointOnBasicPlane(Point point){

@@ -1,4 +1,4 @@
-package com.VChaikovsky.shapes.idgenerator;
+package com.VChaikovsky.shapes.util;
 
 public class IdGenerator {
     private static long idCount = 0;

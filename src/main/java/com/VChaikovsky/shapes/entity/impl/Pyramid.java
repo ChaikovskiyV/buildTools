@@ -4,7 +4,7 @@ import com.VChaikovsky.shapes.creator.impl.PointCreator;
 import com.VChaikovsky.shapes.entity.GeometryEntity;
 import com.VChaikovsky.shapes.event.PyramidEvent;
 import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.idgenerator.IdGenerator;
+import com.VChaikovsky.shapes.util.IdGenerator;
 import com.VChaikovsky.shapes.observer.Observable;
 import com.VChaikovsky.shapes.observer.Observer;
 import com.VChaikovsky.shapes.validator.impl.DataValidator;
@@ -24,12 +24,15 @@ public class Pyramid implements GeometryEntity, Observable {
    private Set<Observer> observers = new HashSet<>();
    private DataValidator validator = DataValidator.getInstance();
 
+   {
+      id = IdGenerator.generateId();
+   }
+
    public Pyramid(Point basesCenter, Point peak, int basesCornersNumber, double circumcircleRadius) {
       this.basesCenter = basesCenter;
       this.peak = peak;
       this.basesCornersNumber = basesCornersNumber;
       this.circumcircleRadius = circumcircleRadius;
-      id = IdGenerator.generateId();
    }
 
    public Pyramid(double basesCenterX, double basesCenterY, double basesCenterZ,
@@ -44,8 +47,6 @@ public class Pyramid implements GeometryEntity, Observable {
               .createEntity(peakX, peakY, peakZ);
       this.basesCornersNumber = basesCornersNumber;
       this.circumcircleRadius = circumcircleRadius;
-
-      id = IdGenerator.generateId();
    }
 
    public long getId() {
@@ -120,7 +121,9 @@ public class Pyramid implements GeometryEntity, Observable {
    @Override
    public String toString() {
       return new StringBuilder("Pyramid{")
-              .append("basesCenter=")
+              .append("id=")
+              .append((int) id)
+              .append(", basesCenter=")
               .append(basesCenter)
               .append(", peak=")
               .append(peak)
@@ -153,12 +156,16 @@ public class Pyramid implements GeometryEntity, Observable {
    @Override
    public void notifyObservers() {
       PyramidEvent event = new PyramidEvent(this);
-      observers.forEach(o-> {
-         try {
-            o.parameterChanged(event);
-         } catch (ShapeException e) {
-            logger.error(e);
-         }
-      });
+
+      if (!observers.isEmpty()) {
+         observers.forEach(o -> {
+            try {
+               o.parameterChanged(event);
+               //detach(o);
+            } catch (ShapeException e) {
+               logger.error(e);
+            }
+         });
+      }
    }
 }
