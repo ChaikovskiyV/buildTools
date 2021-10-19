@@ -7,7 +7,7 @@ public record PyramidParameters (double height, double basesSide, double pyramid
     final static Logger logger = LogManager.getLogger();
 
     @Override
-    public PyramidParameters clone() throws CloneNotSupportedException {
+    public PyramidParameters clone() throws CloneNotSupportedException {  //if use this method tests fail
         return this.clone();
     }
 }

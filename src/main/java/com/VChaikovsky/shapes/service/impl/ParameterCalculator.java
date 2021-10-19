@@ -40,7 +40,6 @@ public class ParameterCalculator implements ParametersCalculatorInt {
 
     @Override
     public double findSurfaceSquare(Pyramid pyramid) throws ShapeException {
-        double square;
         if(!validator.isValidPyramid(pyramid)) {
             logger.error("The " + pyramid + " is not pyramid.");
             throw new ShapeException("The " + pyramid + " is not pyramid.");
@@ -49,7 +48,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
             double radius = pyramid.getCircumcircleRadius();
             int cornersNumber = pyramid.getBasesCornersNumber();
 
-            square = cornersNumber * radius * Math.sin(Math.PI / cornersNumber) * (radius * Math.cos(Math.PI / cornersNumber) +
+        double square = cornersNumber * radius * Math.sin(Math.PI / cornersNumber) * (radius * Math.cos(Math.PI / cornersNumber) +
                     Math.sqrt(Math.pow(height, 2) + Math.pow(radius * Math.cos(Math.PI / cornersNumber), 2)));
 
         return square;

@@ -5,6 +5,7 @@ import com.VChaikovsky.shapes.entity.impl.Point;
 import com.VChaikovsky.shapes.entity.impl.Pyramid;
 import com.VChaikovsky.shapes.exception.ShapeException;
 import com.VChaikovsky.shapes.filler.impl.WareHouseFiller;
+import com.VChaikovsky.shapes.observer.impl.PyramidObserver;
 import com.VChaikovsky.shapes.repository.PyramidRepository;
 import com.VChaikovsky.shapes.validator.impl.DataValidator;
 import org.apache.logging.log4j.LogManager;
@@ -43,12 +44,17 @@ public class PyramidCreator implements CreatorFactoryInt {
                 throw new ShapeException("The array "+ Arrays.toString(dataArray)+" contains wrong data.");
             }
             pyramid = new Pyramid(basesCenter, peak, cornersNumber, radius);
+
+            pyramid.attach(new PyramidObserver());
+
             PyramidRepository
                     .getInstance()
                     .add(pyramid);
+
             WareHouseFiller
                     .getInstance()
                     .fillWareHouse(pyramid);
+
         } catch (NullPointerException e) {
             logger.error("The array "+ Arrays.toString(dataArray)+" is null.", e);
             throw new ShapeException("The array "+ Arrays.toString(dataArray)+" is null.", e);
