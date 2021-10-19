@@ -37,6 +37,6 @@ public class Main {
         });
         warehouse.getParametersMap().entrySet().forEach(id->logger.info(id + "\n++++++++++++++++++++++++++++++"));
         repository.query(new CornersNumberSpecification(3, 7)).forEach(pyramid -> pyramid.setBasesCornersNumber(pyramid.getBasesCornersNumber() + 3));
-        warehouse.getParametersMap().entrySet().forEach(id->logger.info(id + "\n///////////////////////////"));
+        warehouse.getParametersMap().entrySet().forEach(id->logger.info(id + "\n********************************"));
     }
 }
