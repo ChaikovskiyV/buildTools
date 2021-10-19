@@ -25,7 +25,7 @@ public class Main {
         PyramidsWarehouse warehouse = PyramidsWarehouse.getInstance();
         PyramidRepository repository = PyramidRepository.getInstance();
 
-        List<String> list = reader.readData("sources/severalpyramids.txt");
+        List<String> list = reader.readData("sources/pyramids.txt");
         List<double[]> doubleList = parser.parseStrToPyramidParam(list);
         doubleList.forEach(arr->{
             try {
