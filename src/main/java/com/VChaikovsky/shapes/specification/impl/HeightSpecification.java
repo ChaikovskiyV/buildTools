@@ -1,13 +1,12 @@
 package com.VChaikovsky.shapes.specification.impl;
 
 import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.exception.ShapeException;
 import com.VChaikovsky.shapes.specification.Specification;
 import com.VChaikovsky.shapes.warehouse.PyramidsWarehouse;
 
 public class HeightSpecification implements Specification {
-    double minPyramidHeight;
-    double maxPyramidHeight;
+    private double minPyramidHeight;
+    private double maxPyramidHeight;
 
     public HeightSpecification(double minPyramidHeight, double maxPyramidHeight) {
         this.minPyramidHeight = minPyramidHeight;
@@ -15,7 +14,7 @@ public class HeightSpecification implements Specification {
     }
 
     @Override
-    public boolean specify(Pyramid pyramid) throws ShapeException {
+    public boolean specify(Pyramid pyramid) {
         double pyramidHeight = PyramidsWarehouse
                 .getInstance()
                 .get(pyramid.getId())

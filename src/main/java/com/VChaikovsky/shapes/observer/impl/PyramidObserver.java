@@ -11,28 +11,24 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class PyramidObserver implements Observer {
-    final static Logger logger = LogManager.getLogger();
-    private PyramidsWarehouse warehouse = PyramidsWarehouse.getInstance();
-    private ParameterCalculator calculator = ParameterCalculator.getInstance();
-    private Pyramid pyramid;
-    private long id;
-    private PyramidParameters pyramidParameters;
+    static final Logger logger = LogManager.getLogger();
 
     @Override
     public void parameterChanged(PyramidEvent event) throws ShapeException {
-        pyramid = event.getPyramid();
-        id = pyramid.getId();
-        pyramid.attach(this);
-        pyramidParameters = warehouse.get(id);
+        PyramidsWarehouse warehouse = PyramidsWarehouse.getInstance();
+        ParameterCalculator calculator = ParameterCalculator.getInstance();
 
-        double height = calculator.findBasesSideLength(pyramid);
+        Pyramid pyramid = event.getPyramid();
+        long id = pyramid.getId();
+
+        double height = calculator.findPyramidHeight(pyramid);
         double basesSide = calculator.findBasesSideLength(pyramid);
         double volume = calculator.findVolume(pyramid);
         double surfaceSquare = calculator.findSurfaceSquare(pyramid);
         boolean isBasesOnBasicPlane = calculator.isBasesOnBasicPlane(pyramid);
         String volumeProportion = calculator.findVolumeProportion(pyramid);
 
-        pyramidParameters = new PyramidParameters(height, basesSide, volume, surfaceSquare, isBasesOnBasicPlane, volumeProportion);
+        PyramidParameters pyramidParameters = new PyramidParameters(height, basesSide, volume, surfaceSquare, isBasesOnBasicPlane, volumeProportion);
 
         warehouse.put(id, pyramidParameters);
     }

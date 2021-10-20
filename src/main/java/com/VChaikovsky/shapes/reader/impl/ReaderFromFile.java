@@ -12,7 +12,17 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class ReaderFromFile implements ReaderFromFileInt {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
+    static ReaderFromFile instance;
+
+    private ReaderFromFile() {}
+
+    public static ReaderFromFile getInstance() {
+        if(instance == null) {
+            instance = new ReaderFromFile();
+        }
+        return instance;
+    }
 
     @Override
     public List<String> readData(String filepath) throws ShapeException {

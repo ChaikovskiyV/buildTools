@@ -9,9 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ParameterCalculator implements ParametersCalculatorInt {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private static ParameterCalculator instance;
-    private DataValidator validator = DataValidator.getInstance();
 
     private ParameterCalculator() {}
 
@@ -24,6 +23,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
 
     @Override
     public double findVolume(Pyramid pyramid) throws ShapeException {
+        DataValidator validator = DataValidator.getInstance();
         double volume;
         if (!validator.isValidPyramid(pyramid)) {
             logger.error("The " + pyramid + " is not pyramid.");
@@ -40,6 +40,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
 
     @Override
     public double findSurfaceSquare(Pyramid pyramid) throws ShapeException {
+        DataValidator validator = DataValidator.getInstance();
         if(!validator.isValidPyramid(pyramid)) {
             logger.error("The " + pyramid + " is not pyramid.");
             throw new ShapeException("The " + pyramid + " is not pyramid.");
@@ -56,6 +57,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
 
     @Override
     public String findVolumeProportion(Pyramid pyramid) throws ShapeException {
+        DataValidator validator = DataValidator.getInstance();
         String result = "The " + pyramid + " is not crossed by any basic plane.";
 
         if(!validator.isValidPyramid(pyramid)) {
@@ -93,6 +95,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
 
     @Override
     public boolean isBasesOnBasicPlane(Pyramid pyramid) throws ShapeException {
+        DataValidator validator = DataValidator.getInstance();
         boolean result = false;
 
         if(!validator.isValidPyramid(pyramid)) {
@@ -137,6 +140,7 @@ public class ParameterCalculator implements ParametersCalculatorInt {
     }
 
     private String findParallelAxis(Pyramid pyramid){
+        DataValidator validator = DataValidator.getInstance();
         String parallelAxis = null;
         if(validator.isParallelAxis(pyramid)){
             Point basesCenter = pyramid.getBasesCenter();

@@ -4,8 +4,8 @@ import com.VChaikovsky.shapes.entity.impl.Pyramid;
 import com.VChaikovsky.shapes.specification.Specification;
 
 public class CornersNumberSpecification implements Specification {
-    int minCornersNumber;
-    int maxCornersNumber;
+    private int minCornersNumber;
+    private int maxCornersNumber;
 
     public CornersNumberSpecification(int minCornersNumber, int maxCornerNumber) {
         this.minCornersNumber = minCornersNumber;

@@ -1,7 +1,6 @@
 package com.VChaikovsky.shapes.repository;
 
 import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.exception.ShapeException;
 import com.VChaikovsky.shapes.specification.Specification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class PyramidRepository {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private static PyramidRepository instance;
     private Set<Pyramid> pyramids = new HashSet<>();
 
@@ -52,41 +51,24 @@ public class PyramidRepository {
     }
 
     public Set<Pyramid> queryStream(Specification specification) {
-        Set<Pyramid> queryResult = pyramids
-                .stream()
-                .filter(p-> {
-                    boolean result = false;
-                    try {
-                        result = specification.specify(p);
-                    } catch (ShapeException e) {
-                        logger.error("Exception from query stream.", e);
-                    }
-                    return result;
-                })
+        return pyramids.stream()
+                .filter(specification :: specify)
                 .collect(Collectors.toSet());
-        return queryResult;
     }
 
     public Set<Pyramid> query(Specification specification) {
         Set<Pyramid> queryResult = new HashSet<>();
         pyramids.forEach(p->{
-            try {
                 if(specification.specify(p)){
                     queryResult.add(p);
                 }
-            } catch (ShapeException e) {
-                logger.error("Exception from query.", e);
-            }
         });
         return queryResult;
     }
 
     public List<Pyramid> sort(Comparator<? super Pyramid> comparator){
-        List<Pyramid> pyramidList = pyramids
-                .stream()
+        return pyramids.stream()
                 .sorted(comparator)
                 .collect(Collectors.toList());
-
-        return pyramidList;
     }
 }

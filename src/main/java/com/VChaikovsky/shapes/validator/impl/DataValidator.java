@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DataValidator implements DataValidatorInt {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private static DataValidator instance;
     private final String STRING_REGEX = "[-\\s\\.\\d]+";
     private final String STRING_NUMBER_REGEX = "-?\\d+\\.?\\d*";

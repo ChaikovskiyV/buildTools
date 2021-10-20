@@ -4,9 +4,7 @@ import com.VChaikovsky.shapes.creator.CreatorFactoryInt;
 import com.VChaikovsky.shapes.entity.impl.Point;
 import com.VChaikovsky.shapes.entity.impl.Pyramid;
 import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.filler.impl.WareHouseFiller;
 import com.VChaikovsky.shapes.observer.impl.PyramidObserver;
-import com.VChaikovsky.shapes.repository.PyramidRepository;
 import com.VChaikovsky.shapes.validator.impl.DataValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 
 public class PyramidCreator implements CreatorFactoryInt {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private static PyramidCreator instance;
 
     private PyramidCreator(){}
@@ -39,7 +37,6 @@ public class PyramidCreator implements CreatorFactoryInt {
         Point basesCenter = pointCreator.createEntity(basesCenterData);
         Point peak = pointCreator.createEntity(peakData);
 
-        try {
             if(!validator.isDiffPoints(basesCenter, peak) || !validator.isValidCornersNumber(cornersNumber) || !validator.isValidRadius(radius)) {
                 throw new ShapeException("The array "+ Arrays.toString(dataArray)+" contains wrong data.");
             }
@@ -47,18 +44,6 @@ public class PyramidCreator implements CreatorFactoryInt {
 
             pyramid.attach(new PyramidObserver());
 
-            PyramidRepository
-                    .getInstance()
-                    .add(pyramid);
-
-            WareHouseFiller
-                    .getInstance()
-                    .fillWareHouse(pyramid);
-
-        } catch (NullPointerException e) {
-            logger.error("The array "+ Arrays.toString(dataArray)+" is null.", e);
-            throw new ShapeException("The array "+ Arrays.toString(dataArray)+" is null.", e);
-        }
         return pyramid;
     }
 }

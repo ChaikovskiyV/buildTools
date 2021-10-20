@@ -28,7 +28,7 @@ private List<String> expectedResult;
     @BeforeAll
     void setUp() {
         logger.info("Testing is starting ...");
-        reader = new ReaderFromFile();
+        reader = ReaderFromFile.getInstance();
         filename = "sources/testreaderdata.txt";
         wrongDataFile = "sources/wrongdatareader.txt";
         nonexistentFile = "nonexistent.txt";

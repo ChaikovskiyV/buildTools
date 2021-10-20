@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class PyramidParameterParser implements PyramidParameterParserInt {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private static PyramidParameterParser instance;
     private final String DELIMITER = "\\s";
 

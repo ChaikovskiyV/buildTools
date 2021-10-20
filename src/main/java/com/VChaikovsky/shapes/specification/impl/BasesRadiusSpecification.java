@@ -4,8 +4,8 @@ import com.VChaikovsky.shapes.entity.impl.Pyramid;
 import com.VChaikovsky.shapes.specification.Specification;
 
 public class BasesRadiusSpecification implements Specification {
-    double minRadius;
-    double maxRadius;
+    private double minRadius;
+    private double maxRadius;
 
     public BasesRadiusSpecification(double minRadius, double maxRadius) {
         this.minRadius = minRadius;

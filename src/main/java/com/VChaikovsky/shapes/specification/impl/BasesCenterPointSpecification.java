@@ -6,8 +6,8 @@ import com.VChaikovsky.shapes.service.impl.ParameterCalculator;
 import com.VChaikovsky.shapes.specification.Specification;
 
 public class BasesCenterPointSpecification implements Specification {
-    double minDistanceToZeroPoint;
-    double maxDistanceToZeroPoint;
+    private double minDistanceToZeroPoint;
+    private double maxDistanceToZeroPoint;
 
     public BasesCenterPointSpecification(double minDistanceToZeroPoint, double maxDistanceToZeroPoint) {
         this.minDistanceToZeroPoint = minDistanceToZeroPoint;
@@ -20,8 +20,7 @@ public class BasesCenterPointSpecification implements Specification {
         double distanceToZeroPoint = ParameterCalculator
                 .getInstance()
                 .findDistanceToZeroPoint(basesCenterPoint);
-        boolean result = distanceToZeroPoint >= minDistanceToZeroPoint && distanceToZeroPoint <= maxDistanceToZeroPoint;
 
-        return result;
+        return distanceToZeroPoint >= minDistanceToZeroPoint && distanceToZeroPoint <= maxDistanceToZeroPoint;
     }
 }

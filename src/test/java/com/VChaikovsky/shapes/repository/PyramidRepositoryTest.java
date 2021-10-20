@@ -3,7 +3,7 @@ package com.VChaikovsky.shapes.repository;
 import com.VChaikovsky.shapes.entity.impl.Point;
 import com.VChaikovsky.shapes.entity.impl.Pyramid;
 import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.filler.impl.WareHouseFiller;
+import com.VChaikovsky.shapes.filler.impl.DataFiller;
 import com.VChaikovsky.shapes.specification.Specification;
 import com.VChaikovsky.shapes.specification.impl.BasesRadiusSpecification;
 import com.VChaikovsky.shapes.specification.impl.CornersNumberSpecification;
@@ -16,13 +16,13 @@ import org.junit.jupiter.api.*;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PyramidRepositoryTest {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private PyramidRepository repository;
     private PyramidsWarehouse warehouse;
-    private WareHouseFiller filler;
+    private DataFiller dataFiller;
     private Specification specification;
     private Point pointOne;
     private Point pointTwo;
@@ -44,7 +44,7 @@ public class PyramidRepositoryTest {
         logger.info("The testing is starting ...");
         repository = PyramidRepository.getInstance();
         warehouse = PyramidsWarehouse.getInstance();
-        filler = WareHouseFiller.getInstance();
+        dataFiller = DataFiller.getInstance();
         pointOne = new Point(1, 2, 3);
         pointTwo = new Point(1, -8, 3);
         radiusOne = 10.5;
@@ -52,13 +52,13 @@ public class PyramidRepositoryTest {
         cornersNumberOne = 3;
         cornersNumberTwo = 6;
         pyramidOne = new Pyramid(pointOne, pointTwo, cornersNumberOne, radiusOne);
-        filler.fillWareHouse(pyramidOne);
+        dataFiller.addWareHouseAndRepository(pyramidOne);
         pyramidTwo = new Pyramid(pointTwo, pointOne, cornersNumberTwo, radiusOne);
-        filler.fillWareHouse(pyramidTwo);
+        dataFiller.addWareHouseAndRepository(pyramidTwo);
         pyramidThree = new Pyramid(pointOne, pointTwo, cornersNumberOne, radiusTwo);
-        filler.fillWareHouse(pyramidThree);
+        dataFiller.addWareHouseAndRepository(pyramidThree);
         pyramidFour = new Pyramid(pointTwo, pointOne, cornersNumberTwo, radiusTwo);
-        filler.fillWareHouse(pyramidFour);
+        dataFiller.addWareHouseAndRepository(pyramidFour);
         pyramidSet = new HashSet<>();
         expectedSet = new HashSet<>();
         expectedList = new ArrayList<>();
@@ -67,12 +67,12 @@ public class PyramidRepositoryTest {
     @BeforeEach
     void setRepository() {
         Collections.addAll(pyramidSet, pyramidOne, pyramidTwo, pyramidThree, pyramidFour);
-        repository.addAll(pyramidSet);
+        //repository.addAll(pyramidSet);
     }
 
     @AfterEach
     void cleanRepository() {
-        repository.clear();
+        //repository.clear();
         if(!expectedSet.isEmpty()){
             expectedSet.clear();
         }
@@ -133,19 +133,13 @@ public class PyramidRepositoryTest {
     @Test
     void sortVolume() {
         List<Pyramid> result = repository.sort((p1, p2)-> {
-            int differance = 0;
-            try {
                 double volume1 = warehouse
                         .get(p1.getId())
                         .pyramidVolume();
                 double volume2 = warehouse
                         .get(p2.getId())
                         .pyramidVolume();
-                differance = Double.compare(volume1, volume2);
-            } catch (ShapeException e) {
-                logger.error("Exception from sort volume.", e);
-            }
-            return differance;
+                return Double.compare(volume1, volume2);
         });
 
         Collections.addAll(expectedList, pyramidOne, pyramidTwo, pyramidThree, pyramidFour);
@@ -156,19 +150,13 @@ public class PyramidRepositoryTest {
     @Test
     void sortSurfaceSquare() {
         List<Pyramid> result = repository.sort((p1, p2)-> {
-            int differance = 0;
-            try {
                 double surfaceSquare1 = warehouse
                         .get(p1.getId())
                         .surfaceSquare();
                 double surfaceSquare2 = warehouse
                         .get(p2.getId())
                         .surfaceSquare();
-                differance = Double.compare(surfaceSquare1, surfaceSquare2);
-            } catch (ShapeException e) {
-                logger.error("Exception from sort surfaceSquare.", e);
-            }
-            return differance;
+                return Double.compare(surfaceSquare1, surfaceSquare2);
         });
 
         Collections.addAll(expectedList, pyramidOne, pyramidTwo, pyramidThree, pyramidFour);

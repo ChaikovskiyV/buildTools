@@ -1,13 +1,12 @@
 package com.VChaikovsky.shapes.specification.impl;
 
 import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.exception.ShapeException;
 import com.VChaikovsky.shapes.specification.Specification;
 import com.VChaikovsky.shapes.warehouse.PyramidsWarehouse;
 
 public class VolumeSpecification implements Specification {
-    double minVolume;
-    double maxVolume;
+    private double minVolume;
+    private double maxVolume;
 
     public VolumeSpecification(double minVolume, double maxVolume) {
         this.minVolume = minVolume;
@@ -15,7 +14,7 @@ public class VolumeSpecification implements Specification {
     }
 
     @Override
-    public boolean specify(Pyramid pyramid) throws ShapeException {
+    public boolean specify(Pyramid pyramid) {
         double pyramidVolume = PyramidsWarehouse
                 .getInstance()
                 .get(pyramid.getId())

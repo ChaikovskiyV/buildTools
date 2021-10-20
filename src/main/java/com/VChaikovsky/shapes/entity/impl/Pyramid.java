@@ -4,9 +4,9 @@ import com.VChaikovsky.shapes.creator.impl.PointCreator;
 import com.VChaikovsky.shapes.entity.GeometryEntity;
 import com.VChaikovsky.shapes.event.PyramidEvent;
 import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.util.IdGenerator;
 import com.VChaikovsky.shapes.observer.Observable;
 import com.VChaikovsky.shapes.observer.Observer;
+import com.VChaikovsky.shapes.util.IdGenerator;
 import com.VChaikovsky.shapes.validator.impl.DataValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Pyramid implements GeometryEntity, Observable {
-   final static Logger logger = LogManager.getLogger();
+   static final Logger logger = LogManager.getLogger();
    private long id;
    private Point basesCenter;
    private Point peak;
@@ -161,7 +161,6 @@ public class Pyramid implements GeometryEntity, Observable {
          observers.forEach(o -> {
             try {
                o.parameterChanged(event);
-               //detach(o);
             } catch (ShapeException e) {
                logger.error(e);
             }
