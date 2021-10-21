@@ -109,4 +109,13 @@ private String noCrossing;
     public void ifPyramidNotCorrect() {
         assertThrows(ShapeException.class, ()->calculator.findVolume(wrongPyramid));
     }
+
+    @Test
+    public void findDistanceToZeroPoint() {
+        Point point = new Point(0, 3, 4);
+        double expected = 5;
+        double result = calculator.findDistanceToZeroPoint(point);
+
+        assertEquals(expected, result);
+    }
 }

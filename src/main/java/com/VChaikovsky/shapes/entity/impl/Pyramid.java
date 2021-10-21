@@ -25,7 +25,9 @@ public class Pyramid implements GeometryEntity, Observable {
    private DataValidator validator = DataValidator.getInstance();
 
    {
-      id = IdGenerator.generateId();
+      if(id == 0) {
+         id = IdGenerator.generateId();
+      }
    }
 
    public Pyramid(Point basesCenter, Point peak, int basesCornersNumber, double circumcircleRadius) {

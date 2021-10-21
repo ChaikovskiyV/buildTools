@@ -35,7 +35,8 @@ public class DataValidator implements DataValidatorInt {
     @Override
     public boolean isValidParam(String[] array) {
         boolean result = true;
-        if(array.length == 8) {
+        int arrayLength = 8;
+        if(array.length == arrayLength) {
             int count = 0;
             while (count < array.length) {
                 if (isValidStringNumber(array[count])) {

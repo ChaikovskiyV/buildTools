@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PyramidParameterParserTest {
-    private Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private PyramidParameterParser parser;
     private String sourceFile;
     private String wrongDataFile;
@@ -28,22 +28,22 @@ public class PyramidParameterParserTest {
     private List<double[]> expendedResult;
 
     @org.junit.jupiter.api.BeforeAll
-    void setUp() {
+    void setUp() throws ShapeException {
         logger.info("Testing is starting ...");
         parser = PyramidParameterParser.getInstance();
         sourceFile = "sources/testparserdata.txt";
         wrongDataFile = "sources/wrongdataparser.txt";
-        Path path;
+        Path path = null;
         try {
             path = Path.of(sourceFile);
             data = Files.readAllLines(path);
             path = Path.of(wrongDataFile);
             wrongData = Files.readAllLines(path);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("The file " + path + "was not found.");
+            throw new ShapeException("The file " + path + "was not found.", e);
         }
-        expendedResult = Stream
-                .of(new double[]{16, 58, 96, 16, 34, 96, 4, 15}, new double[]{20, 30, 50, 0, 30, 50, 5, 50})
+        expendedResult = Stream.of(new double[]{16, 58, 96, 16, 34, 96, 4, 15}, new double[]{20, 30, 50, 0, 30, 50, 5, 50})
                         .toList();
     }
 

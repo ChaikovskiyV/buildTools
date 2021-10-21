@@ -26,6 +26,10 @@ public class PyramidCreator implements CreatorFactoryInt {
 
     @Override
     public Pyramid createEntity(double[] dataArray) throws ShapeException {
+        int arrayLength = 8;
+        if(dataArray.length < arrayLength) {
+            throw new ShapeException("The array "+ Arrays.toString(dataArray)+" is not correct.");
+        }
         Pyramid pyramid;
         DataValidator validator = DataValidator.getInstance();
         PointCreator pointCreator = PointCreator.getInstance();
@@ -45,5 +49,9 @@ public class PyramidCreator implements CreatorFactoryInt {
             pyramid.attach(new PyramidObserver());
 
         return pyramid;
+    }
+
+    public Pyramid createEntity(double basesCenterX, double basesCenterY, double basesCenterZ, double peakX, double peakY, double peakZ, int cornersNumber, double basesCircumcircleRadius) {
+        return new Pyramid(basesCenterX, basesCenterY, basesCenterZ, peakX, peakY, peakZ, cornersNumber, basesCircumcircleRadius);
     }
 }

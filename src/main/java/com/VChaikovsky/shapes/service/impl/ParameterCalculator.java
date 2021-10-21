@@ -162,10 +162,11 @@ public class ParameterCalculator implements ParametersCalculatorInt {
                 Math.pow(pyramid.getBasesCenter().y() - newCenterPoint.y(), 2) +
                 Math.pow(pyramid.getBasesCenter().z() - newCenterPoint.z(), 2));
         double newRadius = newHigh * pyramid.getCircumcircleRadius() / findPyramidHeight(pyramid);
+        double newSideLength = 2 *newRadius * Math.sin(Math.PI / pyramid.getBasesCornersNumber());
 
-        Pyramid newPyramid = new Pyramid(newCenterPoint, pyramid.getPeak(), pyramid.getBasesCornersNumber(), newRadius);
+        double newVolume = pyramid.getBasesCornersNumber() * Math.pow(newSideLength, 2) * newHigh / (12 * Math.tan(Math.PI / pyramid.getBasesCornersNumber()));
 
-        int upperPartPercent = (int) (whole * findVolume(newPyramid) / findVolume(pyramid));
+        int upperPartPercent = (int) (whole * newVolume / findVolume(pyramid));
         int lowerPartPercent = whole - upperPartPercent;
 
         return new int[]{upperPartPercent, lowerPartPercent};
