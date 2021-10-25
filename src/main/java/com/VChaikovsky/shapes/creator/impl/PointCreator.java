@@ -1,7 +1,7 @@
-package com.VChaikovsky.shapes.creator.impl;
+package com.vchaikovsky.shapes.creator.impl;
 
-import com.VChaikovsky.shapes.creator.CreatorFactoryInt;
-import com.VChaikovsky.shapes.entity.impl.Point;
+import com.vchaikovsky.shapes.creator.CreatorFactoryInt;
+import com.vchaikovsky.shapes.entity.impl.Point;
 
 public class PointCreator implements CreatorFactoryInt {
     private static PointCreator instance;

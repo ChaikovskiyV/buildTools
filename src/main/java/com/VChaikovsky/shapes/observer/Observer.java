@@ -1,9 +1,7 @@
-package com.VChaikovsky.shapes.observer;
+package com.vchaikovsky.shapes.observer;
 
-import com.VChaikovsky.shapes.event.PyramidEvent;
-import com.VChaikovsky.shapes.exception.ShapeException;
-
-import java.util.EventObject;
+import com.vchaikovsky.shapes.event.PyramidEvent;
+import com.vchaikovsky.shapes.exception.ShapeException;
 
 public interface Observer {
     void parameterChanged(PyramidEvent event) throws ShapeException;

@@ -1,7 +1,7 @@
-package com.VChaikovsky.shapes.creator;
+package com.vchaikovsky.shapes.creator;
 
-import com.VChaikovsky.shapes.creator.impl.PointCreator;
-import com.VChaikovsky.shapes.entity.impl.Point;
+import com.vchaikovsky.shapes.creator.impl.PointCreator;
+import com.vchaikovsky.shapes.entity.impl.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
