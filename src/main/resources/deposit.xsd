@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.com/banks"
+        xmlns:tns="http://www.example.com/banks"
+        elementFormDefault="qualified">
+    <element name="banks">
+        <complexType>
+            <sequence>
+                <element name="bank" type="tns:Bank" maxOccurs="1000"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="Bank">
+        <sequence>
+            <element name="name" type="tns:bank-name"/>             
+            <element name="country" type="tns:country-name"/>
+            <element name="deposit" type="tns:Deposit"/>
+        </sequence>
+        <attribute name="id" type="tns:bank-id" use="required"/>
+        <attribute name="rating" type="tns:bank-rating" use="optional" default="10"/>
+    </complexType>
+    <complexType name="Deposit">
+        <sequence>
+            <element name="type" type="tns:deposit-type"/>
+            <element name="depositor" type="tns:depositor-name"/>
+            <element name="account-id" type="tns:deposit-account"/>
+            <element name="amount-on-deposit" type="positiveInteger"/>
+            <element name="profitability" type="tns:deposit-profitability"/>
+            <element name="time-constraints" type="gYearMonth"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="bank-name">
+        <restriction base="string">
+            <pattern value="[a-zA-Z\\s]{5,}"/>
+        </restriction>
+    </simpleType>
+    
+    <simpleType name="country-name">
+        <restriction base="string">
+            <enumeration value="Belarus"/>
+            <enumeration value="Russia"/>
+            <enumeration value="Ukraine"/>
+            <enumeration value="Poland"/>
+            <enumeration value="China"/>
+            <enumeration value="USA"/>
+        </restriction>
+    </simpleType>
+    
+    <simpleType name="bank-id">
+        <restriction base="ID">
+            <minExclusive value="1"/>
+            <maxInclusive value="1000"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="bank-rating">
+        <restriction base="int">
+            <minInclusive value="1"/>
+            <maxInclusive value="10"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="deposit-type">
+        <restriction base="string">
+            <enumeration value="demand"/>
+            <enumeration value="fixed"/>
+            <enumeration value="payment"/>
+            <enumeration value="accumulation"/>
+            <enumeration value="metal"/>
+            <enumeration value="saving"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="depositor-name">
+        <restriction base="string">
+            <pattern value="[a-zA-Z\\s]{3,}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="deposit-account">
+        <restriction base="string">
+            <pattern value="[a-zA-Z0-9]{12}"/>
+        </restriction>
+    </simpleType>
+
+  <simpleType name="deposit-profitability">
+      <restriction base="double">
+          <minExclusive value="0"/>
+          <maxExclusive value="100"/>
+      </restriction>
+  </simpleType>
+</schema>
