@@ -1,12 +1,12 @@
-package com.VChaikovsky.shapes.observer.impl;
+package com.vchaikovsky.shapes.observer.impl;
 
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.entity.impl.PyramidParameters;
-import com.VChaikovsky.shapes.event.PyramidEvent;
-import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.observer.Observer;
-import com.VChaikovsky.shapes.service.impl.ParameterCalculator;
-import com.VChaikovsky.shapes.warehouse.PyramidsWarehouse;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.entity.impl.PyramidParameters;
+import com.vchaikovsky.shapes.event.PyramidEvent;
+import com.vchaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.observer.Observer;
+import com.vchaikovsky.shapes.service.impl.ParameterCalculator;
+import com.vchaikovsky.shapes.warehouse.PyramidsWarehouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

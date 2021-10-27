@@ -1,14 +1,14 @@
-package com.VChaikovsky.shapes.main;
+package com.vchaikovsky.shapes.main;
 
-import com.VChaikovsky.shapes.creator.impl.PyramidCreator;
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.filler.impl.DataFiller;
-import com.VChaikovsky.shapes.parser.impl.PyramidParameterParser;
-import com.VChaikovsky.shapes.reader.impl.ReaderFromFile;
-import com.VChaikovsky.shapes.repository.PyramidRepository;
-import com.VChaikovsky.shapes.specification.impl.CornersNumberSpecification;
-import com.VChaikovsky.shapes.warehouse.PyramidsWarehouse;
+import com.vchaikovsky.shapes.creator.impl.PyramidCreator;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.filler.impl.DataFiller;
+import com.vchaikovsky.shapes.parser.impl.PyramidParameterParser;
+import com.vchaikovsky.shapes.reader.impl.ReaderFromFile;
+import com.vchaikovsky.shapes.repository.PyramidRepository;
+import com.vchaikovsky.shapes.specification.impl.CornersNumberSpecification;
+import com.vchaikovsky.shapes.warehouse.PyramidsWarehouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

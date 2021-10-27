@@ -1,4 +1,4 @@
-package com.VChaikovsky.shapes.entity;
+package com.vchaikovsky.shapes.entity;
 
 public interface GeometryEntity {
 }

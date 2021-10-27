@@ -1,7 +1,7 @@
-package com.VChaikovsky.shapes.validator;
+package com.vchaikovsky.shapes.validator;
 
-import com.VChaikovsky.shapes.entity.impl.Point;
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.entity.impl.Point;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
 
 public interface DataValidatorInt {
 

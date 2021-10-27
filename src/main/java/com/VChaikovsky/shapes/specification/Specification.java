@@ -1,6 +1,6 @@
-package com.VChaikovsky.shapes.specification;
+package com.vchaikovsky.shapes.specification;
 
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
 
 public interface Specification {
     boolean specify(Pyramid pyramid);

@@ -1,13 +1,13 @@
-package com.VChaikovsky.shapes.repository;
+package com.vchaikovsky.shapes.repository;
 
-import com.VChaikovsky.shapes.entity.impl.Point;
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.filler.impl.DataFiller;
-import com.VChaikovsky.shapes.service.impl.ParameterCalculator;
-import com.VChaikovsky.shapes.specification.Specification;
-import com.VChaikovsky.shapes.specification.impl.*;
-import com.VChaikovsky.shapes.warehouse.PyramidsWarehouse;
+import com.vchaikovsky.shapes.entity.impl.Point;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.filler.impl.DataFiller;
+import com.vchaikovsky.shapes.service.impl.ParameterCalculator;
+import com.vchaikovsky.shapes.specification.Specification;
+import com.vchaikovsky.shapes.specification.impl.*;
+import com.vchaikovsky.shapes.warehouse.PyramidsWarehouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;

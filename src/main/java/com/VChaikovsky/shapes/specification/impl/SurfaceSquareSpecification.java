@@ -1,8 +1,8 @@
-package com.VChaikovsky.shapes.specification.impl;
+package com.vchaikovsky.shapes.specification.impl;
 
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.specification.Specification;
-import com.VChaikovsky.shapes.warehouse.PyramidsWarehouse;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.specification.Specification;
+import com.vchaikovsky.shapes.warehouse.PyramidsWarehouse;
 
 public class SurfaceSquareSpecification implements Specification {
     double minSurfaceSquare;

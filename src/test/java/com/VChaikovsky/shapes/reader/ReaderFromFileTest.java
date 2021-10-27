@@ -1,7 +1,7 @@
-package com.VChaikovsky.shapes.reader;
+package com.vchaikovsky.shapes.reader;
 
-import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.reader.impl.ReaderFromFile;
+import com.vchaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.reader.impl.ReaderFromFile;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;

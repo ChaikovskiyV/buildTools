@@ -1,6 +1,6 @@
-package com.VChaikovsky.shapes.parser;
+package com.vchaikovsky.shapes.parser;
 
-import com.VChaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.exception.ShapeException;
 
 import java.util.List;
 

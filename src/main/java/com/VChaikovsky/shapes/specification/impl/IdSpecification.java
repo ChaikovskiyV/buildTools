@@ -1,7 +1,7 @@
-package com.VChaikovsky.shapes.specification.impl;
+package com.vchaikovsky.shapes.specification.impl;
 
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.specification.Specification;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.specification.Specification;
 
 public class IdSpecification implements Specification {
     private long minId;

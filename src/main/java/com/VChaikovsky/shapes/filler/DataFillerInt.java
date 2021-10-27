@@ -1,7 +1,7 @@
-package com.VChaikovsky.shapes.filler;
+package com.vchaikovsky.shapes.filler;
 
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.exception.ShapeException;
 
 public interface DataFillerInt {
     boolean addWareHouseAndRepository(Pyramid pyramid) throws ShapeException;

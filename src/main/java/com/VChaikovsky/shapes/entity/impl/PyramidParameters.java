@@ -1,4 +1,4 @@
-package com.VChaikovsky.shapes.entity.impl;
+package com.vchaikovsky.shapes.entity.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

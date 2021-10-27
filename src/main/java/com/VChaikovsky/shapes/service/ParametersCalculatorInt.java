@@ -1,7 +1,7 @@
-package com.VChaikovsky.shapes.service;
+package com.vchaikovsky.shapes.service;
 
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.exception.ShapeException;
 
 public interface ParametersCalculatorInt {
 

@@ -1,12 +1,12 @@
-package com.VChaikovsky.shapes.observer;
+package com.vchaikovsky.shapes.observer;
 
-import com.VChaikovsky.shapes.entity.impl.Point;
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.entity.impl.PyramidParameters;
-import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.observer.impl.PyramidObserver;
-import com.VChaikovsky.shapes.service.impl.ParameterCalculator;
-import com.VChaikovsky.shapes.warehouse.PyramidsWarehouse;
+import com.vchaikovsky.shapes.entity.impl.Point;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.entity.impl.PyramidParameters;
+import com.vchaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.observer.impl.PyramidObserver;
+import com.vchaikovsky.shapes.service.impl.ParameterCalculator;
+import com.vchaikovsky.shapes.warehouse.PyramidsWarehouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;

@@ -1,7 +1,7 @@
-package com.VChaikovsky.shapes.parser;
+package com.vchaikovsky.shapes.parser;
 
-import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.parser.impl.PyramidParameterParser;
+import com.vchaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.parser.impl.PyramidParameterParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;

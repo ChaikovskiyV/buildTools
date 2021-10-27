@@ -1,9 +1,9 @@
-package com.VChaikovsky.shapes.specification.impl;
+package com.vchaikovsky.shapes.specification.impl;
 
-import com.VChaikovsky.shapes.entity.impl.Point;
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.service.impl.ParameterCalculator;
-import com.VChaikovsky.shapes.specification.Specification;
+import com.vchaikovsky.shapes.entity.impl.Point;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.service.impl.ParameterCalculator;
+import com.vchaikovsky.shapes.specification.Specification;
 
 public class BasesCenterPointSpecification implements Specification {
     private double minDistanceToZeroPoint;

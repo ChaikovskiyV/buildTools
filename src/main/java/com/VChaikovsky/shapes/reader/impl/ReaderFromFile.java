@@ -1,8 +1,8 @@
-package com.VChaikovsky.shapes.reader.impl;
+package com.vchaikovsky.shapes.reader.impl;
 
-import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.reader.ReaderFromFileInt;
-import com.VChaikovsky.shapes.validator.impl.DataValidator;
+import com.vchaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.reader.ReaderFromFileInt;
+import com.vchaikovsky.shapes.validator.impl.DataValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

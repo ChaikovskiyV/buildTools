@@ -1,6 +1,6 @@
-package com.VChaikovsky.shapes.entity.impl;
+package com.vchaikovsky.shapes.entity.impl;
 
-import com.VChaikovsky.shapes.entity.GeometryEntity;
+import com.vchaikovsky.shapes.entity.GeometryEntity;
 
 public record Point(double x, double y, double z) implements GeometryEntity{
 }

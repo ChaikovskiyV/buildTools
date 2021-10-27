@@ -1,11 +1,11 @@
-package com.VChaikovsky.shapes.creator.impl;
+package com.vchaikovsky.shapes.creator.impl;
 
-import com.VChaikovsky.shapes.creator.CreatorFactoryInt;
-import com.VChaikovsky.shapes.entity.impl.Point;
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.observer.impl.PyramidObserver;
-import com.VChaikovsky.shapes.validator.impl.DataValidator;
+import com.vchaikovsky.shapes.creator.CreatorFactoryInt;
+import com.vchaikovsky.shapes.entity.impl.Point;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.observer.impl.PyramidObserver;
+import com.vchaikovsky.shapes.validator.impl.DataValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

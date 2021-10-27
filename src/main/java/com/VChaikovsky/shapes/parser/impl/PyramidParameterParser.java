@@ -1,8 +1,8 @@
-package com.VChaikovsky.shapes.parser.impl;
+package com.vchaikovsky.shapes.parser.impl;
 
-import com.VChaikovsky.shapes.exception.ShapeException;
-import com.VChaikovsky.shapes.parser.PyramidParameterParserInt;
-import com.VChaikovsky.shapes.validator.impl.DataValidator;
+import com.vchaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.parser.PyramidParameterParserInt;
+import com.vchaikovsky.shapes.validator.impl.DataValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

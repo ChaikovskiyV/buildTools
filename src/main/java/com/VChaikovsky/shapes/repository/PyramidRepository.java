@@ -1,7 +1,7 @@
-package com.VChaikovsky.shapes.repository;
+package com.vchaikovsky.shapes.repository;
 
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.specification.Specification;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.specification.Specification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

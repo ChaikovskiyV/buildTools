@@ -1,6 +1,6 @@
-package com.VChaikovsky.shapes.event;
+package com.vchaikovsky.shapes.event;
 
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
 
 import java.util.EventObject;
 

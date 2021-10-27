@@ -1,4 +1,4 @@
-package com.VChaikovsky.shapes.exception;
+package com.vchaikovsky.shapes.exception;
 
 public class ShapeException extends Exception{
 

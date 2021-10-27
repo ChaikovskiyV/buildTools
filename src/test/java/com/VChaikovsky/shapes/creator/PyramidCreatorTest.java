@@ -1,8 +1,8 @@
-package com.VChaikovsky.shapes.creator;
+package com.vchaikovsky.shapes.creator;
 
-import com.VChaikovsky.shapes.creator.impl.PyramidCreator;
-import com.VChaikovsky.shapes.entity.impl.Pyramid;
-import com.VChaikovsky.shapes.exception.ShapeException;
+import com.vchaikovsky.shapes.creator.impl.PyramidCreator;
+import com.vchaikovsky.shapes.entity.impl.Pyramid;
+import com.vchaikovsky.shapes.exception.ShapeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;

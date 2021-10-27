@@ -1,6 +1,6 @@
-package com.VChaikovsky.shapes.warehouse;
+package com.vchaikovsky.shapes.warehouse;
 
-import com.VChaikovsky.shapes.entity.impl.PyramidParameters;
+import com.vchaikovsky.shapes.entity.impl.PyramidParameters;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
