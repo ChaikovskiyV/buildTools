@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://www.example.com/banks"
-        xmlns:tns="http://www.example.com/banks"
+        targetNamespace="http://www.example.org/banks"
+        xmlns:tns="http://www.example.org/banks"
         elementFormDefault="qualified">
     <element name="banks">
         <complexType>
             <sequence>
-                <element name="bank" type="tns:Bank" maxOccurs="1000"/>
+                <element ref="tns:bank" maxOccurs="1000"/>
             </sequence>
         </complexType>
     </element>
-    <complexType name="Bank">
+
+    <element name="bank" type="tns:bank" abstract="true"/>
+    <element name="state-bank" type="tns:state-bank" substitutionGroup="tns:bank"/>
+    <element name="private-bank" type="tns:private-bank" substitutionGroup="tns:bank"/>
+
+    <complexType name="bank">
         <sequence>
             <element name="name" type="tns:bank-name"/>             
             <element name="country" type="tns:country-name"/>
@@ -24,12 +29,46 @@
             <element name="type" type="tns:deposit-type"/>
             <element name="depositor" type="tns:depositor-name"/>
             <element name="account-id" type="tns:deposit-account"/>
-            <element name="amount-on-deposit" type="positiveInteger"/>
+            <element name="amount-on-deposit" type="tns:amount-on-deposit"/>
             <element name="profitability" type="tns:deposit-profitability"/>
             <element name="time-constraints" type="gYearMonth"/>
         </sequence>
     </complexType>
 
+    <complexType name="state-bank">
+        <complexContent>
+            <extension base="tns:bank">
+                <sequence>
+                    <element name="bank-type" type="tns:state-bank-type"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="private-bank">
+        <complexContent>
+            <extension base="tns:bank">
+                <sequence>
+                    <element name="state-share" type="tns:private-bank-state-share"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="private-bank-state-share">
+        <restriction base="positiveInteger">
+            <minInclusive value="0"/>
+            <maxExclusive value="50"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="state-bank-type">
+        <restriction base="string">
+            <enumeration value="central"/>
+            <enumeration value="commercial"/>
+        </restriction>
+    </simpleType>
+    
     <simpleType name="bank-name">
         <restriction base="string">
             <pattern value="[a-zA-Z\\s]{5,}"/>
@@ -49,7 +88,7 @@
     
     <simpleType name="bank-id">
         <restriction base="ID">
-            <minExclusive value="1"/>
+            <minInclusive value="1"/>
             <maxInclusive value="1000"/>
         </restriction>
     </simpleType>
@@ -74,13 +113,13 @@
 
     <simpleType name="depositor-name">
         <restriction base="string">
-            <pattern value="[a-zA-Z\\s]{3,}"/>
+            <pattern value="[A-Z][a-zA-Z\\s]{2,}"/>
         </restriction>
     </simpleType>
 
     <simpleType name="deposit-account">
         <restriction base="string">
-            <pattern value="[a-zA-Z0-9]{12}"/>
+            <pattern value="[A-Z]{3}B[\\d]{8}}"/>
         </restriction>
     </simpleType>
 
@@ -90,4 +129,10 @@
           <maxExclusive value="100"/>
       </restriction>
   </simpleType>
+
+    <simpleType name="amount-on-deposit">
+        <restriction base="int">
+            <minInclusive value="0"/>
+        </restriction>
+    </simpleType>
 </schema>

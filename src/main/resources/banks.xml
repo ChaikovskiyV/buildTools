@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<banks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.example.org/banks"
+       xsi:schemaLocation="http://www.example.org/banks ../resources/schema/schema.xsd">
+
+    <state-bank id="b1">
+        <name>HonestBank</name>
+        <country>Belarus</country>
+        <deposit>
+            <type>fixed</type>
+            <depositor>Ivanov</depositor>
+            <account-id>BYHB15261296</account-id>
+            <amount-on-deposit>0</amount-on-deposit>
+            <profitability>0.5</profitability>
+            <time-constraints>2021-12</time-constraints>
+        </deposit>
+        <bank-type>commercial</bank-type>
+    </state-bank>
+
+    <private-bank id="b2">
+        <name>BestBank</name>
+        <country>Belarus</country>
+        <deposit>
+            <type>saving</type>
+            <depositor>Ivanova</depositor>
+            <account-id>BYBB11223344</account-id>
+            <amount-on-deposit>150</amount-on-deposit>
+            <profitability>1</profitability>
+            <time-constraints>2022-08</time-constraints>
+        </deposit>
+        <state-share>30</state-share>
+    </private-bank>
+
+    <state-bank id="b3">
+        <name>MyBank</name>
+        <country>Belarus</country>
+        <deposit>
+            <type>accumulation</type>
+            <depositor>Petrov</depositor>
+            <account-id>BYMB15264455</account-id>
+            <amount-on-deposit>2000</amount-on-deposit>
+            <profitability>10</profitability>
+            <time-constraints>2023-12</time-constraints>
+        </deposit>
+        <bank-type>central</bank-type>
+    </state-bank>
+
+    <private-bank id="b4">
+        <name>CentralBank</name>
+        <country>Poland</country>
+        <deposit>
+            <type>demand</type>
+            <depositor>Kurlovich</depositor>
+            <account-id>POCB11221895</account-id>
+            <amount-on-deposit>500</amount-on-deposit>
+            <profitability>5</profitability>
+            <time-constraints>2022-02</time-constraints>
+        </deposit>
+        <state-share>30</state-share>
+    </private-bank>
+
+    <state-bank id="b5">
+        <name>PolBank</name>
+        <country>Poland</country>
+        <deposit>
+            <type>payment</type>
+            <depositor>Shipok</depositor>
+            <account-id>POPB45991296</account-id>
+            <amount-on-deposit>1000</amount-on-deposit>
+            <profitability>10</profitability>
+            <time-constraints>2024-01</time-constraints>
+        </deposit>
+        <bank-type>commercial</bank-type>
+    </state-bank>
+
+    <private-bank id="b6">
+        <name>ZBank</name>
+        <country>Poland</country>
+        <deposit>
+            <type>metal</type>
+            <depositor>Luchok</depositor>
+            <account-id>POZB11224255</account-id>
+            <amount-on-deposit>150000</amount-on-deposit>
+            <profitability>80</profitability>
+            <time-constraints>2022-10</time-constraints>
+        </deposit>
+        <state-share>10</state-share>
+    </private-bank>
+
+    <state-bank id="b7">
+        <name>SaveBank</name>
+        <country>Russia</country>
+        <deposit>
+            <type>saving</type>
+            <depositor>Gromov</depositor>
+            <account-id>RUSB11399455</account-id>
+            <amount-on-deposit>2500</amount-on-deposit>
+            <profitability>12</profitability>
+            <time-constraints>2023-06</time-constraints>
+        </deposit>
+        <bank-type>commercial</bank-type>
+    </state-bank>
+
+    <private-bank id="b8">
+        <name>YorBank</name>
+        <country>Russia</country>
+        <deposit>
+            <type>accumulation</type>
+            <depositor>Krup</depositor>
+            <account-id>RUYB44551895</account-id>
+            <amount-on-deposit>505</amount-on-deposit>
+            <profitability>8</profitability>
+            <time-constraints>2022-05</time-constraints>
+        </deposit>
+        <state-share>30</state-share>
+    </private-bank>
+
+    <state-bank id="b9">
+        <name>USBank</name>
+        <country>USA</country>
+        <deposit>
+            <type>payment</type>
+            <depositor>Kelp</depositor>
+            <account-id>USUB12966677</account-id>
+            <amount-on-deposit>10000</amount-on-deposit>
+            <profitability>5</profitability>
+            <time-constraints>2024-12</time-constraints>
+        </deposit>
+        <bank-type>central</bank-type>
+    </state-bank>
+
+    <private-bank id="b10">
+        <name>McDuckBank</name>
+        <country>USA</country>
+        <deposit>
+            <type>saving</type>
+            <depositor>McDuck</depositor>
+            <account-id>BYHB11223344</account-id>
+            <amount-on-deposit>150</amount-on-deposit>
+            <profitability>1</profitability>
+            <time-constraints>2022-08</time-constraints>
+        </deposit>
+        <state-share>30</state-share>
+    </private-bank>
+
+    <state-bank id="b11">
+        <name>FBIBank</name>
+        <country>USA</country>
+        <deposit>
+            <type>accumulation</type>
+            <depositor>Noris</depositor>
+            <account-id>USFB15264455</account-id>
+            <amount-on-deposit>2000</amount-on-deposit>
+            <profitability>10</profitability>
+            <time-constraints>2023-12</time-constraints>
+        </deposit>
+        <bank-type>central</bank-type>
+    </state-bank>
+
+    <private-bank id="b12">
+        <name>YourBank</name>
+        <country>Ukraine</country>
+        <deposit>
+            <type>demand</type>
+            <depositor>Kurlovich</depositor>
+            <account-id>POPB11221895</account-id>
+            <amount-on-deposit>500</amount-on-deposit>
+            <profitability>5</profitability>
+            <time-constraints>2022-02</time-constraints>
+        </deposit>
+        <state-share>30</state-share>
+    </private-bank>
+
+    <state-bank id="b13">
+        <name>UKBank</name>
+        <country>Ukraine</country>
+        <deposit>
+            <type>payment</type>
+            <depositor>Demidov</depositor>
+            <account-id>UKUB45991296</account-id>
+            <amount-on-deposit>1000</amount-on-deposit>
+            <profitability>10</profitability>
+            <time-constraints>2024-01</time-constraints>
+        </deposit>
+        <bank-type>commercial</bank-type>
+    </state-bank>
+
+    <private-bank id="b14">
+        <name>LuckyBank</name>
+        <country>Ukraine</country>
+        <deposit>
+            <type>metal</type>
+            <depositor>Metelko</depositor>
+            <account-id>UKLB11224255</account-id>
+            <amount-on-deposit>150000</amount-on-deposit>
+            <profitability>80</profitability>
+            <time-constraints>2022-10</time-constraints>
+        </deposit>
+        <state-share>10</state-share>
+    </private-bank>
+
+    <state-bank id="b15">
+        <name>ChuckBank</name>
+        <country>China</country>
+        <deposit>
+            <type>saving</type>
+            <depositor>Chuck</depositor>
+            <account-id>CHCB11399455</account-id>
+            <amount-on-deposit>2500</amount-on-deposit>
+            <profitability>12</profitability>
+            <time-constraints>2023-06</time-constraints>
+        </deposit>
+        <bank-type>commercial</bank-type>
+    </state-bank>
+
+    <private-bank id="b16">
+        <name>GekBank</name>
+        <country>China</country>
+        <deposit>
+            <type>accumulation</type>
+            <depositor>Gek</depositor>
+            <account-id>CHGB44551895</account-id>
+            <amount-on-deposit>505</amount-on-deposit>
+            <profitability>8</profitability>
+            <time-constraints>2022-05</time-constraints>
+        </deposit>
+        <state-share>30</state-share>
+    </private-bank>
+</banks>
