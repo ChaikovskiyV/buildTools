@@ -1,0 +1,50 @@
+2021-10-27 10:52:23 INFO  com.vchaikovsky.shapes.repository.PyramidRepositoryTest - The testing is starting ...
+2021-10-27 10:52:23 INFO  com.vchaikovsky.shapes.repository.PyramidRepositoryTest - The tests have been finished.
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - The list of pyramids from repository:
+ 
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - Pyramid{id=1, basesCenter=Point[x=1.0, y=1.0, z=1.0], peak=Point[x=1.0, y=1.0, z=15.0], basesCornersNumber=3, circumcircleRadius=10.5}
+-------------------------------------
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - Pyramid{id=2, basesCenter=Point[x=-2.0, y=0.0, z=0.0], peak=Point[x=-2.0, y=0.0, z=-10.0], basesCornersNumber=5, circumcircleRadius=15.0}
+-------------------------------------
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - Pyramid{id=3, basesCenter=Point[x=6.0, y=3.0, z=5.0], peak=Point[x=16.0, y=3.0, z=5.0], basesCornersNumber=4, circumcircleRadius=10.0}
+-------------------------------------
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - Pyramid{id=4, basesCenter=Point[x=25.0, y=25.0, z=0.0], peak=Point[x=25.0, y=25.0, z=25.0], basesCornersNumber=5, circumcircleRadius=25.0}
+-------------------------------------
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - Pyramid{id=5, basesCenter=Point[x=35.0, y=16.0, z=90.0], peak=Point[x=0.0, y=16.0, z=90.0], basesCornersNumber=12, circumcircleRadius=20.0}
+-------------------------------------
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - Pyramid{id=6, basesCenter=Point[x=-5.0, y=-7.0, z=-10.0], peak=Point[x=-5.0, y=-7.0, z=-25.0], basesCornersNumber=5, circumcircleRadius=20.0}
+-------------------------------------
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - Pyramid{id=7, basesCenter=Point[x=10.0, y=-5.0, z=-5.0], peak=Point[x=-10.0, y=-5.0, z=-5.0], basesCornersNumber=3, circumcircleRadius=40.0}
+-------------------------------------
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - The list of pyramid's parameters from warehouse:
+ 
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 1=PyramidParameters[height=14.0, basesSide=18.186533479473212, pyramidVolume=668.3551053706408, surfaceSquare=551.1067028286262, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=1, basesCenter=Point[x=1.0, y=1.0, z=1.0], peak=Point[x=1.0, y=1.0, z=15.0], basesCornersNumber=3, circumcircleRadius=10.5} is not crossed by any basic plane.]
+++++++++++++++++++++++++++++++
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 2=PyramidParameters[height=10.0, basesSide=17.633557568774194, pyramidVolume=1783.2309680534129, surfaceSquare=1228.1728045590714, isBasesLaysOnBasicPlane=true, volumeProportion=The Pyramid{id=2, basesCenter=Point[x=-2.0, y=0.0, z=0.0], peak=Point[x=-2.0, y=0.0, z=-10.0], basesCornersNumber=5, circumcircleRadius=15.0} is not crossed by any basic plane.]
+++++++++++++++++++++++++++++++
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 3=PyramidParameters[height=10.0, basesSide=14.14213562373095, pyramidVolume=666.6666666666667, surfaceSquare=546.4101615137754, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=3, basesCenter=Point[x=6.0, y=3.0, z=5.0], peak=Point[x=16.0, y=3.0, z=5.0], basesCornersNumber=4, circumcircleRadius=10.0} is not crossed by any basic plane.]
+++++++++++++++++++++++++++++++
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 4=PyramidParameters[height=25.0, basesSide=29.389262614623657, pyramidVolume=12383.548389259813, surfaceSquare=3848.6965741616877, isBasesLaysOnBasicPlane=true, volumeProportion=The Pyramid{id=4, basesCenter=Point[x=25.0, y=25.0, z=0.0], peak=Point[x=25.0, y=25.0, z=25.0], basesCornersNumber=5, circumcircleRadius=25.0} is not crossed by any basic plane.]
+++++++++++++++++++++++++++++++
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 5=PyramidParameters[height=35.0, basesSide=10.35276180410083, pyramidVolume=13999.999999999998, surfaceSquare=3683.268764045689, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=5, basesCenter=Point[x=35.0, y=16.0, z=90.0], peak=Point[x=0.0, y=16.0, z=90.0], basesCornersNumber=12, circumcircleRadius=20.0} is not crossed by any basic plane.]
+++++++++++++++++++++++++++++++
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 6=PyramidParameters[height=15.0, basesSide=23.511410091698927, pyramidVolume=4755.28258147577, surfaceSquare=2247.9236561809857, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=6, basesCenter=Point[x=-5.0, y=-7.0, z=-10.0], peak=Point[x=-5.0, y=-7.0, z=-25.0], basesCornersNumber=5, circumcircleRadius=20.0} is not crossed by any basic plane.]
+++++++++++++++++++++++++++++++
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 7=PyramidParameters[height=20.0, basesSide=69.28203230275508, pyramidVolume=13856.40646055102, surfaceSquare=5017.848660422467, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=7, basesCenter=Point[x=10.0, y=-5.0, z=-5.0], peak=Point[x=-10.0, y=-5.0, z=-5.0], basesCornersNumber=3, circumcircleRadius=40.0} is divided by YZ plane as 12 : 88.]
+++++++++++++++++++++++++++++++
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - The list of pyramid's parameters from warehouse after changing them:
+ 
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 1=PyramidParameters[height=14.0, basesSide=10.499999999999998, pyramidVolume=1336.7102107412807, surfaceSquare=812.2968870827943, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=1, basesCenter=Point[x=1.0, y=1.0, z=1.0], peak=Point[x=1.0, y=1.0, z=15.0], basesCornersNumber=6, circumcircleRadius=10.5} is not crossed by any basic plane.]
+********************************
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 2=PyramidParameters[height=10.0, basesSide=11.480502970952694, pyramidVolume=2121.320343559643, surfaceSquare=1421.1783133311517, isBasesLaysOnBasicPlane=true, volumeProportion=The Pyramid{id=2, basesCenter=Point[x=-2.0, y=0.0, z=0.0], peak=Point[x=-2.0, y=0.0, z=-10.0], basesCornersNumber=8, circumcircleRadius=15.0} is not crossed by any basic plane.]
+********************************
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 3=PyramidParameters[height=10.0, basesSide=8.677674782351163, pyramidVolume=912.136729546035, surfaceSquare=682.4495385272767, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=3, basesCenter=Point[x=6.0, y=3.0, z=5.0], peak=Point[x=16.0, y=3.0, z=5.0], basesCornersNumber=7, circumcircleRadius=10.0} is not crossed by any basic plane.]
+********************************
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 4=PyramidParameters[height=25.0, basesSide=19.134171618254488, pyramidVolume=14731.39127471974, surfaceSquare=4372.7938693663045, isBasesLaysOnBasicPlane=true, volumeProportion=The Pyramid{id=4, basesCenter=Point[x=25.0, y=25.0, z=0.0], peak=Point[x=25.0, y=25.0, z=25.0], basesCornersNumber=8, circumcircleRadius=25.0} is not crossed by any basic plane.]
+********************************
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 5=PyramidParameters[height=35.0, basesSide=10.35276180410083, pyramidVolume=13999.999999999998, surfaceSquare=3683.268764045689, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=5, basesCenter=Point[x=35.0, y=16.0, z=90.0], peak=Point[x=0.0, y=16.0, z=90.0], basesCornersNumber=12, circumcircleRadius=20.0} is not crossed by any basic plane.]
+********************************
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 6=PyramidParameters[height=15.0, basesSide=15.307337294603592, pyramidVolume=5656.85424949238, surfaceSquare=2588.6053781000087, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=6, basesCenter=Point[x=-5.0, y=-7.0, z=-10.0], peak=Point[x=-5.0, y=-7.0, z=-25.0], basesCornersNumber=8, circumcircleRadius=20.0} is not crossed by any basic plane.]
+********************************
+2021-10-27 10:52:56 INFO  com.vchaikovsky.shapes.main.Main - id = 7=PyramidParameters[height=20.0, basesSide=39.99999999999999, pyramidVolume=27712.81292110203, surfaceSquare=8956.921938165306, isBasesLaysOnBasicPlane=false, volumeProportion=The Pyramid{id=7, basesCenter=Point[x=10.0, y=-5.0, z=-5.0], peak=Point[x=-10.0, y=-5.0, z=-5.0], basesCornersNumber=6, circumcircleRadius=40.0} is divided by YZ plane as 12 : 88.]
+********************************
