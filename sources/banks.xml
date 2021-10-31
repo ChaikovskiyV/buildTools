@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <banks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.example.org/banks"
-       xsi:schemaLocation="http://www.example.org/banks ../resources/schema/schema.xsd">
+       xsi:schemaLocation="http://www.example.org/banks schema/schema.xsd">
 
-    <state-bank id="b1">
+    <state-bank id="b1" rating="5">
         <name>HonestBank</name>
         <country>Belarus</country>
         <deposit>
@@ -17,7 +17,7 @@
         <bank-type>commercial</bank-type>
     </state-bank>
 
-    <private-bank id="b2">
+    <private-bank rating="8" id="b2">
         <name>BestBank</name>
         <country>Belarus</country>
         <deposit>
@@ -31,7 +31,7 @@
         <state-share>30</state-share>
     </private-bank>
 
-    <state-bank id="b3">
+    <state-bank id="b3" rating="7">
         <name>MyBank</name>
         <country>Belarus</country>
         <deposit>
@@ -45,7 +45,7 @@
         <bank-type>central</bank-type>
     </state-bank>
 
-    <private-bank id="b4">
+    <private-bank rating="4" id="b4">
         <name>CentralBank</name>
         <country>Poland</country>
         <deposit>
@@ -59,7 +59,7 @@
         <state-share>30</state-share>
     </private-bank>
 
-    <state-bank id="b5">
+    <state-bank id="b5" rating="8">
         <name>PolBank</name>
         <country>Poland</country>
         <deposit>
@@ -73,7 +73,7 @@
         <bank-type>commercial</bank-type>
     </state-bank>
 
-    <private-bank id="b6">
+    <private-bank id="b6" rating="6">
         <name>ZBank</name>
         <country>Poland</country>
         <deposit>
@@ -87,7 +87,7 @@
         <state-share>10</state-share>
     </private-bank>
 
-    <state-bank id="b7">
+    <state-bank id="b7" rating="9">
         <name>SaveBank</name>
         <country>Russia</country>
         <deposit>
@@ -101,7 +101,7 @@
         <bank-type>commercial</bank-type>
     </state-bank>
 
-    <private-bank id="b8">
+    <private-bank rating="3" id="b8">
         <name>YorBank</name>
         <country>Russia</country>
         <deposit>
@@ -115,7 +115,7 @@
         <state-share>30</state-share>
     </private-bank>
 
-    <state-bank id="b9">
+    <state-bank rating="5" id="b9">
         <name>USBank</name>
         <country>USA</country>
         <deposit>
@@ -129,7 +129,7 @@
         <bank-type>central</bank-type>
     </state-bank>
 
-    <private-bank id="b10">
+    <private-bank rating="8" id="b10">
         <name>McDuckBank</name>
         <country>USA</country>
         <deposit>
@@ -143,7 +143,7 @@
         <state-share>30</state-share>
     </private-bank>
 
-    <state-bank id="b11">
+    <state-bank id="b11" rating="4">
         <name>FBIBank</name>
         <country>USA</country>
         <deposit>
@@ -157,7 +157,7 @@
         <bank-type>central</bank-type>
     </state-bank>
 
-    <private-bank id="b12">
+    <private-bank id="b12" rating="6">
         <name>YourBank</name>
         <country>Ukraine</country>
         <deposit>
@@ -171,7 +171,7 @@
         <state-share>30</state-share>
     </private-bank>
 
-    <state-bank id="b13">
+    <state-bank rating="5" id="b13">
         <name>UKBank</name>
         <country>Ukraine</country>
         <deposit>
@@ -185,7 +185,7 @@
         <bank-type>commercial</bank-type>
     </state-bank>
 
-    <private-bank id="b14">
+    <private-bank id="b14" rating="8">
         <name>LuckyBank</name>
         <country>Ukraine</country>
         <deposit>
@@ -225,5 +225,33 @@
             <time-constraints>2022-05</time-constraints>
         </deposit>
         <state-share>30</state-share>
+    </private-bank>
+
+    <private-bank id="b17">
+        <name>RabitBank</name>
+        <country>Russia</country>
+        <deposit>
+            <type>saving</type>
+            <depositor>Rabit</depositor>
+            <account-id>RURB10101010</account-id>
+            <amount-on-deposit>1000</amount-on-deposit>
+            <profitability>99</profitability>
+            <time-constraints>2042-12</time-constraints>
+        </deposit>
+        <state-share>10</state-share>
+    </private-bank>
+
+    <private-bank id="b18">
+        <name>RabitBank</name>
+        <country>Russia</country>
+        <deposit>
+            <type>saving</type>
+            <depositor>Rabit</depositor>
+            <account-id>RURB10101010</account-id>
+            <amount-on-deposit>1000</amount-on-deposit>
+            <profitability>99</profitability>
+            <time-constraints>2042-12</time-constraints>
+        </deposit>
+        <state-share>10</state-share>
     </private-bank>
 </banks>

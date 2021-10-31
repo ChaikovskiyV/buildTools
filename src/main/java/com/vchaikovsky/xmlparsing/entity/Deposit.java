@@ -1,4 +1,4 @@
-package com.vchaikovsky.xmlxsdparsing.entity;
+package com.vchaikovsky.xmlparsing.entity;
 
 import java.time.YearMonth;
 

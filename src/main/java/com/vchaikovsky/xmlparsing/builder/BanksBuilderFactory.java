@@ -1,6 +1,6 @@
-package com.vchaikovsky.xmlxsdparsing.builder;
+package com.vchaikovsky.xmlparsing.builder;
 
-import com.vchaikovsky.xmlxsdparsing.exception.BankException;
+import com.vchaikovsky.xmlparsing.exception.BankException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,8 +16,9 @@ public class BanksBuilderFactory {
     private BanksBuilderFactory() {
     }
 
-    public static AbstractBanksBuilder createBankBuilder(String typeParser) throws BankException {
-        if(typeParser.equals(TypeParser.DOM) && typeParser.equals(TypeParser.SAX) && typeParser.equals(TypeParser.STAX)){
+    public static AbstractBanksBuilder createBanksBuilder(String typeParser) throws BankException {
+        TypeParser typeParserEnum = TypeParser.valueOf(typeParser.toUpperCase());
+        if(typeParserEnum != TypeParser.DOM && typeParserEnum != TypeParser.SAX && typeParserEnum != TypeParser.STAX){
             logger.error("The type of parser is null");
             throw new BankException("The type of parser is null");
         }

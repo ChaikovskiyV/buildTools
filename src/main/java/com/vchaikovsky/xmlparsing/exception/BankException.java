@@ -1,4 +1,4 @@
-package com.vchaikovsky.xmlxsdparsing.exception;
+package com.vchaikovsky.xmlparsing.exception;
 
 public class BankException extends Exception{
     public BankException() {

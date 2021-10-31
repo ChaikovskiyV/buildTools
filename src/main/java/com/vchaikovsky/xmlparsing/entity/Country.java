@@ -1,4 +1,4 @@
-package com.vchaikovsky.xmlxsdparsing.entity;
+package com.vchaikovsky.xmlparsing.entity;
 
 public enum Country {
     BELARUS("Belarus"),
@@ -17,4 +17,5 @@ public enum Country {
     public String getCountry() {
         return country;
     }
+
 }

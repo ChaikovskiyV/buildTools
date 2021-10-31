@@ -1,4 +1,4 @@
-package com.vchaikovsky.xmlxsdparsing.entity;
+package com.vchaikovsky.xmlparsing.entity;
 
 public enum StateBankType {
     CENTRAL("central"),

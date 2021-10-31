@@ -1,20 +1,26 @@
-package com.vchaikovsky.xmlxsdparsing.entity;
+package com.vchaikovsky.xmlparsing.entity;
 
-public class StateBank extends Bank{
-    private StateBankType bankType;
+public class PrivateBank extends Bank {
+    public static final int DEFAULT_STATE_SHARE = 1;
 
-    public StateBank() {
+    private int stateShare;
+
+    public PrivateBank() {
         //default meaning
-        bankType = StateBankType.CENTRAL;
+        this.stateShare = DEFAULT_STATE_SHARE;
     }
 
-    public StateBank(String id, String name, int rating, Country country, Deposit deposit, StateBankType bankType) {
+    public PrivateBank(String id, String name, int rating, Country country, Deposit deposit, int stateShare) {
         super(id, name, rating, country, deposit);
-        this.bankType = bankType;
+        this.stateShare = stateShare;
     }
 
-    public StateBankType getBankType() {
-        return bankType;
+    public int getStateShare() {
+        return stateShare;
+    }
+
+    public void setStateShare(int stateShare) {
+        this.stateShare = stateShare;
     }
 
     @Override
@@ -22,27 +28,27 @@ public class StateBank extends Bank{
         if (this == o) {
             return true;
         }
-        if (o == null || !(o instanceof Bank)) {
+        if (!(o instanceof Bank)) {
             return false;
         }
         if (!super.equals(o)) {
             return false;
         }
-        StateBank stateBank = (StateBank) o;
-        return bankType == stateBank.bankType;
+        PrivateBank that = (PrivateBank) o;
+        return stateShare == that.stateShare;
     }
 
     @Override
     public int hashCode() {
         int first = 34;
-        int result = super.hashCode() * first * bankType.hashCode();
+        int result = super.hashCode() * first * stateShare;
 
         return result;
     }
 
     @Override
     public String toString() {
-        return new StringBuilder("StateBank{")
+        return new StringBuilder("PrivateBank{")
                 .append("id=")
                 .append(super.getId())
                 .append(", name=")
@@ -53,10 +59,9 @@ public class StateBank extends Bank{
                 .append(super.getCountry())
                 .append(", deposit=")
                 .append(super.getDeposit())
-                .append(", bankType=")
-                .append(bankType)
+                .append(", stateShare=")
+                .append(stateShare)
                 .append('}')
                 .toString();
     }
 }
-

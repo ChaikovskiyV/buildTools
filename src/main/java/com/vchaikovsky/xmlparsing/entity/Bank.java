@@ -1,4 +1,4 @@
-package com.vchaikovsky.xmlxsdparsing.entity;
+package com.vchaikovsky.xmlparsing.entity;
 
 public abstract class Bank {
     public static final int DEFAULT_RATING = 10;
