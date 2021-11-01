@@ -19,7 +19,6 @@ public class BanksSAXBuilder extends AbstractBanksBuilder{
 
 
     public BanksSAXBuilder() throws BankException {
-        //super();
         bankHandler = new BankHandler();
         bankErrorHandler = new BankErrorHandler();
         SAXParserFactory parserFactory = SAXParserFactory.newInstance();

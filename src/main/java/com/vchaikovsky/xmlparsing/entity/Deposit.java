@@ -88,7 +88,7 @@ public class Deposit {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Deposit)) {
             return false;
         }
         Deposit deposit = (Deposit) o;
@@ -99,14 +99,14 @@ public class Deposit {
 
     @Override
     public int hashCode() {
-        int first = 34;
+        int first = 31;
         int result = 1;
 
         result = result * first * depositType.hashCode();
         result = result * first * depositor.hashCode();
         result = result * first * countId.hashCode();
         result = result * first * amount;
-        result = (int) (result * first * profitability);
+        result =  result * first * (int)profitability;
         result = result * first * timeConstraints.hashCode();
 
         return result;

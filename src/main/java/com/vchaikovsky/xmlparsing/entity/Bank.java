@@ -73,7 +73,7 @@ public abstract class Bank {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Bank)) {
             return false;
         }
         Bank bank = (Bank) o;
@@ -83,7 +83,7 @@ public abstract class Bank {
 
     @Override
     public int hashCode() {
-        int first = 34;
+        int first = 31;
         int result = 1;
         result = result * first * id.hashCode();
         result = result * first * name.hashCode();

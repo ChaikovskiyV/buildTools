@@ -35,12 +35,12 @@ public class PrivateBank extends Bank {
             return false;
         }
         PrivateBank that = (PrivateBank) o;
-        return stateShare == that.stateShare;
+        return  stateShare == that.stateShare;
     }
 
     @Override
     public int hashCode() {
-        int first = 34;
+        int first = 31;
         int result = super.hashCode() * first * stateShare;
 
         return result;

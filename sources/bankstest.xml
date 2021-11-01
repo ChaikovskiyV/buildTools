@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<banks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.example.org/banks"
+       xsi:schemaLocation="http://www.example.org/banks schema/schema.xsd">
+
+    <state-bank id="b1" rating="5">
+        <name>HonestBank</name>
+        <country>Belarus</country>
+        <deposit>
+            <type>fixed</type>
+            <depositor>Ivanov</depositor>
+            <account-id>BYHB15261296</account-id>
+            <amount-on-deposit>0</amount-on-deposit>
+            <profitability>8.8</profitability>
+            <time-constraints>2021-12</time-constraints>
+        </deposit>
+        <bank-type>commercial</bank-type>
+    </state-bank>
+
+    <private-bank rating="8" id="b2">
+        <name>HonestBank</name>
+        <country>Belarus</country>
+        <deposit>
+            <type>saving</type>
+            <depositor>Ivanov</depositor>
+            <account-id>BYHB15261296</account-id>
+            <amount-on-deposit>150</amount-on-deposit>
+            <profitability>16</profitability>
+            <time-constraints>2022-08</time-constraints>
+        </deposit>
+        <state-share>30</state-share>
+    </private-bank>
+
+    <state-bank id="b3" rating="7">
+        <name>HonestBank</name>
+        <country>Belarus</country>
+        <deposit>
+            <type>accumulation</type>
+            <depositor>Ivanov</depositor>
+            <account-id>BYHB15261296</account-id>
+            <amount-on-deposit>2000</amount-on-deposit>
+            <profitability>10</profitability>
+            <time-constraints>2023-12</time-constraints>
+        </deposit>
+        <bank-type>central</bank-type>
+    </state-bank>
+</banks>

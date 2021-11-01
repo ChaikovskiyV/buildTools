@@ -26,19 +26,19 @@ public class StateBank extends Bank{
         if (this == o) {
             return true;
         }
-        if (o == null || o.getClass() == this.getClass()) {
+        if (!(o instanceof StateBank)) {
             return false;
         }
         if (!super.equals(o)) {
             return false;
         }
         StateBank stateBank = (StateBank) o;
-        return bankType == stateBank.bankType;
+        return  getBankType() == stateBank.getBankType();
     }
 
     @Override
     public int hashCode() {
-        int first = 34;
+        int first = 31;
         int result = super.hashCode() * first * bankType.hashCode();
 
         return result;

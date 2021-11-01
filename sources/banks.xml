@@ -10,8 +10,8 @@
             <type>fixed</type>
             <depositor>Ivanov</depositor>
             <account-id>BYHB15261296</account-id>
-            <amount-on-deposit>0</amount-on-deposit>
-            <profitability>0.5</profitability>
+            <amount-on-deposit>1000</amount-on-deposit>
+            <profitability>11</profitability>
             <time-constraints>2021-12</time-constraints>
         </deposit>
         <bank-type>commercial</bank-type>
@@ -24,11 +24,11 @@
             <type>saving</type>
             <depositor>Ivanova</depositor>
             <account-id>BYBB11223344</account-id>
-            <amount-on-deposit>150</amount-on-deposit>
-            <profitability>1</profitability>
+            <amount-on-deposit>1550</amount-on-deposit>
+            <profitability>18.6</profitability>
             <time-constraints>2022-08</time-constraints>
         </deposit>
-        <state-share>30</state-share>
+        <state-share>10</state-share>
     </private-bank>
 
     <state-bank id="b3" rating="7">
@@ -39,7 +39,7 @@
             <depositor>Petrov</depositor>
             <account-id>BYMB15264455</account-id>
             <amount-on-deposit>2000</amount-on-deposit>
-            <profitability>10</profitability>
+            <profitability>8.8</profitability>
             <time-constraints>2023-12</time-constraints>
         </deposit>
         <bank-type>central</bank-type>
@@ -52,8 +52,8 @@
             <type>demand</type>
             <depositor>Kurlovich</depositor>
             <account-id>POCB11221895</account-id>
-            <amount-on-deposit>500</amount-on-deposit>
-            <profitability>5</profitability>
+            <amount-on-deposit>5000</amount-on-deposit>
+            <profitability>7.5</profitability>
             <time-constraints>2022-02</time-constraints>
         </deposit>
         <state-share>30</state-share>
@@ -67,7 +67,7 @@
             <depositor>Shipok</depositor>
             <account-id>POPB45991296</account-id>
             <amount-on-deposit>1000</amount-on-deposit>
-            <profitability>10</profitability>
+            <profitability>5</profitability>
             <time-constraints>2024-01</time-constraints>
         </deposit>
         <bank-type>commercial</bank-type>
@@ -81,7 +81,7 @@
             <depositor>Luchok</depositor>
             <account-id>POZB11224255</account-id>
             <amount-on-deposit>150000</amount-on-deposit>
-            <profitability>80</profitability>
+            <profitability>1</profitability>
             <time-constraints>2022-10</time-constraints>
         </deposit>
         <state-share>10</state-share>
@@ -94,8 +94,8 @@
             <type>saving</type>
             <depositor>Gromov</depositor>
             <account-id>RUSB11399455</account-id>
-            <amount-on-deposit>2500</amount-on-deposit>
-            <profitability>12</profitability>
+            <amount-on-deposit>250000</amount-on-deposit>
+            <profitability>5</profitability>
             <time-constraints>2023-06</time-constraints>
         </deposit>
         <bank-type>commercial</bank-type>
@@ -108,7 +108,7 @@
             <type>accumulation</type>
             <depositor>Krup</depositor>
             <account-id>RUYB44551895</account-id>
-            <amount-on-deposit>505</amount-on-deposit>
+            <amount-on-deposit>50500</amount-on-deposit>
             <profitability>8</profitability>
             <time-constraints>2022-05</time-constraints>
         </deposit>
@@ -122,8 +122,8 @@
             <type>payment</type>
             <depositor>Kelp</depositor>
             <account-id>USUB12966677</account-id>
-            <amount-on-deposit>10000</amount-on-deposit>
-            <profitability>5</profitability>
+            <amount-on-deposit>100</amount-on-deposit>
+            <profitability>0.91</profitability>
             <time-constraints>2024-12</time-constraints>
         </deposit>
         <bank-type>central</bank-type>
@@ -136,8 +136,8 @@
             <type>saving</type>
             <depositor>McDuck</depositor>
             <account-id>BYHB11223344</account-id>
-            <amount-on-deposit>150</amount-on-deposit>
-            <profitability>1</profitability>
+            <amount-on-deposit>25</amount-on-deposit>
+            <profitability>0.8</profitability>
             <time-constraints>2022-08</time-constraints>
         </deposit>
         <state-share>30</state-share>
@@ -151,7 +151,7 @@
             <depositor>Noris</depositor>
             <account-id>USFB15264455</account-id>
             <amount-on-deposit>2000</amount-on-deposit>
-            <profitability>10</profitability>
+            <profitability>0.85</profitability>
             <time-constraints>2023-12</time-constraints>
         </deposit>
         <bank-type>central</bank-type>
@@ -164,8 +164,8 @@
             <type>demand</type>
             <depositor>Kurlovich</depositor>
             <account-id>POPB11221895</account-id>
-            <amount-on-deposit>500</amount-on-deposit>
-            <profitability>5</profitability>
+            <amount-on-deposit>5000</amount-on-deposit>
+            <profitability>6.55</profitability>
             <time-constraints>2022-02</time-constraints>
         </deposit>
         <state-share>30</state-share>
@@ -178,8 +178,8 @@
             <type>payment</type>
             <depositor>Demidov</depositor>
             <account-id>UKUB45991296</account-id>
-            <amount-on-deposit>1000</amount-on-deposit>
-            <profitability>10</profitability>
+            <amount-on-deposit>10000</amount-on-deposit>
+            <profitability>9.75</profitability>
             <time-constraints>2024-01</time-constraints>
         </deposit>
         <bank-type>commercial</bank-type>
@@ -193,7 +193,7 @@
             <depositor>Metelko</depositor>
             <account-id>UKLB11224255</account-id>
             <amount-on-deposit>150000</amount-on-deposit>
-            <profitability>80</profitability>
+            <profitability>10.25</profitability>
             <time-constraints>2022-10</time-constraints>
         </deposit>
         <state-share>10</state-share>
@@ -207,7 +207,7 @@
             <depositor>Chuck</depositor>
             <account-id>CHCB11399455</account-id>
             <amount-on-deposit>2500</amount-on-deposit>
-            <profitability>12</profitability>
+            <profitability>3.15</profitability>
             <time-constraints>2023-06</time-constraints>
         </deposit>
         <bank-type>commercial</bank-type>
@@ -221,7 +221,7 @@
             <depositor>Gek</depositor>
             <account-id>CHGB44551895</account-id>
             <amount-on-deposit>505</amount-on-deposit>
-            <profitability>8</profitability>
+            <profitability>0.35</profitability>
             <time-constraints>2022-05</time-constraints>
         </deposit>
         <state-share>30</state-share>
@@ -234,8 +234,8 @@
             <type>saving</type>
             <depositor>Rabit</depositor>
             <account-id>RURB10101010</account-id>
-            <amount-on-deposit>1000</amount-on-deposit>
-            <profitability>99</profitability>
+            <amount-on-deposit>100000</amount-on-deposit>
+            <profitability>7.55</profitability>
             <time-constraints>2042-12</time-constraints>
         </deposit>
         <state-share>10</state-share>
@@ -248,10 +248,10 @@
             <type>saving</type>
             <depositor>Rabit</depositor>
             <account-id>RURB10101010</account-id>
-            <amount-on-deposit>1000</amount-on-deposit>
-            <profitability>99</profitability>
+            <amount-on-deposit>111000</amount-on-deposit>
+            <profitability>8.5</profitability>
             <time-constraints>2042-12</time-constraints>
         </deposit>
-        <state-share>10</state-share>
+        <state-share>40</state-share>
     </private-bank>
 </banks>

@@ -66,12 +66,12 @@ public class BankHandler extends DefaultHandler {
                 .getValue();
         String privateBank = BankXmlTag.PRIVATE_BANK
                 .getValue();
-        String deposit = BankXmlTag.DEPOSIT
+        String depositTag = BankXmlTag.DEPOSIT
                 .getValue();
         if(stateBank.equals(qName) || privateBank.equals(qName)) {
             banks.add(currentBank);
-        } else if(deposit.equals(qName)) {
-            currentBank.setDeposit(this.deposit);
+        } else if(depositTag.equals(qName)) {
+            currentBank.setDeposit(deposit);
         }
     }
 

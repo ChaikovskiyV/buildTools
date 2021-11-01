@@ -25,7 +25,7 @@ public class BankValidator {
     public static boolean validateXMLFile(String fileName) throws BankException {
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         File schemaFile = Path
-                .of(SCHEMA_FILE_NAME)//.toAbsolutePath()
+                .of(SCHEMA_FILE_NAME)
                 .toFile();
         try {
             Schema schema = factory.newSchema(schemaFile);
