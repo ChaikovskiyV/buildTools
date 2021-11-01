@@ -17,7 +17,7 @@ import java.nio.file.Path;
 
 public class BankValidator {
     static final Logger logger = LogManager.getLogger();
-    private static final String SCHEMA_FILE_NAME = "sources/schema/schema.xsd";
+    static final String SCHEMA_FILE_NAME = "sources/schema/schema.xsd";
 
     private BankValidator() {
     }

@@ -1,6 +1,6 @@
 package com.vchaikovsky.xmlparsing.entity;
 
-public class StateBank extends Bank{
+public class StateBank extends Bank {
     private StateBankType bankType;
 
     public StateBank() {
@@ -63,4 +63,3 @@ public class StateBank extends Bank{
                 .toString();
     }
 }
-

@@ -1,9 +1,9 @@
 package com.vchaikovsky.xmlparsing.entity;
 
 public abstract class Bank {
-    public static final int DEFAULT_RATING = 10;
-    public static final String DEFAULT_ID = "";
-    public static final String DEFAULT_NAME = "";
+    static final int DEFAULT_RATING = 10;
+    static final String DEFAULT_ID = "";
+    static final String DEFAULT_NAME = "";
 
     private String id;
     private String name;

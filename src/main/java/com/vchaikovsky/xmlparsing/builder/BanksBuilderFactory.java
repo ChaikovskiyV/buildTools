@@ -17,7 +17,9 @@ public class BanksBuilderFactory {
     }
 
     public static AbstractBanksBuilder createBanksBuilder(String typeParser) throws BankException {
-        if(typeParser.equals(TypeParser.DOM.toString()) && typeParser.equals(TypeParser.SAX.toString()) && typeParser.equals(TypeParser.STAX.toString())) {
+        if(typeParser.equals(TypeParser.DOM.toString()) &&
+                typeParser.equals(TypeParser.SAX.toString()) &&
+                typeParser.equals(TypeParser.STAX.toString())) {
             logger.error("The type of parser is null");
             throw new BankException("The type of parser is null");
         }

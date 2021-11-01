@@ -1,7 +1,7 @@
 package com.vchaikovsky.xmlparsing.entity;
 
 public class PrivateBank extends Bank {
-    public static final int DEFAULT_STATE_SHARE = 1;
+    static final int DEFAULT_STATE_SHARE = 1;
 
     private int stateShare;
 

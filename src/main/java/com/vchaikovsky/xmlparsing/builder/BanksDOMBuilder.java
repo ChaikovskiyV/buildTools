@@ -114,8 +114,9 @@ public class BanksDOMBuilder extends AbstractBanksBuilder{
             deposit.setDepositType(DepositType
                     .valueOf(depositType
                             .toUpperCase()));
-            deposit.setCountId(getElementTextContent(bankElement, BankXmlTag
-                    .ACCOUNT_ID.getValue()));
+            deposit.setAccountId(getElementTextContent(bankElement, BankXmlTag
+                    .ACCOUNT_ID
+                    .getValue()));
             deposit.setDepositor(getElementTextContent(bankElement, BankXmlTag
                     .DEPOSITOR
                     .getValue()));

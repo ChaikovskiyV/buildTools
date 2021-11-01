@@ -16,7 +16,7 @@ public class BankValidatorTest {
     private String xmlFileName;
     private String wrongXmlFileName;
     private String wrongFileName;
-    boolean result;
+    private boolean result;
 
     @BeforeAll
     void setUp() {

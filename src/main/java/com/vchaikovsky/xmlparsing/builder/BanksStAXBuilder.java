@@ -82,7 +82,9 @@ public class BanksStAXBuilder extends AbstractBanksBuilder{
                         addParameters(bank, tagName, reader);
                     }
                     case XMLStreamConstants.END_ELEMENT -> {
-                        tagName = reader.getLocalName().replaceAll(HYPHEN, UNDERLINING);
+                        tagName = reader
+                                .getLocalName()
+                                .replaceAll(HYPHEN, UNDERLINING);
                         if(BankXmlTag.valueOf(tagName.toUpperCase()) == BankXmlTag.STATE_BANK ||
                                 BankXmlTag.valueOf(tagName.toUpperCase()) == BankXmlTag.PRIVATE_BANK) {
                             return bank;
@@ -125,7 +127,7 @@ public class BanksStAXBuilder extends AbstractBanksBuilder{
                     .toUpperCase()
                     .replaceAll(HYPHEN, UNDERLINING)));
             case DEPOSITOR -> deposit.setDepositor(meaning);
-            case ACCOUNT_ID -> deposit.setCountId(meaning);
+            case ACCOUNT_ID -> deposit.setAccountId(meaning);
             case AMOUNT_ON_DEPOSIT -> {
                 int amount = Integer.parseInt(meaning);
                 deposit.setAmount(amount);

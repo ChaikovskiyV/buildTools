@@ -5,7 +5,6 @@ import com.vchaikovsky.xmlparsing.exception.BankException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.time.YearMonth;
@@ -35,9 +34,8 @@ public class BankHandler extends DefaultHandler {
     }
 
     @Override
-    public void startDocument() throws SAXException {
+    public void startDocument() {
         logger.info("Parsing started.");
-        super.startDocument();
     }
 
     @Override
@@ -90,12 +88,16 @@ public class BankHandler extends DefaultHandler {
                 case DEPOSIT -> deposit = new Deposit();
                 case TYPE -> deposit.setDepositType(DepositType.valueOf(forEnum));
                 case DEPOSITOR -> deposit.setDepositor(str);
-                case ACCOUNT_ID -> deposit.setCountId(str);
-                case AMOUNT_ON_DEPOSIT -> deposit.setAmount(Integer.parseInt(str));
+                case ACCOUNT_ID -> deposit.setAccountId(str);
+                case AMOUNT_ON_DEPOSIT -> {
+                    int amount = Integer.parseInt(str);
+                    deposit.setAmount(amount);
+                }
                 case PROFITABILITY -> deposit.setProfitability(Double.parseDouble(str));
                 case TIME_CONSTRAINTS -> {
                     String timeStr = str.replace(UNDERLINING, HYPHEN);
-                    deposit.setTimeConstraints(YearMonth.parse(timeStr));
+                    YearMonth yearMonth = YearMonth.parse(timeStr);
+                    deposit.setTimeConstraints(yearMonth);
                 }
                 case BANK_TYPE -> {
                     StateBank stateBank = (StateBank)currentBank;
@@ -103,7 +105,8 @@ public class BankHandler extends DefaultHandler {
                 }
                 case STATE_SHARE -> {
                     PrivateBank privateBank = (PrivateBank) currentBank;
-                    privateBank.setStateShare(Integer.parseInt(str));
+                    int stateShare = Integer.parseInt(str);
+                    privateBank.setStateShare(stateShare);
                 }
                 default -> {
                     try {
@@ -115,6 +118,11 @@ public class BankHandler extends DefaultHandler {
             }
         }
         currentTag = null;
+    }
+
+    @Override
+    public void endDocument() {
+        logger.info("Parsing finished.");
     }
 
     private void addAttribute(Bank bank, Attributes attrs) {

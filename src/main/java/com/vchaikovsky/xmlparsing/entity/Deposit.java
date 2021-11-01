@@ -3,14 +3,14 @@ package com.vchaikovsky.xmlparsing.entity;
 import java.time.YearMonth;
 
 public class Deposit {
-    public static final int DEFAULT_AMOUNT = 0;
-    public static final double DEFAULT_PROFITABILITY = 0;
-    public static final String DEFAULT_DEPOSITOR = "Anonym";
-    private static final String DEFAULT_COUNT_ID = "BYBB12651396";
+    static final int DEFAULT_AMOUNT = 0;
+    static final double DEFAULT_PROFITABILITY = 0;
+    static final String DEFAULT_DEPOSITOR = "Anonym";
+    static final String DEFAULT_ACCOUNT_ID = "BYBB12651396";
 
     private DepositType depositType;
     private String depositor;
-    private String countId;
+    private String accountId;
     private int amount;
     private double profitability;
     private YearMonth timeConstraints;
@@ -19,17 +19,18 @@ public class Deposit {
         //default meaning
         depositType = DepositType.FIXED;
         depositor = DEFAULT_DEPOSITOR;
-        countId = DEFAULT_COUNT_ID;
+        accountId = DEFAULT_ACCOUNT_ID;
         amount = DEFAULT_AMOUNT;
         profitability = DEFAULT_PROFITABILITY;
-        timeConstraints = YearMonth.now()
+        timeConstraints = YearMonth
+                .now()
                 .plusMonths(1);
     }
 
-    public Deposit(DepositType depositType, String depositor, String countId, int amount, double profitability, YearMonth timeConstraints) {
+    public Deposit(DepositType depositType, String depositor, String accountId, int amount, double profitability, YearMonth timeConstraints) {
         this.depositType = depositType;
         this.depositor = depositor;
-        this.countId = countId;
+        this.accountId = accountId;
         this.amount = amount;
         this.profitability = profitability;
         this.timeConstraints = timeConstraints;
@@ -51,12 +52,12 @@ public class Deposit {
         this.depositor = depositor;
     }
 
-    public String getCountId() {
-        return countId;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setCountId(String countId) {
-        this.countId = countId;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public int getAmount() {
@@ -94,7 +95,7 @@ public class Deposit {
         Deposit deposit = (Deposit) o;
         return amount == deposit.amount && Double.compare(deposit.profitability, profitability) == 0 &&
                 depositType == deposit.depositType && depositor.equals(deposit.depositor) &&
-                countId.equals(deposit.countId) && timeConstraints.equals(deposit.timeConstraints);
+                accountId.equals(deposit.accountId) && timeConstraints.equals(deposit.timeConstraints);
     }
 
     @Override
@@ -104,7 +105,7 @@ public class Deposit {
 
         result = result * first * depositType.hashCode();
         result = result * first * depositor.hashCode();
-        result = result * first * countId.hashCode();
+        result = result * first * accountId.hashCode();
         result = result * first * amount;
         result =  result * first * (int)profitability;
         result = result * first * timeConstraints.hashCode();
@@ -118,8 +119,8 @@ public class Deposit {
                 .append(depositType)
                 .append(", depositor='")
                 .append(depositor)
-                .append(", countId='")
-                .append(countId)
+                .append(", accountId='")
+                .append(accountId)
                 .append(", amount=")
                 .append(amount)
                 .append(", profitability=")
