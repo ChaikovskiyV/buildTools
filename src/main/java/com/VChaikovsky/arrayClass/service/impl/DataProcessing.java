@@ -4,7 +4,6 @@ import com.VChaikovsky.arrayClass.entity.CustomArray;
 import com.VChaikovsky.arrayClass.exceptions.WrongDataException;
 import com.VChaikovsky.arrayClass.service.DataProcessingInt;
 import com.VChaikovsky.arrayClass.validation.impl.DataValidation;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,31 +12,33 @@ import java.util.Collections;
 import java.util.List;
 
 public class DataProcessing implements DataProcessingInt {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private DataValidation validation = new DataValidation();
 
     @Override
     public Integer findMin(CustomArray array) throws WrongDataException {
-        List<Integer> listNumbers = null;
+        List<Integer> listNumbers;
         Integer[] numbers = array.getArray();
 
         if(validation.validateArray(numbers)){
             listNumbers = Arrays.asList(numbers);
         } else {
-            throwException();
+            logger.error("The array contains null element.");
+            throw new WrongDataException("The array contains null element.");
         }
         return Collections.min(listNumbers);
     }
 
     @Override
     public Integer findMax(CustomArray array) throws WrongDataException {
-        List<Integer> numbersList = null;
+        List<Integer> numbersList;
         Integer[] numbers = array.getArray();
 
         if(validation.validateArray(numbers)){
             numbersList = Arrays.asList(numbers);
         } else {
-            throwException();
+            logger.error("The array contains null element.");
+            throw new WrongDataException("The array contains null element.");
         }
         return Collections.max(numbersList);
     }
@@ -94,13 +95,5 @@ public class DataProcessing implements DataProcessingInt {
                 }
             }
         return new CustomArray(newArray);
-    }
-
-    private void throwException() throws WrongDataException {
-        try {
-            throw new WrongDataException();
-        } catch (NullPointerException e){
-            logger.throwing(Level.ERROR, new WrongDataException("The array contains null element", e));
-        }
     }
 }

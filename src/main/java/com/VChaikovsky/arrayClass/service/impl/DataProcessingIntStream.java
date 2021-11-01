@@ -5,14 +5,13 @@ import com.VChaikovsky.arrayClass.entity.CustomArray;
 import com.VChaikovsky.arrayClass.exceptions.WrongDataException;
 import com.VChaikovsky.arrayClass.service.DataProcessingStreamInt;
 import com.VChaikovsky.arrayClass.validation.impl.DataValidation;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.stream.IntStream;
 
 public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayConvectorInt {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private DataValidation validation = new DataValidation();
 
     @Override
@@ -24,7 +23,8 @@ public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayCo
                     .min()
                     .getAsInt();
         } else {
-            throwException();
+            logger.error("The array contains null element.");
+            throw new WrongDataException("The array contains null element.");
         }
         return min;
     }
@@ -38,7 +38,8 @@ public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayCo
                     .max()
                     .getAsInt();
         } else {
-            throwException();
+            logger.error("The array contains null element.");
+            throw new WrongDataException("The array contains null element.");
         }
         return max;
     }
@@ -53,7 +54,8 @@ public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayCo
                     .getAsDouble();
 
         } else {
-            throwException();
+            logger.error("The array contains null element.");
+            throw new WrongDataException("The array contains null element.");
         }
         return average;
     }
@@ -67,7 +69,8 @@ public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayCo
                     .sum();
 
         } else {
-            throwException();
+            logger.error("The array contains null element.");
+            throw new WrongDataException("The array contains null element.");
         }
         return amount;
     }
@@ -106,13 +109,5 @@ public class DataProcessingIntStream implements DataProcessingStreamInt, ArrayCo
         CustomArray customArray = new CustomArray(convectToInteger(newArray));
 
         return  customArray;
-    }
-
-    private void throwException() throws WrongDataException {
-        try {
-            throw new WrongDataException();
-        } catch (NullPointerException e){
-            logger.throwing(Level.ERROR, new WrongDataException("The array contains null element", e));
-        }
     }
 }

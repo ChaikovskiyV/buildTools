@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ReadFromFileTest {
-final static Logger logger = LogManager.getLogger();
-ReadFromFile reader;
-private String filename;
-private String wrongDataFile;
-String expectedResult;
+    static final Logger logger = LogManager.getLogger();
+    private ReadFromFile reader;
+    private String filename;
+    private String wrongDataFile;
+    private String expectedResult;
 
     @BeforeAll
     void setUp() {

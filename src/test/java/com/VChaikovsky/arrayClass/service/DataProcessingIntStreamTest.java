@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DataProcessingIntStreamTest {
-final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
 
-    DataProcessingIntStream processing;
-    CustomArray customArray;
-    Integer[] sourceArray;
-    Integer expectedResult;
-    Integer[] expectedArray;
-    Integer[] emptyArray;
+    private DataProcessingIntStream processing;
+    private CustomArray customArray;
+    private Integer[] sourceArray;
+    private Integer expectedResult;
+    private Integer[] expectedArray;
+    private Integer[] emptyArray;
 
     @BeforeAll
     void setUp() {

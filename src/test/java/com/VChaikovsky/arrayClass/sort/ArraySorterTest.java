@@ -10,9 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ArraySorterTest {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private ArraySorter sorter;
     private Integer[] sourceArray;
     private Integer[] expectedArray;

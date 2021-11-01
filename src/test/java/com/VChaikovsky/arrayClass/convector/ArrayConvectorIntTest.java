@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ArrayConvectorIntTest {
-final static Logger logger = LogManager.getLogger();
-private Integer[] sourceArray;
-private int[] intArray;
+    static final Logger logger = LogManager.getLogger();
+    private Integer[] sourceArray;
+    private int[] intArray;
 
     @BeforeAll
     void setUp() {

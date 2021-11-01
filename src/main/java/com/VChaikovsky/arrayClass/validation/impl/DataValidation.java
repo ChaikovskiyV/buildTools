@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class DataValidation implements DataValidationInt {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
 
     public boolean validateArray(Integer[] array){
         boolean correctArray = true;

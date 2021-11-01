@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DataProcessingTest {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private DataProcessing processing;
     private CustomArray customArray;
     private Integer[] sourceArray;

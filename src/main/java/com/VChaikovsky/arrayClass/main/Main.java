@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 
 public class Main {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     static CustomArray customArray;
     static DataProcessing dataProcessing = new DataProcessing();
     static ReadFromFile reader = new ReadFromFile();
@@ -37,7 +37,8 @@ public class Main {
                 "the array after replacing negative numbers has a view: "+ Arrays.toString(dataProcessing
                 .replaceAllNegativeNumbersToZero(customArray)
                 .getArray()) + ",\n" +
-                "the sorted array has a view: " + Arrays.toString(sorter
+                "the sorted array has a view: " + Arrays
+                .toString(sorter
                 .streamSort(customArray
                         .getArray())));
     }

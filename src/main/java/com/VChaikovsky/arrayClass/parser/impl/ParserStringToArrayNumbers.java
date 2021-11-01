@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParserStringToArrayNumbers implements ParserStringToArrayNumbersInt {
-    final static Logger logger = LogManager.getLogger();
-    private final String STRING_DELIMITER = "(\\s-\\s)|[\\W_:&&[^-]]+";
+    static final Logger logger = LogManager.getLogger();
+    static final String STRING_DELIMITER = "(\\s-\\s)|[\\W_:&&[^-]]+";
 
     @Override
     public Integer[] parseStringToIntArray(String str) {

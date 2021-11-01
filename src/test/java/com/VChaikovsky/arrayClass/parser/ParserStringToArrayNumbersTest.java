@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ParserStringToArrayNumbersTest {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
     private String sourceString;
     Integer[] expectedArray;
     ParserStringToArrayNumbers parser;

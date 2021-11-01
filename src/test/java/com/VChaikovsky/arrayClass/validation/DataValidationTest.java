@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DataValidationTest {
-final static Logger logger = LogManager.getLogger();
-DataValidation validation;
-Integer[] array;
-String correctStr;
-String wrongStr;
+    static final Logger logger = LogManager.getLogger();
+    private DataValidation validation;
+    private Integer[] array;
+    private String correctStr;
+    private String wrongStr;
 
     @BeforeAll
     void setUp() {

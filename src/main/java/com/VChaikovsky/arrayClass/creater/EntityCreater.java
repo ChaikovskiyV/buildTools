@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 
 public class EntityCreater {
-    final static Logger logger = LogManager.getLogger();
+    static final Logger logger = LogManager.getLogger();
 
     public static CustomArray createEntity(Integer[] array){
         return new CustomArray(array);
