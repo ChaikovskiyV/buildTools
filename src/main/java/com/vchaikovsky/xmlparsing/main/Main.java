@@ -20,19 +20,16 @@ public class Main {
             AbstractBanksBuilder saxBuilder = BanksBuilderFactory.createBanksBuilder(SAX_TYPE_PARSER);
             saxBuilder.buildSetBanks(FILE_NAME);
             saxBuilder.getBanks().forEach(logger :: info);
-            System.out.println("\nlength = " + saxBuilder.getBanks().size());
 
             //DOM
             AbstractBanksBuilder domBuilder = BanksBuilderFactory.createBanksBuilder(DOM_TYPE_PARSER);
             domBuilder.buildSetBanks(FILE_NAME);
             domBuilder.getBanks().forEach(logger :: info);
-            System.out.println("\nlength = " + domBuilder.getBanks().size());
 
             //StAX
             AbstractBanksBuilder stAXBuilder = BanksBuilderFactory.createBanksBuilder(STAX_TYPE_PARSER);
             stAXBuilder.buildSetBanks(FILE_NAME);
             stAXBuilder.getBanks().forEach(logger :: info);
-            System.out.println("\nlength = " + stAXBuilder.getBanks().size());
         }
     }
 }
