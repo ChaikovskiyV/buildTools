@@ -28,7 +28,7 @@ public class PrivateBank extends Bank {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Bank)) {
+        if (!(o instanceof PrivateBank)) {
             return false;
         }
         if (!super.equals(o)) {
