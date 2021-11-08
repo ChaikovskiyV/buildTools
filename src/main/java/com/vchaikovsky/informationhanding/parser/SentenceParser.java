@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public class SentenceParser extends AbstractParser{
     static final Logger logger = LogManager.getLogger();
     static final String SENTENCE_DELIMITER_REGEX = "\s";
-    static final String WORD_REGEX = "[\\w&&[^_]]+";
+    static final String WORD_REGEX = "[\\w]+";
     private WordParser wordParser = new WordParser();
 
     public SentenceParser() {

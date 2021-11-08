@@ -8,12 +8,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TextEditor implements TextEditorInt {
     static final Logger logger = LogManager.getLogger();
+    static final String VOWELS = "[aeyuioуеыаоэёяию]";
 
     @Override
     public TextComposite sort(TextComposite textComposite) {
@@ -32,7 +35,7 @@ public class TextEditor implements TextEditorInt {
 
     @Override
     public String findSentenceWithLongestWord(TextComposite textComposite) {
-        List<TextComponent> sentences = findByType(textComposite, TextComponentType.SENTENCE);
+        List<TextComponent> sentences = findAllByType(textComposite, TextComponentType.SENTENCE);
         var ref = new Object() {
             String sentence;
             int lengthWord = 0;
@@ -40,43 +43,93 @@ public class TextEditor implements TextEditorInt {
         sentences.forEach(s -> {
             s.getComponents().forEach(c -> {
                 int cLength = c.getComponents().size();
-                if(c.getComponentType() == TextComponentType.LEXEME &&  cLength- 1 > ref.lengthWord) {
+                if(c.getComponentType() == TextComponentType.LEXEME &&  cLength - 1 > ref.lengthWord) {
                     ref.lengthWord = cLength -1;
                     ref.sentence = s.toString();
                 } else if(c.getComponentType() == TextComponentType.WORD && cLength > ref.lengthWord) {
+                    ref.lengthWord = cLength;
                     ref.sentence = s.toString();
                 }
             });
         });
+        System.out.println(ref.lengthWord);
 
         return ref.sentence;
     }
 
     @Override
     public TextComposite removeSentenceWithNumberWordsLess(TextComposite textComposite, int wordsNumbers) {
-        return null;
+        textComposite.getComponents().forEach(p ->
+                p.getComponents().removeIf(s ->
+                        s.getComponents().size() < wordsNumbers));
+        return textComposite;
     }
 
     @Override
-    public List<String> findSameWords(TextComposite textComposite) {
-        return null;
+    public Map<String, Integer> findSameWords(TextComposite textComposite) {
+        Map<String, Integer> repeatedWords = new HashMap<>();
+
+        findAllByType(textComposite, TextComponentType.WORD)
+                .stream()
+                .map(c -> c.toString().toLowerCase())
+                .peek(s -> {
+                    if(!repeatedWords.containsKey(s)) {
+                        int startValue = 1;
+                        repeatedWords.put(s, startValue);
+                    } else {
+                        int currentValue = repeatedWords.get(s);
+                        repeatedWords.put(s, ++currentValue);
+                    }
+                });
+
+        repeatedWords.keySet().forEach(k -> {
+            if (repeatedWords.get(k) < 2) {
+                repeatedWords.remove(k);
+            }
+        });
+
+        return repeatedWords;
     }
 
     @Override
     public Map<String, Integer> findConsonantsAndVowelsNumber(TextComposite textComposite) {
-        return null;
-    }
+        String vowelsKey = "vowels";
+        String consonantsKey = "consonants";
+        int startValue = 0;
 
-    private List<TextComponent> findByType(TextComponent component, TextComponentType type) {
-        List<TextComponent> components = new ArrayList<>();
-        component.getComponents().forEach(c -> {
-            List<TextComponent> childComponents =component.getComponents()
-                    .stream()
-                    .filter(c1 -> c1.getComponentType() == type)
-                    .toList();
-            Collections.copy(components, childComponents);
+        Map<String, Integer> lettersNumber = new HashMap<>();
+        lettersNumber.put(vowelsKey, startValue);
+        lettersNumber.put(consonantsKey, startValue);
+
+        List<TextComponent> letters = findAllByType(textComposite, TextComponentType.LETTER);
+        Pattern vowelPattern = Pattern.compile(VOWELS);
+        letters.forEach(l -> {
+            Matcher matcher = vowelPattern.matcher(String.valueOf(l));
+            int currentNumber = lettersNumber.get(l);
+
+            if(matcher.matches()) {
+                lettersNumber.put(vowelsKey, ++currentNumber);
+            } else {
+                lettersNumber.put(consonantsKey, ++currentNumber);
+            }
         });
 
+        return lettersNumber;
+    }
+
+    private List<TextComponent> findAllByType(TextComponent component, TextComponentType type) {
+        List<TextComponent> components = new ArrayList<>();
+        component.getComponents().forEach(c -> findByType(components, c, type));
         return components;
+    }
+
+    private void findByType(List<TextComponent> components, TextComponent component, TextComponentType componentType) {
+        component.getComponents().forEach(c -> {
+            if(c.getComponentType() == componentType) {
+                components.add(c);
+            } else {
+                findByType(components, c, componentType);
+            }
+        });
     }
 }

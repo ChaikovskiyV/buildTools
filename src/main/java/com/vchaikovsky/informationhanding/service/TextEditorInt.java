@@ -9,6 +9,6 @@ public interface TextEditorInt {
     TextComposite sort(TextComposite textComposite);
     String findSentenceWithLongestWord(TextComposite textComposite);
     TextComposite removeSentenceWithNumberWordsLess(TextComposite textComposite, int wordsNumbers);
-    List<String> findSameWords(TextComposite textComposite);
+    Map<String, Integer> findSameWords(TextComposite textComposite);
     Map<String, Integer> findConsonantsAndVowelsNumber(TextComposite textComposite);
 }

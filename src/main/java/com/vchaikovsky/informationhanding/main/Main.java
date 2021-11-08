@@ -14,14 +14,18 @@ public class Main {
     static String filename = "sources/text.txt";
 
     public static void main(String[] args) throws HandingException {
+        TextEditor editor = new TextEditor();
         String text = TextRiderFromFile
                 .getInstance()
                 .readText(filename);
         TextParser parser = new TextParser();
         TextComponent component = parser.parse(text);
-        TextComposite textComponent = new TextEditor().sort((TextComposite) component);
+        TextComposite textComponent = editor.sort((TextComposite) component);
         System.out.print(text + "\n\n");
-        System.out.println(textComponent.toString());
+        System.out.println(editor.findSentenceWithLongestWord((TextComposite) component));
+        System.out.println(editor.findConsonantsAndVowelsNumber((TextComposite) component));
+        System.out.println(editor.findSameWords((TextComposite) component));
+        //System.out.println(textComponent.toString());
         //System.out.println(component.toString().equals(text));
         //System.out.println(component.toString().length() - text.length());
     }
