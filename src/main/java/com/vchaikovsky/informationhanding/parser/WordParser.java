@@ -1,9 +1,9 @@
 package com.vchaikovsky.informationhanding.parser;
 
-import com.vchaikovsky.informationhanding.entity.SymbolLeaf;
+import com.vchaikovsky.informationhanding.entity.impl.SymbolLeaf;
 import com.vchaikovsky.informationhanding.entity.TextComponent;
 import com.vchaikovsky.informationhanding.entity.TextComponentType;
-import com.vchaikovsky.informationhanding.entity.TextComposite;
+import com.vchaikovsky.informationhanding.entity.impl.TextComposite;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class WordParser extends AbstractParser{
     static final Logger logger = LogManager.getLogger();
     static final String WORD_DELIMITER = "";
-    static final String SYMBOLS_REGEX = "-";
+    static final String SYMBOLS_REGEX = "[-']";
 
     @Override
     TextComponent parse(String text) {

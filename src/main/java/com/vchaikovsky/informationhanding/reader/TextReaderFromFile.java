@@ -9,16 +9,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class TextRiderFromFile {
+public class TextReaderFromFile {
     static  final Logger logger = LogManager.getLogger();
-    static TextRiderFromFile instance;
+    static TextReaderFromFile instance;
 
-    private TextRiderFromFile() {
+    private TextReaderFromFile() {
     }
 
-    public static TextRiderFromFile getInstance() {
+    public static TextReaderFromFile getInstance() {
         if(instance == null) {
-            instance = new TextRiderFromFile();
+            instance = new TextReaderFromFile();
         }
         return instance;
     }

@@ -2,7 +2,7 @@ package com.vchaikovsky.informationhanding.parser;
 
 import com.vchaikovsky.informationhanding.entity.TextComponent;
 import com.vchaikovsky.informationhanding.entity.TextComponentType;
-import com.vchaikovsky.informationhanding.entity.TextComposite;
+import com.vchaikovsky.informationhanding.entity.impl.TextComposite;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,12 +13,12 @@ import java.util.regex.Pattern;
 
 public class SentenceParser extends AbstractParser{
     static final Logger logger = LogManager.getLogger();
-    static final String SENTENCE_DELIMITER_REGEX = "\s";
-    static final String WORD_REGEX = "[\\w]+";
+    static final String SENTENCE_DELIMITER_REGEX = "\s+";
+    static final String WORD_REGEX = "(\\w+[-']?\\w+)|\\w+";
     private WordParser wordParser = new WordParser();
 
     public SentenceParser() {
-        super.setNextParser(new LexemeParser());
+        setNextParser(new LexemeParser());
     }
 
     @Override

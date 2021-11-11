@@ -1,9 +1,12 @@
-package com.vchaikovsky.informationhanding.entity;
+package com.vchaikovsky.informationhanding.entity.impl;
+
+import com.vchaikovsky.informationhanding.entity.TextComponent;
+import com.vchaikovsky.informationhanding.entity.TextComponentType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextComposite implements TextComponent{
+public class TextComposite implements TextComponent {
     private List<TextComponent> components = new ArrayList<>();
     private TextComponentType componentType;
 

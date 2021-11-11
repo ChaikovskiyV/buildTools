@@ -1,8 +1,7 @@
 package com.vchaikovsky.informationhanding.service;
 
-import com.vchaikovsky.informationhanding.entity.TextComposite;
+import com.vchaikovsky.informationhanding.entity.impl.TextComposite;
 
-import java.util.List;
 import java.util.Map;
 
 public interface TextEditorInt {

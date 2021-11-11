@@ -1,11 +1,13 @@
-package com.vchaikovsky.informationhanding.entity;
+package com.vchaikovsky.informationhanding.entity.impl;
 
+import com.vchaikovsky.informationhanding.entity.TextComponent;
+import com.vchaikovsky.informationhanding.entity.TextComponentType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class SymbolLeaf implements TextComponent{
+public class SymbolLeaf implements TextComponent {
     static final Logger logger = LogManager.getLogger();
     private TextComponentType componentType;
     private char symbol;
@@ -33,8 +35,8 @@ public class SymbolLeaf implements TextComponent{
 
     @Override
     public List<TextComponent> getComponents() {
-        logger.error(this + " can't be removed due to " + this + " doesn't contain any components");
-        throw new UnsupportedOperationException(this + " can't be removed due to " + this + " doesn't contain any components");
+        logger.error(this + " doesn't contain any components");
+        throw new UnsupportedOperationException(this + " doesn't contain any components");
     }
 
     @Override

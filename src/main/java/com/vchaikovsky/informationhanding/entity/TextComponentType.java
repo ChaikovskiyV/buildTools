@@ -2,10 +2,10 @@ package com.vchaikovsky.informationhanding.entity;
 
 public enum TextComponentType {
     TEXT("", "\n"),
-    PARAGRAPH("\t", ""),
-    SENTENCE("", "\s"),
+    PARAGRAPH("\s\s", ""),
+    SENTENCE("", ""),
     LEXEME("", ""),
-    WORD("", ""),
+    WORD("\s", ""),
     LETTER("", ""),
     PUNCTUATION("", "");
 

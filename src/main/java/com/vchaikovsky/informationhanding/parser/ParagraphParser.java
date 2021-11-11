@@ -2,7 +2,7 @@ package com.vchaikovsky.informationhanding.parser;
 
 import com.vchaikovsky.informationhanding.entity.TextComponent;
 import com.vchaikovsky.informationhanding.entity.TextComponentType;
-import com.vchaikovsky.informationhanding.entity.TextComposite;
+import com.vchaikovsky.informationhanding.entity.impl.TextComposite;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +14,7 @@ public class ParagraphParser extends AbstractParser {
     static final String PARAGRAPH_DELIMITER = "(?<=[.?!…])\s";
 
     public ParagraphParser() {
-        super.setNextParser(new SentenceParser());
+        setNextParser(new SentenceParser());
     }
 
     @Override

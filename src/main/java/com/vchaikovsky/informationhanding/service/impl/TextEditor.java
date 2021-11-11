@@ -2,15 +2,13 @@ package com.vchaikovsky.informationhanding.service.impl;
 
 import com.vchaikovsky.informationhanding.entity.TextComponent;
 import com.vchaikovsky.informationhanding.entity.TextComponentType;
-import com.vchaikovsky.informationhanding.entity.TextComposite;
+import com.vchaikovsky.informationhanding.entity.impl.TextComposite;
 import com.vchaikovsky.informationhanding.service.TextEditorInt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,7 +50,6 @@ public class TextEditor implements TextEditorInt {
                 }
             });
         });
-        System.out.println(ref.lengthWord);
 
         return ref.sentence;
     }
@@ -67,27 +64,21 @@ public class TextEditor implements TextEditorInt {
 
     @Override
     public Map<String, Integer> findSameWords(TextComposite textComposite) {
-        Map<String, Integer> repeatedWords = new HashMap<>();
+        Map<String, Integer> repeatedWords = new ConcurrentHashMap<>();
+        List<TextComponent> allWords = findAllByType(textComposite, TextComponentType.WORD);
 
-        findAllByType(textComposite, TextComponentType.WORD)
-                .stream()
+        allWords.stream()
                 .map(c -> c.toString().toLowerCase())
-                .peek(s -> {
-                    if(!repeatedWords.containsKey(s)) {
-                        int startValue = 1;
-                        repeatedWords.put(s, startValue);
-                    } else {
-                        int currentValue = repeatedWords.get(s);
-                        repeatedWords.put(s, ++currentValue);
-                    }
+                .forEach(s -> {
+                    int step = 1;
+                    repeatedWords.merge(s, step, Integer::sum);
                 });
 
-        repeatedWords.keySet().forEach(k -> {
-            if (repeatedWords.get(k) < 2) {
-                repeatedWords.remove(k);
-            }
-        });
-
+        Set<String> keys = repeatedWords.keySet();
+        keys.forEach(k -> {
+            int minValue = 1;
+            repeatedWords.remove(k, minValue);
+            });
         return repeatedWords;
     }
 
@@ -104,13 +95,14 @@ public class TextEditor implements TextEditorInt {
         List<TextComponent> letters = findAllByType(textComposite, TextComponentType.LETTER);
         Pattern vowelPattern = Pattern.compile(VOWELS);
         letters.forEach(l -> {
-            Matcher matcher = vowelPattern.matcher(String.valueOf(l));
-            int currentNumber = lettersNumber.get(l);
-
+            Matcher matcher = vowelPattern.matcher(String.valueOf(l).toLowerCase());
+            int currentValue;
             if(matcher.matches()) {
-                lettersNumber.put(vowelsKey, ++currentNumber);
+                currentValue = lettersNumber.get(vowelsKey);
+                lettersNumber.put(vowelsKey, ++currentValue);
             } else {
-                lettersNumber.put(consonantsKey, ++currentNumber);
+                currentValue = lettersNumber.get(consonantsKey);
+                lettersNumber.put(consonantsKey, ++currentValue);
             }
         });
 
@@ -125,9 +117,10 @@ public class TextEditor implements TextEditorInt {
 
     private void findByType(List<TextComponent> components, TextComponent component, TextComponentType componentType) {
         component.getComponents().forEach(c -> {
-            if(c.getComponentType() == componentType) {
+            TextComponentType type = c.getComponentType();
+            if(type == componentType) {
                 components.add(c);
-            } else {
+            } else if(type != TextComponentType.LETTER && type != TextComponentType.PUNCTUATION){
                 findByType(components, c, componentType);
             }
         });
