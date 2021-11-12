@@ -1,8 +1,8 @@
 package com.vchaikovsky.informationhanding.parser;
 
-import com.vchaikovsky.informationhanding.entity.impl.SymbolLeaf;
 import com.vchaikovsky.informationhanding.entity.TextComponent;
 import com.vchaikovsky.informationhanding.entity.TextComponentType;
+import com.vchaikovsky.informationhanding.entity.impl.SymbolLeaf;
 import com.vchaikovsky.informationhanding.entity.impl.TextComposite;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +24,7 @@ public class LexemeParser extends AbstractParser{
         Matcher firstSymbolMatcher = pattern.matcher(String.valueOf(text.charAt(0)));
         Matcher lastSymbolMatcher = pattern.matcher(String.valueOf(text.charAt(text.length() - 1)));
 
-        if(firstSymbolMatcher.matches() && lastSymbolMatcher.matches()) {
+        if(firstSymbolMatcher.matches() && lastSymbolMatcher.matches() && text.length() > 1) {
             punctuation = new SymbolLeaf(TextComponentType.PUNCTUATION, text.charAt(0));
             lexemeComposite.add(punctuation);
             word = new WordParser().passNext(text.substring(1, text.length() - 1));

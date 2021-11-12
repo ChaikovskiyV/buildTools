@@ -1,0 +1,1 @@
+2021-11-06 15:11:31 ERROR com.vchaikovsky.informationhanding.entity.impl.SymbolLeaf - I can't be added due to I doesn't contain any components

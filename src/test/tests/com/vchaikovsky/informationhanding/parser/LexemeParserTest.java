@@ -11,10 +11,9 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-//@TestMethodOrder(OrderAnnotation.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LexemeParserTest {
     static final Logger logger = LogManager.getLogger();
-
     private TextReaderFromFile reader;
     private String textOne;
     private String textTwo;
@@ -30,11 +29,10 @@ public class LexemeParserTest {
         logger.info("The testing is starting...");
         parser = new LexemeParser();
         textOne = "Hello!";
-        textTwo = "\"hen\"";
-        textThree = "(hare";
+        textTwo = "(hare";
+        textThree = "\"hen\"";
         reader = Mockito.spy(TextReaderFromFile.getInstance());
-        Mockito
-                .doReturn(textOne, textTwo, textThree)
+        Mockito.doReturn(textOne, textTwo, textThree)
                 .when(reader)
                 .readText(Mockito.any());
 
@@ -42,11 +40,8 @@ public class LexemeParserTest {
 
     @BeforeEach
     void setMock() throws HandingException {
-        result = parser
-                .parse(reader.readText(Mockito.any()));
-        listLength = result
-                .getComponents()
-                .size();
+        result = parser.parse(reader.readText(Mockito.any()));
+        listLength = result.getComponents().size();
     }
 
     @AfterEach
@@ -60,7 +55,7 @@ public class LexemeParserTest {
         logger.info("The tests have been finished.");
     }
 
-    //@Order(1)
+    @Order(1)
     @Test
     public void parseIfLastNotLetter() {
         expectedLength = 2;
@@ -68,15 +63,7 @@ public class LexemeParserTest {
         assertEquals(expected, result.toString());
     }
 
-    /*@Order(2)
-    @Test
-    public void equalsListsLengthIfLastNotLetter() {
-        expectedLength = 2;
-
-        assertEquals(expectedLength, listLength);
-    }*/
-
-    //@Order(3)
+    @Order(2)
     @Test
     public void parseIfFirstNotLetter() {
         expectedLength = 2;
@@ -84,27 +71,11 @@ public class LexemeParserTest {
         assertEquals(expected, result.toString());
     }
 
-   /* @Order(4)
-    @Test
-    public void equalsListsLengthIfFirstNotLetter() {
-        expectedLength = 2;
-
-        assertEquals(expectedLength, listLength);
-    }*/
-
-    //@Order(3)
+    @Order(3)
     @Test
     public void parseIfFirstAndLastNotLetters() {
         expectedLength = 3;
         expected = "\" hen\"";
         assertEquals(expected, result.toString());
     }
-
-    /*@Order(6)
-    @Test
-    public void equalsListsLengthIfFirstAndLastNotLetters() {
-        expectedLength = 3;
-
-        assertEquals(expectedLength, listLength);
-    }*/
 }

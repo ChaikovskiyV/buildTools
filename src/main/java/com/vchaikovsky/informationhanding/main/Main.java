@@ -13,13 +13,11 @@ import java.util.Map;
 
 public class Main {
     static final Logger logger = LogManager.getLogger();
-    static String filename = "sources/text.txt";
+    static String filename = "sources/testtext.txt";
 
     public static void main(String[] args) throws HandingException {
-        TextEditor editor = new TextEditor();
-        String text = TextReaderFromFile
-                .getInstance()
-                .readText(filename);
+        TextEditor editor = TextEditor.getInstance();
+        String text = TextReaderFromFile.getInstance().readText(filename);
         TextParser parser = new TextParser();
         TextComponent component = parser.parse(text);
 
@@ -37,7 +35,7 @@ public class Main {
         Map<String, Integer> sameWords = editor.findSameWords((TextComposite) component);
         logger.info(sameWords);
 
-        TextComponent newComponents = editor.removeSentenceWithNumberWordsLess((TextComposite) component, 20);
-        logger.info(newComponents);
+        editor.removeSentenceWithNumberWordsLess((TextComposite) component, 5);
+        logger.info(component);
     }
 }

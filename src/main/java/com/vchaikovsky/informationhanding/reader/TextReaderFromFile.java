@@ -26,10 +26,7 @@ public class TextReaderFromFile {
     public String readText(String filename) throws HandingException {
         StringBuilder text = new StringBuilder();
         try(BufferedReader reader = Files.newBufferedReader(Path.of(filename))) {
-            reader.lines()
-                    .forEach(s -> text
-                            .append(s)
-                            .append("\n"));
+            reader.lines().forEach(s -> text.append(s).append("\n"));
         } catch (IOException e) {
             logger.error("File " + filename + " was not found.", e);
             throw new HandingException("File " + filename + " was not found.", e);

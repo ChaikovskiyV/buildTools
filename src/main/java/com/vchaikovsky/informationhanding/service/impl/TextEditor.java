@@ -15,6 +15,14 @@ import java.util.regex.Pattern;
 public class TextEditor implements TextEditorInt {
     static final Logger logger = LogManager.getLogger();
     static final String VOWELS = "[aeyuioуеыаоэёяию]";
+    private static TextEditor instance;
+
+    public static TextEditor getInstance() {
+        if(instance == null) {
+            instance = new TextEditor();
+        }
+        return instance;
+    }
 
     @Override
     public TextComposite sort(TextComposite textComposite) {
@@ -42,7 +50,7 @@ public class TextEditor implements TextEditorInt {
             s.getComponents().forEach(c -> {
                 int cLength = c.getComponents().size();
                 if(c.getComponentType() == TextComponentType.LEXEME &&  cLength - 1 > ref.lengthWord) {
-                    ref.lengthWord = cLength -1;
+                    ref.lengthWord = cLength - 1;
                     ref.sentence = s.toString();
                 } else if(c.getComponentType() == TextComponentType.WORD && cLength > ref.lengthWord) {
                     ref.lengthWord = cLength;
@@ -55,11 +63,10 @@ public class TextEditor implements TextEditorInt {
     }
 
     @Override
-    public TextComposite removeSentenceWithNumberWordsLess(TextComposite textComposite, int wordsNumbers) {
+    public void removeSentenceWithNumberWordsLess(TextComposite textComposite, int wordsNumber) {
         textComposite.getComponents().forEach(p ->
                 p.getComponents().removeIf(s ->
-                        s.getComponents().size() < wordsNumbers));
-        return textComposite;
+                        s.getComponents().size() < wordsNumber));
     }
 
     @Override
@@ -68,7 +75,7 @@ public class TextEditor implements TextEditorInt {
         List<TextComponent> allWords = findAllByType(textComposite, TextComponentType.WORD);
 
         allWords.stream()
-                .map(c -> c.toString().toLowerCase())
+                .map(c -> c.toString().toLowerCase().trim())
                 .forEach(s -> {
                     int step = 1;
                     repeatedWords.merge(s, step, Integer::sum);

@@ -1,8 +1,8 @@
 package com.vchaikovsky.informationhanding.parser;
 
-import com.vchaikovsky.informationhanding.entity.impl.SymbolLeaf;
 import com.vchaikovsky.informationhanding.entity.TextComponent;
 import com.vchaikovsky.informationhanding.entity.TextComponentType;
+import com.vchaikovsky.informationhanding.entity.impl.SymbolLeaf;
 import com.vchaikovsky.informationhanding.entity.impl.TextComposite;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,9 +19,7 @@ public class WordParser extends AbstractParser{
 
     @Override
     TextComponent parse(String text) {
-        List<String> letters = Arrays.asList(text
-                .trim()
-                .split(WORD_DELIMITER));
+        List<String> letters = Arrays.asList(text.trim().split(WORD_DELIMITER));
         TextComponent wordComposite = new TextComposite(TextComponentType.WORD);
         Pattern symbolPattern = Pattern.compile(SYMBOLS_REGEX);
         letters.forEach(l -> {
@@ -30,7 +28,6 @@ public class WordParser extends AbstractParser{
                 TextComponent symbol = matcher.matches() ? new SymbolLeaf(TextComponentType.PUNCTUATION, l.charAt(0)) : new SymbolLeaf(TextComponentType.LETTER, l.charAt(0));
                 wordComposite.add(symbol);
             }
-
         });
         return wordComposite;
     }

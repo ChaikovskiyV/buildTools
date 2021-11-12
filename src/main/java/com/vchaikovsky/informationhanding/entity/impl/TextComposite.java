@@ -2,11 +2,14 @@ package com.vchaikovsky.informationhanding.entity.impl;
 
 import com.vchaikovsky.informationhanding.entity.TextComponent;
 import com.vchaikovsky.informationhanding.entity.TextComponentType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TextComposite implements TextComponent {
+    static final Logger logger = LogManager.getLogger();
     private List<TextComponent> components = new ArrayList<>();
     private TextComponentType componentType;
 

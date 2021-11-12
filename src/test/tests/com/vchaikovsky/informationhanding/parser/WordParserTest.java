@@ -34,19 +34,15 @@ public class WordParserTest {
         textOne = "I'm";
         textTwo = "more-or-less";
         textThree = "happy";
-        Mockito
-                .doReturn(textOne, textTwo, textThree)
+        Mockito.doReturn(textOne, textTwo, textThree)
                 .when(reader)
                 .readText(Mockito.any());
     }
 
     @BeforeEach
     void setMock() throws HandingException {
-        result = parser
-                .parse(reader.readText(Mockito.any()));
-        listLength = result
-                .getComponents()
-                .size();
+        result = parser.parse(reader.readText(Mockito.any()));
+        listLength = result.getComponents().size();
     }
 
     @AfterEach
