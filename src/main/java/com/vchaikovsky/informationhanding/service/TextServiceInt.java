@@ -4,7 +4,7 @@ import com.vchaikovsky.informationhanding.entity.impl.TextComposite;
 
 import java.util.Map;
 
-public interface TextEditorInt {
+public interface TextServiceInt {
     TextComposite sort(TextComposite textComposite);
     String findSentenceWithLongestWord(TextComposite textComposite);
     void removeSentenceWithNumberWordsLess(TextComposite textComposite, int wordsNumbers);

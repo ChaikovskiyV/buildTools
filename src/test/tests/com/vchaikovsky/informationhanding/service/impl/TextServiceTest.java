@@ -21,14 +21,14 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TextEditorTest {
+public class TextServiceTest {
     static final Logger logger = LogManager.getLogger();
     @Spy
     private TextReaderFromFile readerMock;
     private TextParser parser;
     private TextComposite textComposite;
     private TextComposite expectedComposite;
-    private TextEditor editor;
+    private TextService service;
     private String text;
     private String expendedSentence;
     private List<TextComponent> componentList;
@@ -46,7 +46,7 @@ public class TextEditorTest {
         Mockito.doReturn(text)
                 .when(readerMock)
                 .readText(Mockito.any());
-        editor = TextEditor.getInstance();
+        service = TextService.getInstance();
         parser = new TextParser();
 
         expectedMap = new HashMap<>();
@@ -80,42 +80,42 @@ public class TextEditorTest {
     @Test
     public void sort() {
         Collections.addAll(expectedList, componentList.get(2), componentList.get(1), componentList.get(0));
-        TextComposite result = editor.sort(textComposite);
+        TextComposite result = service.sort(textComposite);
 
         assertEquals(expectedComposite, result);
     }
 
     @Test
     public void findSentenceWithLongestWord() {
-        String sentence = editor.findSentenceWithLongestWord(textComposite);
+        String sentence = service.findSentenceWithLongestWord(textComposite);
 
         assertEquals(expendedSentence, sentence);
     }
 
     @Test
-    void removeSentenceWithNumberWordsLess() {
+    public void removeSentenceWithNumberWordsLess() {
         int wordNumber = 5;
         Collections.addAll(expectedList, new TextComposite(TextComponentType.PARAGRAPH), new TextComposite(TextComponentType.PARAGRAPH), componentList.get(2));
-        editor.removeSentenceWithNumberWordsLess(textComposite, wordNumber);
+        service.removeSentenceWithNumberWordsLess(textComposite, wordNumber);
 
         assertEquals(expectedComposite, textComposite);
     }
 
     @Test
-    void findSameWords() {
+    public void findSameWords() {
         expectedMap.put("like", 3);
         expectedMap.put("to", 3);
         expectedMap.put("eat", 4);
         expectedMap.put("tacos", 2);
         expectedMap.put("burrito", 2);
 
-        resultMap = editor.findSameWords(textComposite);
+        resultMap = service.findSameWords(textComposite);
 
         assertEquals(expectedMap, resultMap);
     }
 
     @Test
-    void findConsonantsAndVowelsNumber() {
+    public void findConsonantsAndVowelsNumber() {
         String vowels = "vowels";
         String consonants = "consonants";
         int vowelsNumber = 44;
@@ -123,7 +123,7 @@ public class TextEditorTest {
         expectedMap.put(vowels, vowelsNumber);
         expectedMap.put(consonants, consonantsNumber);
 
-        resultMap = editor.findConsonantsAndVowelsNumber(textComposite);
+        resultMap = service.findConsonantsAndVowelsNumber(textComposite);
 
         assertEquals(expectedMap, resultMap);
     }

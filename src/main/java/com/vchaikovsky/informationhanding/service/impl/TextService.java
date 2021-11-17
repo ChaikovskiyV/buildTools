@@ -3,7 +3,7 @@ package com.vchaikovsky.informationhanding.service.impl;
 import com.vchaikovsky.informationhanding.entity.TextComponent;
 import com.vchaikovsky.informationhanding.entity.TextComponentType;
 import com.vchaikovsky.informationhanding.entity.impl.TextComposite;
-import com.vchaikovsky.informationhanding.service.TextEditorInt;
+import com.vchaikovsky.informationhanding.service.TextServiceInt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,14 +12,16 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextEditor implements TextEditorInt {
+public class TextService implements TextServiceInt {
     static final Logger logger = LogManager.getLogger();
     static final String VOWELS = "[aeyuioуеыаоэёяию]";
-    private static TextEditor instance;
+    private static String sentence = "";
+    private static int lengthWord = 0;
+    private static TextService instance;
 
-    public static TextEditor getInstance() {
+    public static TextService getInstance() {
         if(instance == null) {
-            instance = new TextEditor();
+            instance = new TextService();
         }
         return instance;
     }
@@ -29,7 +31,7 @@ public class TextEditor implements TextEditorInt {
         List<TextComponent> components = textComposite
                 .getComponents()
                 .stream()
-                .sorted((p1, p2) -> p1.getComponents().size() - p2.getComponents().size())
+                .sorted(Comparator.comparingInt(p -> p.getComponents().size()))
                 .toList();
         for (int i = 0; i < components.size(); i++) {
             textComposite
@@ -42,24 +44,27 @@ public class TextEditor implements TextEditorInt {
     @Override
     public String findSentenceWithLongestWord(TextComposite textComposite) {
         List<TextComponent> sentences = findAllByType(textComposite, TextComponentType.SENTENCE);
-        var ref = new Object() {
-            String sentence;
-            int lengthWord = 0;
-        };
-        sentences.forEach(s -> {
-            s.getComponents().forEach(c -> {
+        sentences.forEach(s ->
+                s.getComponents().forEach(c -> {
                 int cLength = c.getComponents().size();
-                if(c.getComponentType() == TextComponentType.LEXEME &&  cLength - 1 > ref.lengthWord) {
-                    ref.lengthWord = cLength - 1;
-                    ref.sentence = s.toString();
-                } else if(c.getComponentType() == TextComponentType.WORD && cLength > ref.lengthWord) {
-                    ref.lengthWord = cLength;
-                    ref.sentence = s.toString();
+                if(c.getComponentType() == TextComponentType.LEXEME ) {
+                        TextComponent word = c.getComponents()
+                                .stream()
+                                .filter(c1 -> c.getComponentType() == TextComponentType.WORD)
+                                .findFirst()
+                                .orElse(new TextComposite(TextComponentType.WORD));
+                        int length = word.getComponents().size();
+                        if(length > lengthWord) {
+                            lengthWord = length;
+                            sentence = s.toString();
+                        }
+                } else if(c.getComponentType() == TextComponentType.WORD && cLength > lengthWord) {
+                    lengthWord = cLength;
+                    sentence = s.toString();
                 }
-            });
-        });
+            }));
 
-        return ref.sentence;
+        return sentence;
     }
 
     @Override
@@ -86,6 +91,7 @@ public class TextEditor implements TextEditorInt {
             int minValue = 1;
             repeatedWords.remove(k, minValue);
             });
+
         return repeatedWords;
     }
 
@@ -119,6 +125,7 @@ public class TextEditor implements TextEditorInt {
     private List<TextComponent> findAllByType(TextComponent component, TextComponentType type) {
         List<TextComponent> components = new ArrayList<>();
         component.getComponents().forEach(c -> findByType(components, c, type));
+
         return components;
     }
 
