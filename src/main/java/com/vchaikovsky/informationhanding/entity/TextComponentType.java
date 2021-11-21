@@ -6,6 +6,8 @@ public enum TextComponentType {
     SENTENCE("", ""),
     LEXEME("", ""),
     WORD("\s", ""),
+    EXPRESSION("\s", ""),
+    DIGIT("", ""),
     LETTER("", ""),
     PUNCTUATION("", "");
 

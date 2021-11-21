@@ -134,7 +134,7 @@ public class TextService implements TextServiceInt {
             TextComponentType type = c.getComponentType();
             if(type == componentType) {
                 components.add(c);
-            } else if(type != TextComponentType.LETTER && type != TextComponentType.PUNCTUATION){
+            } else if(type != TextComponentType.LETTER && type != TextComponentType.PUNCTUATION && type != TextComponentType.DIGIT){
                 findByType(components, c, componentType);
             }
         });

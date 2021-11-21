@@ -14,24 +14,29 @@ import java.util.regex.Pattern;
 public class SentenceParser extends AbstractParser{
     static final Logger logger = LogManager.getLogger();
     static final String SENTENCE_DELIMITER_REGEX = "\s+";
-    static final String WORD_REGEX = "(\\w+[-']?\\w+)|\\w+";
-    private WordParser wordParser = new WordParser();
-
-    public SentenceParser() {
-        setNextParser(new LexemeParser());
-    }
+    static final String WORD_REGEX = "([\\wа-яА-Я]+[-']?[\\wа-яА-Я]+)|[\\wа-яА-Я]+";
+    static final String EXPRESSION_REGEX = "[\\W\\d&&[^а-яА-Я]]{3,}";
 
     @Override
     TextComponent parse(String sentence) {
         List<String> lexemes = Arrays.asList(sentence.split(SENTENCE_DELIMITER_REGEX));
         TextComponent sentenceComposite = new TextComposite(TextComponentType.SENTENCE);
         Pattern wordPattern = Pattern.compile(WORD_REGEX);
+        Pattern expressPattern = Pattern.compile(EXPRESSION_REGEX);
         lexemes.forEach(l -> {
-            Matcher matcher = wordPattern.matcher(l);
-            if(matcher.matches()) {
-                TextComponent word = wordParser.passNext(l);
+            Matcher wordMatcher = wordPattern.matcher(l);
+            Matcher expressMatcher = expressPattern.matcher(l);
+
+            if(wordMatcher.matches()) {
+                setNextParser(new WordParser());
+                TextComponent word = nextParser.passNext(l);
                 sentenceComposite.add(word);
+            } else if(expressMatcher.matches()) {
+                ExpressionParser expressionParser = new ExpressionParser();
+                TextComponent expression = expressionParser.passNext(l);
+                sentenceComposite.add(expression);
             } else if(!l.isEmpty()) {
+                setNextParser(new LexemeParser());
                 TextComponent lexeme = nextParser.passNext(l);
                 sentenceComposite.add(lexeme);
             }
