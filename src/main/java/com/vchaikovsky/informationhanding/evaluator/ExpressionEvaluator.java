@@ -104,6 +104,8 @@ public class ExpressionEvaluator {
         int number = 0;
         switch (element.getType()) {
             case NUMBER -> number = Integer.parseInt(element.getElement());
+            case MINUS -> number = - findNumber(elementBuffer);
+            case NOT ->  number = ~ findNumber(elementBuffer);
             case LEFT_BRACKET -> {
                 number = expr(elementBuffer);
                 element = elementBuffer.next();

@@ -44,6 +44,7 @@ public class ExpressionAnalysis {
                     case DIV -> elements.add(new MathElement(MathElementType.DIV, s));
                     case MUL -> elements.add(new MathElement(MathElementType.MUL, s));
                     case NOT -> elements.add(new MathElement(MathElementType.NOT, s));
+                    case OR -> elements.add(new MathElement(MathElementType.OR, s));
                     case AND -> elements.add(new MathElement(MathElementType.AND, s));
                     case XOR -> elements.add(new MathElement(MathElementType.XOR, s));
                     case LEFT_BRACKET -> elements.add(new MathElement(MathElementType.LEFT_BRACKET, s));
