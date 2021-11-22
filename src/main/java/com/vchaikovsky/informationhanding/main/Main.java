@@ -13,8 +13,7 @@ import java.util.Map;
 
 public class Main {
     static final Logger logger = LogManager.getLogger();
-    static String filename = "expressiontext.txt";//sources/sourcetext
-
+    static String filename = "sources/expressiontext.txt";
 
     public static void main(String[] args) throws HandingException {
         TextService service = TextService.getInstance();
@@ -40,4 +39,3 @@ public class Main {
         logger.info(component);
     }
 }
-
