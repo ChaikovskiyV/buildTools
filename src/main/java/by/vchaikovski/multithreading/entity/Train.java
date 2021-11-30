@@ -6,14 +6,11 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.Callable;
 
-import static java.lang.String.format;
-
-public class Train implements /*Runnable*/Callable<Train.TrainDirection> {
+public class Train implements Callable<Train.TrainDirection> {
     static final Logger logger = LogManager.getLogger();
     private TrainDirection direction;
     private int trainId;
     private TrainType type;
-    private Tunnel tunnel;
 
     public enum TrainType {
         PASSENGER, CARGO
@@ -27,7 +24,6 @@ public class Train implements /*Runnable*/Callable<Train.TrainDirection> {
         this.trainId = trainId;
         this.type = type;
         this.direction = direction;
-        tunnel = Tunnel.getInstance();
     }
 
     public int getTrainId() {
@@ -44,11 +40,39 @@ public class Train implements /*Runnable*/Callable<Train.TrainDirection> {
 
     @Override
     public TrainDirection call() throws MultithreadingException {
-        tunnel.moveThroughTunnel(this);
+
         return direction;
     }
 
-    public Tunnel getTunnel() {
-        return tunnel;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Train train = (Train) o;
+        return trainId == train.trainId && (train.direction != null ? direction == train.direction : direction == null) &&
+                (train.type != null ? type == train.type : type == null);
+    }
+
+    @Override
+    public int hashCode() {
+        int first = 31;
+        int result = 1;
+        result = result * first * trainId;
+        result = result * first + (direction != null ? direction.hashCode() : 0);
+        result = result * first + (type != null ? type.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder("Train{")
+                .append("trainId=")
+                .append(trainId)
+                .append(", type=")
+                .append(type)
+                .append(", direction=")
+                .append(direction)
+                .append('}')
+                .toString();
     }
 }
