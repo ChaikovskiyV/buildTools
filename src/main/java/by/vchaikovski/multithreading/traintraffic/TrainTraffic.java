@@ -8,96 +8,76 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 
 public class TrainTraffic {
     static final Logger logger = LogManager.getLogger();
     private static final int WAIT_TIME = 50;
+    private static final ReentrantLock lock = new ReentrantLock(true);
     private static TrainTraffic instance;
-    private static ReentrantLock instanceLock = new ReentrantLock(true);
     private static AtomicBoolean isCreate = new AtomicBoolean(false);
-    private static AtomicInteger trainCount = new AtomicInteger(0);
-    private static Semaphore semaphore;
-    private static List<Tunnel> tunnelsList;
-    private static List<Train> waitingList;
-    private int oneDirectionLimit;
-//    private static ReentrantLock trafficLock;
-//    private static Condition conditionLock;
+    private static List<Tunnel> tunnelsList = new ArrayList<>();
+    private static List<Train> waitingList = new ArrayList<>();
 
-    private TrainTraffic(int oneDirectionLimit) {
-        this.oneDirectionLimit = oneDirectionLimit;
-        tunnelsList = new ArrayList<>();
-        waitingList = new ArrayList<>();
-        }
+    private TrainTraffic() {
+    }
 
-    public static TrainTraffic getInstance(int oneDirectionLimit) {
+    public static TrainTraffic getInstance() {
         while (!isCreate.get()) {
-            instanceLock.lock();
+            lock.lock();
             try {
-                if(instance == null) {
-                    instance = new TrainTraffic(oneDirectionLimit);
+                if (instance == null) {
+                    instance = new TrainTraffic();
                     isCreate.set(true);
                 }
             } finally {
-                instanceLock.unlock();
+                lock.unlock();
             }
         }
         return instance;
     }
 
-    public static void addTunnels(List<Tunnel> tunnels) {
+    public void addTunnels(List<Tunnel> tunnels) {
         tunnelsList.addAll(tunnels);
     }
 
     public void moveIntoTunnel(Train train) throws MultithreadingException {
-        semaphore = new Semaphore(instance.oneDirectionLimit, true);
-
-        //trafficLock = new ReentrantLock(true);
+        lock.lock();
+        Tunnel currentTunnel;
         try {
-            if (semaphore.tryAcquire(WAIT_TIME, TimeUnit.MILLISECONDS)) {
-            for (Tunnel tunnel : tunnelsList) {
-                Train sameDirectionTrain = waitingList.stream()
-                        .filter(t -> t.getDirection() == tunnel.getLastTrainDirection())
-                        .findAny()
-                        .orElse(null);
-                logger.info(() -> train.toString() + "has arrived at " + tunnel);
-                if(tunnel.isFree()) {
-                    if(tunnel.getLastTrainDirection() == null || (tunnel.getTrainsNumber() < tunnel.getCapacity() &&
-                            tunnel.getLastTrainDirection() == train.getDirection() && trainCount.get() < instance.oneDirectionLimit)) {
-                        logger.info(() -> train.toString() + "has moved into " + tunnel);
-                        trainCount.incrementAndGet();
-                        tunnel.addTrain(train);
-                        tunnel.moveThroughTunnel();
-                        if(trainCount.get() == instance.oneDirectionLimit) {
-                            tunnel.setFree(false);
-                        }
-                    } else if((trainCount.get() == 0 || sameDirectionTrain == null) && tunnel.getLastTrainDirection() != train.getDirection()) {
-                        logger.info(() -> train.toString() + "has moved into " + tunnel);
-                        trainCount.incrementAndGet();
-                        tunnel.addTrain(train);
-                        tunnel.moveThroughTunnel();
-                    }
-                } else {
-                    logger.info(() -> train.toString() + " has arrived at " + tunnel);
+            while ((currentTunnel = findAllowedTunnel(train, tunnelsList)) == null) {
+                if (!waitingList.contains(train)) {
+                    logger.info(() -> String.format("%s is waiting...%n", train));
                     waitingList.add(train);
                 }
-            }
+                TimeUnit.MILLISECONDS.sleep(WAIT_TIME);
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(() -> "The current thread " + Thread.currentThread().getName() + " has already interrupted.", e);
+            throw new MultithreadingException("The current thread " + Thread.currentThread().getName() + " has already interrupted.", e);
+        } finally {
+            lock.unlock();
         }
+        waitingList.remove(train);
+        currentTunnel.addTrain(train);
+        currentTunnel.moveThroughTunnel();
+        currentTunnel.removeTrain(train);
     }
 
-    public static void leftTunnel(Train train, Tunnel tunnel) {
-        waitingList.remove(train);
-        if(trainCount.compareAndSet(instance.oneDirectionLimit, 0)) {
-            tunnel.setFree(true);
-        }
-        semaphore.release();
+    public boolean isContainsAnotherDirection(Train.TrainDirection direction) {
+        return waitingList.stream()
+                .filter(t -> t.getDirection() != direction)
+                .findAny()
+                .orElse(null) == null;
+    }
+
+    private Tunnel findAllowedTunnel(Train train, List<Tunnel> tunnels) {
+        return tunnels.stream()
+                .filter(t -> t.isFree(train))
+                .findFirst()
+                .orElse(null);
     }
 }
