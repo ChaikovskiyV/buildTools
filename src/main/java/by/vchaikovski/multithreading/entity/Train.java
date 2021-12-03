@@ -48,8 +48,7 @@ public class Train implements Runnable {
         try {
             traffic.moveIntoTunnel(this);
         } catch (MultithreadingException e) {
-            logger.error(e);
-            e.printStackTrace();
+            logger.error(() -> "The thread " + this.getClass().getName() + " wasn't run.", e);
         }
     }
 

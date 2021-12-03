@@ -15,8 +15,8 @@ public class Tunnel {
     static final Logger logger = LogManager.getLogger();
     static final int MAX_SPEED = 10;
     static final int MIN_SPEED = 1;
-    private static ReentrantLock lock = new ReentrantLock(true);
-    private AtomicBoolean isFree;
+    private static final ReentrantLock lock = new ReentrantLock(true);
+    private AtomicBoolean occupied;
     private AtomicInteger oneSideTrainCount;
     private AtomicInteger insideTrainsNumber;
     private int tunnelId;
@@ -29,13 +29,13 @@ public class Tunnel {
         this.tunnelId = tunnelId;
         this.capacity = capacity;
         this.oneSideLimit = oneSideLimit;
-        isFree = new AtomicBoolean(true);
+        occupied = new AtomicBoolean(true);
         oneSideTrainCount = new AtomicInteger(0);
         insideTrainsNumber = new AtomicInteger(0);
         speedIntoTunnel = new Random().nextInt(MIN_SPEED, MAX_SPEED);
     }
 
-    public boolean isFree(Train train) {
+    public boolean occupy(Train train) {
         try {
             lock.lock();
             if (insideTrainsNumber.get() == 0) { // a tunnel is empty
@@ -46,13 +46,11 @@ public class Tunnel {
         } finally {
             lock.unlock();
         }
-        return isFree.get();
+        return occupied.get();
     }
 
-    public void setLastTrainDirection(Train.TrainDirection lastTrainDirection) {
-        lock.lock();
-        this.lastTrainDirection = lastTrainDirection;
-        lock.unlock();
+    public void setLastTrainDirection(Train.TrainDirection direction) {
+        lastTrainDirection = direction;
     }
 
     public int getTunnelId() {
@@ -84,17 +82,25 @@ public class Tunnel {
     }
 
     public void removeTrain(Train train) {
-        lock.lock();
-        insideTrainsNumber.decrementAndGet();
-        logger.info(() -> String.format("%s has left the %s.%n", train.toString(), this));
-        if (!Thread.currentThread().isInterrupted()) {
-            Thread.currentThread().interrupt();
+        try {
+            lock.lock();
+            insideTrainsNumber.decrementAndGet();
+            logger.info(() -> String.format("%s has left the %s.%n", train.toString(), this));
+            if (!Thread.currentThread().isInterrupted()) {
+                Thread.currentThread().interrupt();
+            }
+        } finally {
+            lock.unlock();
         }
-        lock.unlock();
     }
 
     public Train.TrainDirection getLastTrainDirection() {
-        return lastTrainDirection;
+        try {
+            lock.lock();
+            return lastTrainDirection;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public int getSpeedIntoTunnel() {
@@ -114,23 +120,15 @@ public class Tunnel {
         }
     }
 
-    private boolean isContainsOtherDirection(Train train) {
-        return train.getTraffic().isContainsAnotherDirection(train.getDirection());
-    }
-
     private void receivePermitIfTunnelEmpty(Train train) {
         if (lastTrainDirection == train.getDirection()) { // the last direction is the same with current
             if (oneSideTrainCount.get() >= oneSideLimit) { // the limit of the same direction is exceeded
-                if (isContainsOtherDirection(train)) { // there are other directions
-                    isFree.set(false);
-                } else { // there aren't other directions
-                    isFree.set(true);
-                }
+                occupied.set(presentOthersDirection(train));
             } else { // the limit of the same direction isn't exceeded
-                isFree.set(true);
+                occupied.set(true);
             }
         } else { // the last direction is different with current
-            isFree.set(true);
+            occupied.set(true);
             resetCount();
         }
     }
@@ -138,21 +136,21 @@ public class Tunnel {
     private void receivePermitIfTunnelNotEmpty(Train train) {
         if (insideTrainsNumber.get() < capacity) { // a tunnel is not empty but not filled
             if (lastTrainDirection != train.getDirection()) { // a current direction is different with the last
-                isFree.set(false);
+                occupied.set(false);
             } else { // a current direction is the same with the last
                 if (oneSideTrainCount.get() < oneSideLimit) { // the limit of the same direction isn't exceeded
-                    isFree.set(true);
+                    occupied.set(true);
                 } else {  // the limit of the same direction is exceeded
-                    if (isContainsOtherDirection(train)) { // there are other directions
-                        isFree.set(false);
-                    } else { // there aren't other directions
-                        isFree.set(true);
-                    }
+                    occupied.set(presentOthersDirection(train));
                 }
             }
         } else { // a tunnel is filled
-            isFree.set(false);
+            occupied.set(false);
         }
+    }
+
+    private boolean presentOthersDirection(Train train) {
+        return train.getTraffic().presentOthersDirection(train.getDirection());
     }
 
     @Override
@@ -161,7 +159,7 @@ public class Tunnel {
         if (o == null || getClass() != o.getClass()) return false;
         Tunnel tunnel = (Tunnel) o;
         return tunnelId == tunnel.tunnelId && capacity == tunnel.capacity && oneSideLimit == tunnel.oneSideLimit &&
-                speedIntoTunnel == tunnel.speedIntoTunnel && isFree.get() == tunnel.isFree.get() &&
+                speedIntoTunnel == tunnel.speedIntoTunnel && occupied.get() == tunnel.occupied.get() &&
                 oneSideTrainCount.get() == tunnel.oneSideTrainCount.get() && insideTrainsNumber.get() == tunnel.insideTrainsNumber.get() &&
                 (tunnel.lastTrainDirection == null ? lastTrainDirection == null : lastTrainDirection == tunnel.lastTrainDirection);
     }
@@ -174,7 +172,7 @@ public class Tunnel {
         result = result * first * capacity;
         result = result * first * oneSideLimit;
         result = result * first * speedIntoTunnel;
-        result = result * first + isFree.hashCode();
+        result = result * first + occupied.hashCode();
         result = result * first + insideTrainsNumber.hashCode();
         result = result * first + oneSideTrainCount.hashCode();
         result = result * first + (lastTrainDirection == null ? 0 : lastTrainDirection.hashCode());
@@ -198,8 +196,8 @@ public class Tunnel {
                 .append(lastTrainDirection)
                 .append(", oneSideTrainCount=")
                 .append(oneSideTrainCount)
-                .append(", isFree=")
-                .append(isFree)
+                .append(", occupied=")
+                .append(occupied)
                 .append('}')
                 .toString();
     }

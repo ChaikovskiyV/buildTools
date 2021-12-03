@@ -18,7 +18,6 @@ public class Main {
     static final Logger logger = LogManager.getLogger();
     static final String FILE_NAME = "sources/sourcedata.txt";
 
-
     public static void main(String[] args) throws MultithreadingException {
         ReaderFromFile reader = ReaderFromFile.getInstance();
         List<Integer> data = reader.readeData(FILE_NAME);

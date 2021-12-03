@@ -48,7 +48,7 @@ public class TrainTraffic {
         lock.lock();
         Tunnel currentTunnel;
         try {
-            while ((currentTunnel = findAllowedTunnel(train, tunnelsList)) == null) {
+            while ((currentTunnel = findFreeTunnel(train, tunnelsList)) == null) {
                 if (!waitingList.contains(train)) {
                     logger.info(() -> String.format("%s is waiting...%n", train));
                     waitingList.add(train);
@@ -67,16 +67,16 @@ public class TrainTraffic {
         currentTunnel.removeTrain(train);
     }
 
-    public boolean isContainsAnotherDirection(Train.TrainDirection direction) {
+    public boolean presentOthersDirection(Train.TrainDirection direction) {
         return waitingList.stream()
                 .filter(t -> t.getDirection() != direction)
                 .findAny()
-                .orElse(null) == null;
+                .orElse(null) != null;
     }
 
-    private Tunnel findAllowedTunnel(Train train, List<Tunnel> tunnels) {
+    private Tunnel findFreeTunnel(Train train, List<Tunnel> tunnels) {
         return tunnels.stream()
-                .filter(t -> t.isFree(train))
+                .filter(t -> t.occupy(train))
                 .findFirst()
                 .orElse(null);
     }
